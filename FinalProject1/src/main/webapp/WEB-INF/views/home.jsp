@@ -47,7 +47,7 @@
     <div class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <img src="/resources/assets/img/csc_logo.png" alt="CSC" style="height: 50px">
+            <img src="resources/assets/img/csc_logo.png" alt="CSC" style="height: 50px">
 
         </div>
         <div class="navbar-header" STYLE="MARGIN-LEFT:   20px">
@@ -150,12 +150,11 @@
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
-					<img src="/resources/assets/img/user.png" alt="Stanley">
+					<img src="resources/assets/img/user.png" alt="Stanley">
                     <div class="container pt">
                         <div class="row mt">
                             <div class="col-lg-6 col-lg-offset-3 centered">
                                 <h3>Login</h3>
-                                <hr>
                                 <p>Please enter your information.</p>
                             </div>
                         </div>
@@ -170,7 +169,6 @@
                                         <input type="password" class="form-control" id="password" placeholder="Password">
                                         <br>
                                     </div>
-                                    <br>
                                     <button type="submit" class="btn btn-success centered">SUBMIT</button>
                                 </form>
                             </div>
@@ -232,6 +230,8 @@
 						---
 					</p>
 				</div><!-- /col-lg-4 -->
+				<div class="col-lg-4">
+				</div>
 				<div class="col-lg-4">
                 <h4>My Links</h4>
 
