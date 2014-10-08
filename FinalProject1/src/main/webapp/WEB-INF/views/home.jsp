@@ -222,15 +222,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
-					<h4>Java Fresher Final Project</h4>
-					<p>
-						Team 1<br>
-						---<br>
-						---<br>
-						---
+					<p style="margin-top:10%">Java Fresher Final Project<br>Manage accounts in banking system
 					</p>
 				</div><!-- /col-lg-4 -->
 				<div class="col-lg-4">
+				<p style="margin-top:10%">Team 1<br>
+				
+					</p>
 				</div>
 				<div class="col-lg-4">
                 <h4>My Links</h4>
