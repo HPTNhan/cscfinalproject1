@@ -10,29 +10,23 @@
 <title>Final Project</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/css/bootstrap.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="/css/main.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/css/main.css"/>" rel="stylesheet">
 <!-- MetisMenu CSS -->
-<link
-	href="<c:url value="/css/plugins/metisMenu/metisMenu.min.css"/>"
+<link href="<c:url value="/css/plugins/metisMenu/metisMenu.min.css"/>"
 	rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/css/plugins/timeline.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/css/plugins/timeline.css"/>" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="/css/sb-admin-2.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/css/sb-admin-2.css"/>" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="/css/plugins/morris.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/css/plugins/morris.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
@@ -60,6 +54,7 @@
 						<div class="row mt">
 							<div class="col-lg-6 col-lg-offset-3 centered">
 								<h3>Login</h3>
+								<hr>
 								<p>Please enter your information.</p>
 							</div>
 						</div>
@@ -87,11 +82,12 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
+	</div>
 	<!-- /container -->
 
 
 	<!-- +++++ Footer Section +++++ -->
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 
 
@@ -102,16 +98,12 @@
 	<script src="<c:url value="/js/jquery-1.11.0.js"/>"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script
-		src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- Morris Charts JavaScript -->
-	<script
-		src="<c:url value="/js/plugins/morris/raphael.min.js"/>"></script>
-	<script
-		src="<c:url value="/js/plugins/morris/morris.min.js"/>"></script>
-	<script
-		src="<c:url value="/js/plugins/morris/morris-data.js"/>"></script>
+	<script src="<c:url value="/js/plugins/morris/raphael.min.js"/>"></script>
+	<script src="<c:url value="/js/plugins/morris/morris.min.js"/>"></script>
+	<script src="<c:url value="/js/plugins/morris/morris-data.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value="/js/sb-admin-2.js"/>"></script>
