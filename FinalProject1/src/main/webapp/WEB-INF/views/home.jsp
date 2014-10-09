@@ -10,38 +10,38 @@
 <title>Final Project</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/resources/assets/css/bootstrap.css"/>"
+<link href="<c:url value="/css/bootstrap.css"/>"
 	rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="/resources/assets/css/main.css"/>"
+<link href="<c:url value="/css/main.css"/>"
 	rel="stylesheet">
 <!-- MetisMenu CSS -->
 <link
-	href="<c:url value="/resources/assets/css/plugins/metisMenu/metisMenu.min.css"/>"
+	href="<c:url value="/css/plugins/metisMenu/metisMenu.min.css"/>"
 	rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/resources/assets/css/plugins/timeline.css"/>"
+<link href="<c:url value="/css/plugins/timeline.css"/>"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="/resources/assets/css/sb-admin-2.css"/>"
+<link href="<c:url value="/css/sb-admin-2.css"/>"
 	rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="/resources/assets/css/plugins/morris.css"/>"
+<link href="<c:url value="/css/plugins/morris.css"/>"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="<c:url value="/resources/assets/font-awesome-4.1.0/css/font-awesome.min.css"/>"
+	href="<c:url value="/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<c:url value="/resources/assets/js/hover.zoom.js"/>"></script>
-<script src="<c:url value="/resources/assets/js/hover.zoom.conf.js"/>"></script>
+<script src="<c:url value="/js/hover.zoom.js"/>"></script>
+<script src="<c:url value="/js/hover.zoom.conf.js"/>"></script>
 
 
 </head>
@@ -55,7 +55,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
-					<img src="resources/assets/img/user.png" alt="Stanley">
+					<img src="img/user.png" alt="Stanley">
 					<div class="container pt">
 						<div class="row mt">
 							<div class="col-lg-6 col-lg-offset-3 centered">
@@ -97,23 +97,23 @@
 
 	<!-- JavaScript
     ================================================== -->
-	<script src="<c:url value="/resources/assets/js/bootstrap.min.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 	<!-- jQuery Version 1.11.0 -->
-	<script src="<c:url value="/resources/assets/js/jquery-1.11.0.js"/>"></script>
+	<script src="<c:url value="/js/jquery-1.11.0.js"/>"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script
-		src="<c:url value="/resources/assets/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+		src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- Morris Charts JavaScript -->
 	<script
-		src="<c:url value="/resources/assets/js/plugins/morris/raphael.min.js"/>"></script>
+		src="<c:url value="/js/plugins/morris/raphael.min.js"/>"></script>
 	<script
-		src="<c:url value="/resources/assets/js/plugins/morris/morris.min.js"/>"></script>
+		src="<c:url value="/js/plugins/morris/morris.min.js"/>"></script>
 	<script
-		src="<c:url value="/resources/assets/js/plugins/morris/morris-data.js"/>"></script>
+		src="<c:url value="/js/plugins/morris/morris-data.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="<c:url value="/resources/assets/js/sb-admin-2.js"/>"></script>
+	<script src="<c:url value="/js/sb-admin-2.js"/>"></script>
 </body>
 </html>
