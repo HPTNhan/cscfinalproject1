@@ -14,7 +14,7 @@
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<img src="<c:url value="/resources/assets/img/csc_logo.png"/>"
+				<img src="<c:url value="img/csc_logo.png"/>"
 					alt="CSC" style="height: 50px" />
 
 			</div>
