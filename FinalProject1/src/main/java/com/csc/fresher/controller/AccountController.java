@@ -22,4 +22,16 @@ public class AccountController {
 		return "viewAllAccs";
 	}
 	
+	@RequestMapping(value = "/addAccount")
+	public String addAccountt(Model model) {
+		
+		return "addAccount";
+	}
+	
+	@RequestMapping(value = "/editAccount")
+	public String editAccount(Model model) {
+		
+		return "editAccount";
+	}
+	
 }
