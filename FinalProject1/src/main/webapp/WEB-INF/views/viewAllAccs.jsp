@@ -34,7 +34,8 @@
 
 
 <!-- Custom Fonts -->
-<link href="<c:url value="/font-awesome-4.1.0/css/font-awesome.min.css"/>"
+<link
+	href="<c:url value="/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -49,6 +50,16 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div id="page-wrapper">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li>
+					<a href="home.jsp">Home</a>
+				</li>
+				<li class="active">
+					Account Management
+				</li>
+			</ol>
+		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Account Management</h1>
@@ -70,8 +81,9 @@
 							</select>
 						</div>
 						<div style="float: right; margin-top: -3%">
-							<button type="submit" class="btn btn-success centered">NEW</button>
-							<button type="submit" class="btn btn-success centered" data-toggle="modal" data-target="#myFilter">SEARCH</button>
+							<button type="submit" class="btn btn-success centered">New</button>
+							<button type="submit" class="btn btn-success centered"
+								data-toggle="modal" data-target="#myFilter">Filter</button>
 						</div>
 					</div>
 					<!-- /.panel-heading -->
@@ -98,10 +110,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Trident</td>
-										<td>Internet Explorer 4.0</td>
-										<td>Win 95+</td>
-										<td>4</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td class="tooltip-demo"><a href="#"
 											data-toggle="tooltip" data-placement="left"
 											title="View detail"> <span
@@ -117,10 +129,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Trident</td>
-										<td>Internet Explorer 5.0</td>
-										<td>Win 95+</td>
-										<td>5</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td class="tooltip-demo"><a href="#"
 											data-toggle="tooltip" data-placement="left"
 											title="View detail"> <span
@@ -135,10 +147,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Trident</td>
-										<td>Internet Explorer 5.5</td>
-										<td>Win 95+</td>
-										<td>5.5</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -149,10 +161,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Trident</td>
-										<td>Internet Explorer 6</td>
-										<td>Win 98+</td>
-										<td>6</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -164,10 +176,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Webkit</td>
-										<td>Safari 2.0</td>
-										<td>OSX.4+</td>
-										<td>419.3</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -178,10 +190,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Webkit</td>
-										<td>Safari 3.0</td>
-										<td>OSX.4+</td>
-										<td>522.1</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -192,10 +204,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Webkit</td>
-										<td>OmniWeb 5.5</td>
-										<td>OSX.4+</td>
-										<td>420</td>
+										<td>10051234</td>
+										<td>OmniWeb</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -206,10 +218,10 @@
 												<label> <input type="checkbox" value="" />
 												</label>
 											</div></td>
-										<td>Webkit</td>
-										<td>iPod Touch / iPhone</td>
-										<td>iPod</td>
-										<td>420.1</td>
+										<td>10051234</td>
+										<td>Jack Jones</td>
+										<td>3205426</td>
+										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
@@ -220,7 +232,9 @@
 							</table>
 						</div>
 						<!-- /.table-responsive -->
-
+						<div style="float: right; margin-top:5px">
+							<button type="submit" class="btn btn-success centered">Approve</button>
+						</div>
 					</div>
 					<!-- /.panel-body -->
 				</div>
@@ -248,11 +262,11 @@
 				<div class="modal-body">
 					<dl class="dl-horizontal">
 						<dt>Full Name</dt>
-						<dd>Lee Chimi</dd>
+						<dd>Jack Jones</dd>
 						<dt>Account Number</dt>
-						<dd>7757846120</dd>
+						<dd>10051234</dd>
 						<dt>ID Card Number</dt>
-						<dd>17757846120</dd>
+						<dd>3205426</dd>
 						<dt>Phone Number</dt>
 						<dd>01654896805</dd>
 						<dt>Address</dt>
@@ -284,24 +298,54 @@
 				</div>
 				<div class="modal-body">
 					<dl class="dl-horizontal">
+						<dt>ID Card number</dt>
+						<dd>
+							<div class="form-group">
+								<input type="text" class="form-control" id="idCardNumber"
+									placeholder="ID Card Number"> <br>
+							</div>
+						</dd>
 						<dt>Full Name</dt>
-						<dd>Lee Chimi</dd>
+						<dd>
+							<div class="form-group">
+								<input type="text" class="form-control" id="fullName"
+									placeholder="Full Name"> <br>
+							</div>
+						</dd>
+						<dt>Account type</dt>
+						<dd>
+							<select class="form-control">
+								<option>Deposit account</option>
+								<option>Saving account</option>
+								<option>Others</option>
+							</select>
+						</dd>
 						<dt>Account Number</dt>
-						<dd>7757846120</dd>
-						<dt>ID Card Number</dt>
-						<dd>17757846120</dd>
-						<dt>Phone Number</dt>
-						<dd>01654896805</dd>
+						<dd>
+							<div class="form-group">
+								<input type="text" class="form-control" id="accNumber"
+									placeholder="Account Number"> <br>
+							</div>
+						</dd>
 						<dt>Address</dt>
-						<dd>NTT, District 7</dd>
-						<dt>Email</dt>
-						<dd>leechimi@gmail.com</dd>
-						<dd>lchimi@gmail.com</dd>
+						<dd>
+							<div class="form-group">
+								<input type="text" class="form-control" id="address"
+									placeholder="Address"> <br>
+							</div>
+						</dd>
+						<dt>Phone</dt>
+						<dd>
+							<div class="form-group">
+								<input type="text" class="form-control" id="phone"
+									placeholder="Phone"> <br>
+							</div>
+						</dd>
 					</dl>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success centered"
-						data-dismiss="modal">Close</button>
+						data-dismiss="modal">Filter</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -319,8 +363,10 @@
 	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- DataTables JavaScript -->
-	<script src="<c:url value="/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
-	<script src="<c:url value="/js/plugins/dataTables/dataTables.bootstrap.js"/>"></script>
+	<script
+		src="<c:url value="/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
+	<script
+		src="<c:url value="/js/plugins/dataTables/dataTables.bootstrap.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value="/js/sb-admin-2.js"/>"></script>
