@@ -1,4 +1,4 @@
-package com.csc.fresher;
+package com.csc.fresher.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
