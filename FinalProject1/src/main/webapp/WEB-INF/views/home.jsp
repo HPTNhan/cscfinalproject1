@@ -45,8 +45,8 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<!-- +++++ Welcome Section +++++ -->
-	<div id="ww">
-		<div class="container">
+	<div id="ww"style="height:700px">
+		<div class="container" style="padding-top:5%">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<img src="img/user.png" alt="Stanley">
