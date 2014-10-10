@@ -69,7 +69,7 @@
 										<input type="password" class="form-control" id="password"
 											placeholder="Password"> <br>
 									</div>
-									<button type="submit" class="btn btn-success centered">SUBMIT</button>
+									<button type="submit" class="btn btn-success centered">Submit</button>
 								</form>
 							</div>
 						</div>
