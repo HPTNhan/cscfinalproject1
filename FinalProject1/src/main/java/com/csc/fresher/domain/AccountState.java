@@ -10,14 +10,17 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="accountstate")
 @NamedQuery(name="AccountState.findAll", query="SELECT a FROM AccountState a")
 public class AccountState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int idstate;
 
+	@Column(length=45)
 	private String stateName;
 
 	//bi-directional many-to-one association to Account

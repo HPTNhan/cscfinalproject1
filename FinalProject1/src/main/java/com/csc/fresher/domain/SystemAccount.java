@@ -9,18 +9,23 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="systemaccount")
 @NamedQuery(name="SystemAccount.findAll", query="SELECT s FROM SystemAccount s")
 public class SystemAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int id;
 
+	@Column(length=45)
 	private String password;
 
+	@Column(length=45)
 	private String role;
 
+	@Column(length=45)
 	private String username;
 
 	public SystemAccount() {
