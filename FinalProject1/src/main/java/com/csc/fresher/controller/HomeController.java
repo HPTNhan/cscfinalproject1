@@ -2,6 +2,7 @@ package com.csc.fresher.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.csc.fresher.dao.SystemAccountDAO;
+import com.csc.fresher.domain.SystemAccount;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +36,14 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		
+		// comment if you have error when run
+		/*SystemAccountDAO systemAccountDAO = new SystemAccountDAO();
+		List<SystemAccount> systemaccounts = systemAccountDAO.getSystemAccounts();
+		for (SystemAccount systemaccount : systemaccounts) {
+			System.out.println(systemaccount.getUsername());
+		}*/
+		//
 		
 		return "home";
 	}
