@@ -9,34 +9,47 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="account")
 @NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int idaccount;
 
+	@Column(length=12)
 	private String accountNumber;
 
+	@Column(length=150)
 	private String address1;
 
+	@Column(length=150)
 	private String address2;
 
+	@Column(length=45)
 	private String email1;
 
+	@Column(length=45)
 	private String email2;
 
+	@Column(length=45)
 	private String firstName;
 
+	@Column(length=45)
 	private String idCardNumber;
 
+	@Column(length=45)
 	private String lastName;
 
+	@Column(length=45)
 	private String midName;
 
+	@Column(length=20)
 	private String phoneNumber1;
 
+	@Column(length=20)
 	private String phoneNumber2;
 
 	//bi-directional many-to-one association to AccountState
