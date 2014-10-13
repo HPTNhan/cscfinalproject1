@@ -48,5 +48,11 @@ public class LoginController {
 			return "home";
 		}
 	}
+	@RequestMapping(value = "/search")
+	public String searchAccountList(Model model) {
+		
+		return "search";
+	}
+	
 
 }
