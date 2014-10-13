@@ -40,6 +40,8 @@
 <script src="<c:url value="/js/hover.zoom.js"/>"></script>
 <script src="<c:url value="/js/hover.zoom.conf.js"/>"></script>
 
+
+
 </head>
 
 <body>
@@ -57,7 +59,8 @@
 
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form"
+						action="addAccount" method="post" >
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
 								Type</label>
@@ -76,16 +79,16 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
 								Number</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="accountNumber" placeholder="Acount Number">
+								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
+									name="accountNumber" placeholder="Acount Number" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
 								Card Number</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="idCardNumber" placeholder="ID Card Number">
+								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
+									name="idCardNumber" placeholder="ID Card Number" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -93,7 +96,7 @@
 								Name</label>
 							<div class="col-sm-5">
 								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="firstName" placeholder="First Name">
+									name="firstName" placeholder="First Name" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -109,22 +112,22 @@
 								Name</label>
 							<div class="col-sm-5">
 								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="lastName" placeholder="last Name">
+									name="lastName" placeholder="last Name" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
 								Number 1</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="phoneNumber1" placeholder="Phone Number 1">
+								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
+									name="phoneNumber1" placeholder="Phone Number 1" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
 								Number 2</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
+								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
 									name="phoneNumber2" placeholder="Phone Number 2">
 							</div>
 						</div>
@@ -133,7 +136,7 @@
 								1</label>
 							<div class="col-sm-5">
 								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="address1" placeholder="Address 1">
+									name="address1" placeholder="Address 1" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -148,15 +151,15 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
 								1</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="email1" placeholder="Email 1">
+								<input class="form-control" type="email" id="formGroupInputSmall"
+									name="email1" placeholder="Email 1" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
 								2</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="text" id="formGroupInputSmall"
+								<input class="form-control" type="email" id="formGroupInputSmall"
 									name="email2" placeholder="Email 2">
 							</div>
 						</div>

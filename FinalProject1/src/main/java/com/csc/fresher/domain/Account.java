@@ -1,65 +1,65 @@
 package com.csc.fresher.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 /**
  * The persistent class for the account database table.
  * 
  */
 @Entity
-@Table(name="account")
-@NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
+@Table(name = "account")
+@NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true, nullable = false)
 	private int idaccount;
 
-	@Column(length=12)
+	@Column(length = 12)
 	private String accountNumber;
 
-	@Column(length=150)
+	@Column(length = 150)
 	private String address1;
 
-	@Column(length=150)
+	@Column(length = 150)
 	private String address2;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String email1;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String email2;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String firstName;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String idCardNumber;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String lastName;
 
-	@Column(length=45)
+	@Column(length = 45)
 	private String midName;
 
-	@Column(length=20)
+	@Column(length = 20)
 	private String phoneNumber1;
 
-	@Column(length=20)
+	@Column(length = 20)
 	private String phoneNumber2;
 
-	//bi-directional many-to-one association to AccountState
+	// bi-directional many-to-one association to AccountState
 	@ManyToOne
-	@JoinColumn(name="idstate")
+	@JoinColumn(name = "idstate")
 	private AccountState accountstate;
 
-	//bi-directional many-to-one association to AccountType
+	// bi-directional many-to-one association to AccountType
 	@ManyToOne
-	@JoinColumn(name="idtype")
+	@JoinColumn(name = "idtype")
 	private AccountType accounttype;
 
 	public Account() {
@@ -177,4 +177,46 @@ public class Account implements Serializable {
 		this.accounttype = accounttype;
 	}
 
+	public Account(String accountNumber, AccountState accountstate,
+			AccountType accounttype, String address1, String address2,
+			String email1, String email2, String firstName,
+			String idCardNumber, String lastName, String midName,
+			String phoneNumber1, String phoneNumber2) {
+		super();
+		this.accountNumber = accountNumber;
+		this.accountstate = accountstate;
+		this.accounttype = accounttype;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.email1 = email1;
+		this.email2 = email2;
+		this.firstName = firstName;
+		this.idCardNumber = idCardNumber;
+		this.lastName = lastName;
+		this.midName = midName;
+		this.phoneNumber1 = phoneNumber1;
+		this.phoneNumber2 = phoneNumber2;
+
+	}
+//	public Account(String accountNumber, AccountState accountstate,
+//			AccountType accounttype, String address1, String address2,
+//			String email1, String email2, String firstName,
+//			String idCardNumber, String lastName, String midName,
+//			String phoneNumber1, String phoneNumber2) {
+//		super();
+//		this.accountNumber = accountNumber;
+//		this.accountstate = accountstate;
+//		this.accounttype = accounttype;
+//		this.address1 = address1;
+//		this.address2 = address2;
+//		this.email1 = email1;
+//		this.email2 = email2;
+//		this.firstName = firstName;
+//		this.idCardNumber = idCardNumber;
+//		this.lastName = lastName;
+//		this.midName = midName;
+//		this.phoneNumber1 = phoneNumber1;
+//		this.phoneNumber2 = phoneNumber2;
+//
+//	}
 }
