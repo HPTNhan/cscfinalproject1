@@ -52,12 +52,8 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li>
-					<a href="home.jsp">Home</a>
-				</li>
-				<li class="active">
-					Account Management
-				</li>
+				<li><a href="home.jsp">Home</a></li>
+				<li class="active">Account Management</li>
 			</ol>
 		</div>
 		<div class="row">
@@ -70,22 +66,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="form-group" style="width: 30%">
-							<label>Select States</label> <select class="form-control">
-								<option>All</option>
-								<option>New</option>
-								<option>Active</option>
-								<option>Disable</option>
-								<option>Removable</option>
-							</select>
-						</div>
-						<div style="float: right; margin-top: -3%">
-							<button type="submit" class="btn btn-success centered">New</button>
-							<button type="submit" class="btn btn-success centered"
-								data-toggle="modal" data-target="#myFilter">Filter</button>
-						</div>
-					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<div class="table-responsive">
@@ -115,14 +95,18 @@
 										<td>3205426</td>
 										<td>New</td>
 										<td class="tooltip-demo"><a href="#"
-											data-toggle="tooltip" data-placement="left"
+											data-toggle="tooltip" data-placement="right"
 											title="View detail"> <span
 												class="glyphicon glyphicon-list-alt" data-toggle="modal"
 												data-target="#myModal"></span>
-										</a> <a href="#" data-toggle="tooltip" data-placement="right"
+										</a> 
+										<!-- <a href="#" data-toggle="tooltip" data-placement="right"
 											title="Edit Account"> <span
-												class="glyphicon glyphicon-edit"></span>
+												class="glyphicon glyphicon-edit"></span> -->
+										</a> <a href="#" data-toggle="tooltip" data-placement="right"
+											title="Remove"> <span class="glyphicon glyphicon-ok"></span>
 										</a></td>
+
 									</tr>
 									<tr class="even gradeC">
 										<td><div class="checkbox">
@@ -134,12 +118,15 @@
 										<td>3205426</td>
 										<td>New</td>
 										<td class="tooltip-demo"><a href="#"
-											data-toggle="tooltip" data-placement="left"
+											data-toggle="tooltip" data-placement="right"
 											title="View detail"> <span
 												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#" data-toggle="tooltip" data-placement="right"
+										</a> 
+										<!-- <a href="#" data-toggle="tooltip" data-placement="right"
 											title="Edit Account"> <span
-												class="glyphicon glyphicon-edit"></span>
+												class="glyphicon glyphicon-edit"></span> -->
+										</a> <a href="#" data-toggle="tooltip" data-placement="right"
+											title="Approve"> <span class="glyphicon glyphicon-ok"></span>
 										</a></td>
 									</tr>
 									<tr class="odd gradeA">
@@ -153,10 +140,14 @@
 										<td>New</td>
 										<td><a href="#"> <span
 												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
+										</a> 
+										<!-- <a href="#"> <span class="glyphicon glyphicon-edit"></span>
+										</a> -->
+										<a href="#" data-toggle="tooltip" data-placement="right"
+											title="Remove"> <span class="glyphicon glyphicon-ok"></span>
 										</a></td>
 									</tr>
-									<tr class="even gradeA">
+									<!-- <tr class="even gradeA">
 										<td><div class="checkbox">
 												<label> <input type="checkbox" value="" />
 												</label>
@@ -226,15 +217,13 @@
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
 										</a></td>
-									</tr>
+									</tr> -->
 
 								</tbody>
 							</table>
 						</div>
 						<!-- /.table-responsive -->
-						<div style="float: right; margin-top:5px">
-							<button type="submit" class="btn btn-success centered">Approve</button>
-						</div>
+
 					</div>
 					<!-- /.panel-body -->
 				</div>
