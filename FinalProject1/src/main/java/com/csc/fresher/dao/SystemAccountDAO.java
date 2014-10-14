@@ -12,9 +12,6 @@ import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.SystemAccount;
 
-/*@author TrinhLe
- * 
- */
 @Component
 public class SystemAccountDAO {
 
