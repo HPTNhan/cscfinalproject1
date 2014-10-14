@@ -54,21 +54,22 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Create Account</h1>
+					<h3><span> ${message }</span></h3>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<form class="form-horizontal" role="form"
-						action="addAccount" method="post" >
+						action="doAddAccount" method="post" >
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
 								Type</label>
 							<div class="col-sm-5">
 								<select id="selectAccountType" name="accountType"
 									class="form-control">
-									<option value="Deposit Account">Deposit Account</option>
-									<option value="Saving Account">Saving Account</option>
+									<option value="Deposit account">Deposit Account</option>
+									<option value="Saving account">Saving Account</option>
 									<option value="Others">Others</option>
 								</select>
 
