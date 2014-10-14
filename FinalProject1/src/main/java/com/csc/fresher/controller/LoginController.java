@@ -34,12 +34,13 @@ public class LoginController {
 		SystemAccountDAO systemDAO = new SystemAccountDAO();
 
 		// Query customer to DB
-		if(systemDAO.getSystemAccount(username, password)){
-			session.setAttribute("username", username);
+		if(systemDAO.getSystemAccount(username, password).getId() >0){
+			session.setAttribute("username", systemDAO.getSystemAccount(username, password).getUsername());
+			session.setAttribute("role", systemDAO.getSystemAccount(username, password).getRole());
 			message = "Success!";
 			model.addAttribute("message", message );
 			
-			return "home";
+			return "forward:/searchPage.html";
 		}
 		else{
 			
@@ -47,11 +48,6 @@ public class LoginController {
 			model.addAttribute("message", message );
 			return "home";
 		}
-	}
-	@RequestMapping(value = "/search")
-	public String searchAccountList(Model model) {
-		
-		return "search";
 	}
 	
 
