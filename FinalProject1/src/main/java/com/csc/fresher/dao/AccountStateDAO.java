@@ -1,7 +1,5 @@
 package com.csc.fresher.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -11,11 +9,10 @@ import org.springframework.stereotype.Component;
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.AccountState;
 
-
 @Component
 public class AccountStateDAO {
-	
-	public AccountState getAccountStateByName(String nameState){
+
+	public AccountState getAccountStateByName(String nameState) {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
 
@@ -24,18 +21,19 @@ public class AccountStateDAO {
 		AccountState accState = null;
 
 		entityTransaction.begin();
-		try {
+		/*try {*/
 			TypedQuery<AccountState> query = entityManager.createQuery(
-					"SELECT a FROM "+AccountState.class.getName()+" a WHERE a.stateName = :stateName", AccountState.class);
+					"SELECT a FROM " + AccountState.class.getName()
+							+ " a WHERE a.stateName= :stateName",
+					AccountState.class);
 			query.setParameter("stateName", nameState);
-			accState = (AccountState) query.getResultList();
-			
+			accState = query.getSingleResult();
+
 			entityTransaction.commit();
-		} catch (Exception e) {
+		/*} catch (Exception e) {
 			entityManager.close();
-		}
-		
-		
+		}*/
+
 		return accState;
 	}
 }
