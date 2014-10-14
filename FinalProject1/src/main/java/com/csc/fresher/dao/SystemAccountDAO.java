@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.SystemAccount;
+
 /*@author TrinhLe
  * 
  */
@@ -39,7 +40,7 @@ public class SystemAccountDAO {
 	}
 
 	/**
-	 * Login systemAccount 
+	 * Login systemAccount
 	 * 
 	 * @param username
 	 * @param password
@@ -63,7 +64,7 @@ public class SystemAccountDAO {
 							"SELECT c FROM "
 									+ SystemAccount.class.getName()
 									+ " c Where c.username= :username and c.password= :password",
-									SystemAccount.class);
+							SystemAccount.class);
 			query.setParameter("username", username);
 			query.setParameter("password", password);
 			SystemAccount sys = query.getSingleResult();
@@ -76,6 +77,23 @@ public class SystemAccountDAO {
 		// -----------End transaction-----------
 
 		return check;
+	}
 
+	public boolean addSystemAccount(SystemAccount systemAccount) {
+		// Obtains entity manager object
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		
+		boolean result = true;
+		
+		entityTransaction.begin();
+		
+		entityManager.persist(systemAccount);
+		
+		entityTransaction.commit();
+		
+		return result;
 	}
 }

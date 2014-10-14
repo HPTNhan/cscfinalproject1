@@ -21,7 +21,7 @@ public class AccountStateDAO {
 		AccountState accState = null;
 
 		entityTransaction.begin();
-		/*try {*/
+		try {
 			TypedQuery<AccountState> query = entityManager.createQuery(
 					"SELECT a FROM " + AccountState.class.getName()
 							+ " a WHERE a.stateName= :stateName",
@@ -30,9 +30,9 @@ public class AccountStateDAO {
 			accState = query.getSingleResult();
 
 			entityTransaction.commit();
-		/*} catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.close();
-		}*/
+		}
 
 		return accState;
 	}
