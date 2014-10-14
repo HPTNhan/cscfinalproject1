@@ -12,6 +12,7 @@ import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.domain.AccountType;
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.dao.AccountStateDAO;
+import com.csc.fresher.dao.AccountTypeDAO;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +29,18 @@ public class AccountController {
 
 		return "viewAllAccs";
 	}
+	
+	
+	
+	@RequestMapping(value = "/addAccount")
+	public String getAddAccount(Model model) {
+
+		return "addAccount";
+	}
+	
+	
+	
+	
 
 	/*
 	 * Add account to database
@@ -38,11 +51,10 @@ public class AccountController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/addAccount", method=RequestMethod.POST)
+	@RequestMapping(value = "/doAddAccount")
 	public String addAccount(HttpServletRequest request, Model model) {
-		// Read account info from request and save into Account object
-		// String accountType = request.getParameter("accountType");
-
+		// Read account info from request 		
+		String sAccountType = request.getParameter("accountType");
 		String accountNumber = request.getParameter("accountNumber");
 		String idCardNumber = request.getParameter("idCardNumber");
 		String firstName = request.getParameter("firstName");
@@ -54,24 +66,35 @@ public class AccountController {
 		String address2 = request.getParameter("address2");
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
+		
+		
+		
+		// Get Id of AccountState where name State = New
 		AccountStateDAO accountStateDAO = new AccountStateDAO();
 		AccountState accountState = accountStateDAO
-				.getAccountStateByName("new");
-		AccountType accountType = new AccountType();
+				.getAccountStateByName("New");
+		// Get Id of AccountType where name = name in request
+		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
+		AccountType accountType = accountTypeDAO
+						.getAccountTypeIdbyAccountTypeName(sAccountType);	
+		
 
-		Account account = new Account(accountNumber, accountState, accountType,
+		// save Account info into Account object
+		Account account = new Account(accountNumber, accountState,accountType,
 				address1, address2, email1, email2, firstName, idCardNumber,
 				lastName, midName, phoneNumber1, phoneNumber2);
-
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
-
 		// Save account to DB
 		accountDAO.addAccount(account);
 		System.out.println("Add Successfully");
-		return "forward:/addAccount.html";
+		return ("forward:/addAccount.html"+"&mess=Create Account Successfully");
 	}
 
+	
+	
+	
+	
 	@RequestMapping(value = "/editAccount")
 	public String editAccount(Model model) {
 

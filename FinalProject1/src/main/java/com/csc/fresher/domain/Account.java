@@ -198,25 +198,25 @@ public class Account implements Serializable {
 		this.phoneNumber2 = phoneNumber2;
 
 	}
-//	public Account(String accountNumber, AccountState accountstate,
-//			AccountType accounttype, String address1, String address2,
-//			String email1, String email2, String firstName,
-//			String idCardNumber, String lastName, String midName,
-//			String phoneNumber1, String phoneNumber2) {
-//		super();
-//		this.accountNumber = accountNumber;
-//		this.accountstate = accountstate;
-//		this.accounttype = accounttype;
-//		this.address1 = address1;
-//		this.address2 = address2;
-//		this.email1 = email1;
-//		this.email2 = email2;
-//		this.firstName = firstName;
-//		this.idCardNumber = idCardNumber;
-//		this.lastName = lastName;
-//		this.midName = midName;
-//		this.phoneNumber1 = phoneNumber1;
-//		this.phoneNumber2 = phoneNumber2;
-//
-//	}
+	// public Account(String accountNumber, AccountState accountstate,
+	// AccountType accounttype, String address1, String address2,
+	// String email1, String email2, String firstName,
+	// String idCardNumber, String lastName, String midName,
+	// String phoneNumber1, String phoneNumber2) {
+	// super();
+	// this.accountNumber = accountNumber;
+	// this.accountstate = accountstate;
+	// this.accounttype = accounttype;
+	// this.address1 = address1;
+	// this.address2 = address2;
+	// this.email1 = email1;
+	// this.email2 = email2;
+	// this.firstName = firstName;
+	// this.idCardNumber = idCardNumber;
+	// this.lastName = lastName;
+	// this.midName = midName;
+	// this.phoneNumber1 = phoneNumber1;
+	// this.phoneNumber2 = phoneNumber2;
+	//
+	// }
 }
