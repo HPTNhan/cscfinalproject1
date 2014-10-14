@@ -72,7 +72,7 @@ public class SystemAccountDAO {
 			check = query.getResultList().size() > 0;
 			entityTransaction.commit();
 		} catch (Exception e) {
-			entityManager.close();
+			entityManager.close(); 
 		}
 		// -----------End transaction-----------
 
