@@ -51,7 +51,7 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="home.jsp">Home</a></li>
+				<li><a href="">Home</a></li>
 				<li class="active">Search</li>
 			</ol>
 		</div>
@@ -59,8 +59,9 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Search
+					<c:if test="${role}=='support'"> 
 					<button type="submit" class="btn btn-success centered"
-						action="addAccount" style="margin-left: 80%">Add Account</button>
+						action="addAccount" style="float:right">Add Account</button></c:if>
 				</h1>
 			</div>
 			<!-- /.col-lg-12 -->
@@ -72,38 +73,45 @@
 					
 					<div class="row mt">
 						<div class="col-lg-4 col-lg-offset-4 centered">
-						<p class="alert alert-danger">No matching records found.</p>
-							<form role="form" style="margin-top: 5%">
+						<!-- <p class="alert alert-danger">No matching records found.</p> -->
+							<form role="form" action="search.html" method="post" style="margin-top: 5%">
 								<div class="form-group">
-									<input type="text" class="form-control" id="idCardNumber"
+									<input type="text" class="form-control" name="idCardNumber"
 										placeholder="ID Card Number"> <br>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="fullName"
+									<input type="text" class="form-control" name="fullname"
 										placeholder="Full Name"> <br>
 								</div>
 								<div>
-									<select class="form-control">
-										<option>Deposit account</option>
-										<option>Saving account</option>
-										<option>Others</option>
+									<select class="form-control" style="padding-left:6px" name="accountType">
+										<option value="1">Deposit account</option>
+										<option value="2">Saving account</option>
+										<option value="3">Others</option>
+									</select><br>
+								</div>
+								<div>
+									<select class="form-control" style="padding-left:6px" name="state">
+										<option value="1">New</option>
+										<option value="2">Active</option>
+										<option value="3">Disable</option>
+										<option value="4">Removable</option>
 									</select><br>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="accNumber"
+									<input type="text" class="form-control" name="accountNumber"
 										placeholder="Account Number"><br>
 								</div>
 
 								<div class="form-group">
-									<input type="text" class="form-control" id="address"
+									<input type="text" class="form-control" name="address"
 										placeholder="Address"> <br>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="phone"
+									<input type="text" class="form-control" name="phone"
 										placeholder="Phone"> <br>
 								</div>
-								<button type="submit" class="btn btn-success centered"
-									action="view">Search</button>
+								<button type="submit" class="btn btn-success centered">Search</button>
 							</form>
 						</div>
 					</div>
