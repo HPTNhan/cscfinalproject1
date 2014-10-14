@@ -100,9 +100,9 @@
 												class="glyphicon glyphicon-list-alt" data-toggle="modal"
 												data-target="#myModal"></span>
 										</a> 
-										<!-- <a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="editAcc.html?accountId=id" data-toggle="tooltip" data-placement="right"
 											title="Edit Account"> <span
-												class="glyphicon glyphicon-edit"></span> -->
+												class="glyphicon glyphicon-edit"></span>
 										</a> <a href="#" data-toggle="tooltip" data-placement="right"
 											title="Remove"> <span class="glyphicon glyphicon-ok"></span>
 										</a></td>
@@ -122,9 +122,9 @@
 											title="View detail"> <span
 												class="glyphicon glyphicon-list-alt"></span>
 										</a> 
-										<!-- <a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="#" data-toggle="tooltip" data-placement="right"
 											title="Edit Account"> <span
-												class="glyphicon glyphicon-edit"></span> -->
+												class="glyphicon glyphicon-trash"></span> 
 										</a> <a href="#" data-toggle="tooltip" data-placement="right"
 											title="Approve"> <span class="glyphicon glyphicon-ok"></span>
 										</a></td>
