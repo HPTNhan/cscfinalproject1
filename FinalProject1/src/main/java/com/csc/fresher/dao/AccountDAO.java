@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 
+
+
 /**
  * DAO class for Account entity. This class contains all methods that
  * inserts/updates/deletes account info
@@ -104,4 +106,29 @@ public class AccountDAO {
 
 		return true;
 	}
+
+	public Account getAccountInfoByAccountId(int accountId) {
+		
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		EntityTransaction entr = entityManager.getTransaction();
+
+		Account acc = null;
+		try {
+			entr.begin();
+			System.out.println("aaa");
+			acc = entityManager.find(Account.class, accountId);
+			
+			//acc = query.getResultList();
+
+			entr.commit();
+			System.out.println("bb");
+		} catch (Exception e) {
+			entityManager.close();
+		}
+
+		return acc;
+	}
+
 }

@@ -1,11 +1,15 @@
 package com.csc.fresher.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+
 
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
@@ -13,6 +17,8 @@ import com.csc.fresher.domain.AccountType;
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.AccountTypeDAO;
+
+
 
 /**
  * Handles requests for the application home page.
@@ -39,6 +45,45 @@ public class AccountController {
 	}
 	
 	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 * 
+	 * @author 
+	 */
+	
+	@RequestMapping(value = "/getAccountInfo")
+	public String getAccountInfo(HttpServletRequest request,
+			Model model) {
+		
+		int accountId = 377;
+		//String accountId = request.getParameter("accountId");
+		//String message = "";
+//		if(request.getParameter("mess") == null){
+//			message = "";
+//		}else{
+//			message = request.getParameter("mess");
+//			
+//		}
+		AccountDAO accDAO = new AccountDAO();
+		Account acc = accDAO.getAccountInfoByAccountId(accountId);
+		model.addAttribute("accountInfo", acc);
+		//model.addAttribute("message", message);
+	
+		System.out.println("get acc info uccessfully");
+		return ("editAccount");
+	}
+	
+	
+	
+	@RequestMapping(value = "/editAccount")
+	public String editAccount(Model model) {
+
+		return "editAccount";
+	}
 	
 	
 
@@ -67,7 +112,7 @@ public class AccountController {
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
 		
-		
+		String message = "";
 		
 		// Get Id of AccountState where name State = New
 		AccountStateDAO accountStateDAO = new AccountStateDAO();
@@ -85,20 +130,27 @@ public class AccountController {
 				lastName, midName, phoneNumber1, phoneNumber2);
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
-		// Save account to DB
-		accountDAO.addAccount(account);
-		System.out.println("Add Successfully");
-		return ("forward:/addAccount.html"+"&mess=Create Account Successfully");
+
+		try{
+			// Save account to DB
+			accountDAO.addAccount(account);
+			message = "Add account successfully";
+		}
+		catch (Exception e){
+			message = "Error: " + e;
+		}
+		
+		model.addAttribute("message", message);
+		//return ("forward:/addAccount.html");
+		//return "forward:/home.html";
+		//return "home";
+		return "home";
 	}
 
 	
 	
 	
 	
-	@RequestMapping(value = "/editAccount")
-	public String editAccount(Model model) {
 
-		return "editAccount";
-	}
 
 }
