@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.dao.SystemAccountDAO;
 
@@ -23,7 +24,7 @@ public class LoginController {
 	 * @return search page if login success
 	 * home page and show error message if login fail
 	 */
-	@RequestMapping(value = "/checkLogin")
+	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	public String getCustomer(HttpServletRequest request, Model model) {
 		// Read account info from request and save into Account object
 		HttpSession session = request.getSession();
