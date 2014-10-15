@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Create Acccount</title>
 
 <!-- Loading Bootstrap -->
@@ -60,7 +61,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<form class="form-horizontal" role="form"
-						action="<c:url value="/doAddAccount" /> " method="post" >
+						action="<c:url value="/doAddAccount" /> " method="post">
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
 								Type</label>
@@ -79,16 +80,18 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
 								Number</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
-									name="accountNumber" placeholder="Acount Number" required>
+								<input class="form-control" type="number" min="0"
+									id="formGroupInputSmall" name="accountNumber"
+									placeholder="Acount Number" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
 								Card Number</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
-									name="idCardNumber" placeholder="ID Card Number" required>
+								<input class="form-control" type="number" min="0"
+									id="formGroupInputSmall" name="idCardNumber"
+									placeholder="ID Card Number" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -119,16 +122,18 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
 								Number 1</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
-									name="phoneNumber1" placeholder="Phone Number 1" required>
+								<input class="form-control" type="number" min="0"
+									id="formGroupInputSmall" name="phoneNumber1"
+									placeholder="Phone Number 1" required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
 								Number 2</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="number" min="0" id="formGroupInputSmall"
-									name="phoneNumber2" placeholder="Phone Number 2">
+								<input class="form-control" type="number" min="0"
+									id="formGroupInputSmall" name="phoneNumber2"
+									placeholder="Phone Number 2">
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
@@ -151,16 +156,17 @@
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
 								1</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="email" id="formGroupInputSmall"
-									name="email1" placeholder="Email 1" required>
+								<input class="form-control" type="email"
+									id="formGroupInputSmall" name="email1" placeholder="Email 1"
+									required>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
 								2</label>
 							<div class="col-sm-5">
-								<input class="form-control" type="email" id="formGroupInputSmall"
-									name="email2" placeholder="Email 2">
+								<input class="form-control" type="email"
+									id="formGroupInputSmall" name="email2" placeholder="Email 2">
 							</div>
 						</div>
 

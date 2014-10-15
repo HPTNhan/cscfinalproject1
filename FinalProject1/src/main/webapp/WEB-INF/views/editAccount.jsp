@@ -60,129 +60,150 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<form class="form-horizontal" role="form"
-						action="<c:url value="/getAccountInfo" /> " method="post">
-						<c:forEach var="cus" items="${customerProfile}">
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
-									Type</label>
-								<div class="col-sm-5">
-									<select id="selectAccountType" name="accountType"
-										class="form-control">
-										<option value="Deposit account">Deposit Account</option>
+						action="<c:url value="/doUpdateAccountInfo" /> " method="post">
+						<input type="text" style="display: none;" name="idAccount"
+							value="${ accountInfo.idaccount}">
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
+								Type</label>
+							<div class="col-sm-5">
+								<select id="selectAccountType" name="accountType"
+									class="form-control">
+									<c:if test="${accountInfo.accounttype.idtype eq 1 }">
+										<option selected="selected" value="Deposit account">Deposit
+											Account</option>
 										<option value="Saving account">Saving Account</option>
 										<option value="Others">Others</option>
-									</select>
+									</c:if>
+									<c:if test="${accountInfo.accounttype.idtype eq 2 }">
+										<option value="Deposit account">Deposit Account</option>
+										<option selected="selected" value="Saving account">Saving
+											Account</option>
+										<option value="Others">Others</option>
+									</c:if>
+									<c:if test="${accountInfo.accounttype.idtype eq 3 }">
+										<option value="Deposit account">Deposit Account</option>
+										<option value="Saving account">Saving Account</option>
+										<option selected="selected" value="Others">Others</option>
+									</c:if>
+								</select>
 
-								</div>
 							</div>
+						</div>
 
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
-									Number</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="number" min="0"
-										id="formGroupInputSmall" name="accountNumber"
-										placeholder="Acount Number" required value="${acc.accountNumber}">
-								</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
+								Number</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" min="0"
+									id="formGroupInputSmall" name="accountNumber"
+									placeholder="Acount Number" required
+									value="${accountInfo.accountNumber.toString()}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
-									Card Number</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="number" min="0"
-										id="formGroupInputSmall" name="idCardNumber"
-										placeholder="ID Card Number" required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
+								Card Number</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" min="0"
+									id="formGroupInputSmall" name="idCardNumber"
+									placeholder="ID Card Number" required
+									value="${accountInfo.idCardNumber}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">First
-									Name</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text"
-										id="formGroupInputSmall" name="firstName"
-										placeholder="First Name" required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">First
+								Name</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" id="formGroupInputSmall"
+									name="firstName" placeholder="First Name" required
+									value="${accountInfo.firstName}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Mid
-									Name</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text"
-										id="formGroupInputSmall" name="midName" placeholder="Mid Name">
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Mid
+								Name</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" id="formGroupInputSmall"
+									name="midName" placeholder="Mid Name"
+									value="${accountInfo.midName}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Last
-									Name</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text"
-										id="formGroupInputSmall" name="lastName"
-										placeholder="last Name" required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Last
+								Name</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" id="formGroupInputSmall"
+									name="lastName" placeholder="last Name" required
+									value="${accountInfo.lastName}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
-									Number 1</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="number" min="0"
-										id="formGroupInputSmall" name="phoneNumber1"
-										placeholder="Phone Number 1" required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
+								Number 1</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" min="0"
+									id="formGroupInputSmall" name="phoneNumber1"
+									placeholder="Phone Number 1" required
+									value="${accountInfo.phoneNumber1}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
-									Number 2</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="number" min="0"
-										id="formGroupInputSmall" name="phoneNumber2"
-										placeholder="Phone Number 2">
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Phone
+								Number 2</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" min="0"
+									id="formGroupInputSmall" name="phoneNumber2"
+									placeholder="Phone Number 2"
+									value="${accountInfo.phoneNumber2}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Address
-									1</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text"
-										id="formGroupInputSmall" name="address1"
-										placeholder="Address 1" required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Address
+								1</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" id="formGroupInputSmall"
+									name="address1" placeholder="Address 1" required
+									value="${accountInfo.address1}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Address
-									2</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text"
-										id="formGroupInputSmall" name="address2"
-										placeholder="Address 2">
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Address
+								2</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="text" id="formGroupInputSmall"
+									name="address2" placeholder="Address 2"
+									value="${accountInfo.address2}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
-									1</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="email"
-										id="formGroupInputSmall" name="email1" placeholder="Email 1"
-										required>
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
+								1</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="email"
+									id="formGroupInputSmall" name="email1" placeholder="Email 1"
+									required value="${accountInfo.email1}">
 							</div>
-							<div class="form-group form-group-sm">
-								<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
-									2</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="email"
-										id="formGroupInputSmall" name="email2" placeholder="Email 2">
-								</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Email
+								2</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="email"
+									id="formGroupInputSmall" name="email2" placeholder="Email 2"
+									value="${accountInfo.email2}">
 							</div>
+						</div>
 
-							<div class="form-group form-group-sm">
-								<div class="col-lg-offset-3 col-lg-7">
-									<button style="margin-right: 20%" type="submit"
-										class="btn btn-primary btn-sm">Submit</button>
-									<button type="button" class="btn btn-default btn-sm">Cancel</button>
+						<div class="form-group form-group-sm">
+							<div class="col-lg-offset-3 col-lg-7">
+								<button style="margin-right: 20%" type="submit"
+									class="btn btn-primary btn-sm">Submit</button>
+								<button type="button" class="btn btn-default btn-sm">Cancel</button>
 
-								</div>
 							</div>
-						</c:forEach>
+						</div>
+
 					</form>
 
 				</div>
