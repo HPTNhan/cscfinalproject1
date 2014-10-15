@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
+import com.csc.fresher.domain.SystemAccount;
 
 
 @Component
@@ -15,14 +16,30 @@ public class NhanDAO {
 	public boolean removeAccount(int idaccount){
 		EntityManager entityManager = EntityManagerFactoryUtil.createEntityManager();
 		
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		
-		
+		EntityTransaction entityTransaction = entityManager.getTransaction();		
 		
 		Account account = entityManager.find(Account.class, idaccount);
 		entityTransaction.begin();
 		
 		entityManager.remove(account);
+		
+		entityTransaction.commit();
+		
+		return true;
+	}
+	
+	public boolean updateSystemAccount(int id){
+		EntityManager entityManager = EntityManagerFactoryUtil.createEntityManager();
+		
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+
+		entityTransaction.begin();
+		
+		SystemAccount account = entityManager.find(SystemAccount.class, id);
+		
+		account.setRole("SiuNhan");
+		
+		entityManager.merge(account);
 		
 		entityTransaction.commit();
 		
