@@ -1,22 +1,17 @@
 package com.csc.fresher.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
-import com.csc.fresher.domain.Account;
-import com.csc.fresher.domain.AccountState;
-import com.csc.fresher.domain.AccountType;
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.AccountTypeDAO;
+import com.csc.fresher.domain.Account;
+import com.csc.fresher.domain.AccountState;
+import com.csc.fresher.domain.AccountType;
 
 
 
