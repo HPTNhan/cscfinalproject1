@@ -58,7 +58,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Account Management</h1>
+				<h1 class="page-header">Account Management  and ${username }</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
@@ -81,143 +81,58 @@
 										<th>Full Name</th>
 										<th>ID Card Number</th>
 										<th>State</th>
+										<th>Account Type</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="odd gradeX">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td class="tooltip-demo"><a href="#"
-											data-toggle="tooltip" data-placement="right"
-											title="View detail"> <span
-												class="glyphicon glyphicon-list-alt" data-toggle="modal"
-												data-target="#myModal"></span>
-										</a> 
-										<a href="editAcc.html?accountId=id" data-toggle="tooltip" data-placement="right"
-											title="Edit Account"> <span
-												class="glyphicon glyphicon-edit"></span>
-										</a> <a href="#" data-toggle="tooltip" data-placement="right"
-											title="Remove"> <span class="glyphicon glyphicon-ok"></span>
-										</a></td>
-
-									</tr>
-									<tr class="even gradeC">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td class="tooltip-demo"><a href="#"
-											data-toggle="tooltip" data-placement="right"
-											title="View detail"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> 
-										<a href="#" data-toggle="tooltip" data-placement="right"
-											title="Edit Account"> <span
-												class="glyphicon glyphicon-trash"></span> 
-										</a> <a href="#" data-toggle="tooltip" data-placement="right"
-											title="Approve"> <span class="glyphicon glyphicon-ok"></span>
-										</a></td>
-									</tr>
-									<tr class="odd gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> 
-										<!-- <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a> -->
-										<a href="#" data-toggle="tooltip" data-placement="right"
-											title="Remove"> <span class="glyphicon glyphicon-ok"></span>
-										</a></td>
-									</tr>
-									<!-- <tr class="even gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a></td>
-									</tr>
-
-									<tr class="gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a></td>
-									</tr>
-									<tr class="gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a></td>
-									</tr>
-									<tr class="gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>OmniWeb</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a></td>
-									</tr>
-									<tr class="gradeA">
-										<td><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></td>
-										<td>10051234</td>
-										<td>Jack Jones</td>
-										<td>3205426</td>
-										<td>New</td>
-										<td><a href="#"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
-										</a></td>
-									</tr> -->
+									<c:set var="i" value="${0 }" />
+									<c:forEach var="account" items="${accounts}">
+										<tr>
+											<td>
+												<div class="checkbox">
+													<label> <input type="checkbox" value="" /></label>
+												</div>
+											</td>
+											<td>${account.accountNumber}</td>
+											<td>${account.firstName} ${account.lastName} ${account.midName}</td>	
+											<td>${account.idCardNumber}</td>
+											<td>${account.accountstate.stateName}</td>	
+											<td>${account.accounttype.typeName}</td>	
+											<td class="tooltip-demo">
+												<a href="#" data-toggle="tooltip" data-placement="right" title="View detail"> 
+													<span class="glyphicon glyphicon-list-alt" data-toggle="modal" data-target="#myModal${i }"></span>
+												</a> 
+												<c:if test="${role =='support'}"> 
+													<a href="editAcc.html?accountId=id" data-toggle="tooltip" data-placement="right" title="Edit Account"> 
+														<span class="glyphicon glyphicon-edit"></span>
+													</a> 
+												</c:if>
+												<c:if test="${(account.accountstate.stateName =='Removable') and (role =='support')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Remove"> 
+														<span class="glyphicon glyphicon-trash"></span>
+													</a>
+												</c:if>
+												<c:if test="${(account.accountstate.stateName =='New') and (role =='admin')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Active"> 
+														<span class="glyphicon glyphicon-plus"></span>
+													</a>
+												</c:if>
+												<c:if test="${(account.accountstate.stateName =='Active') and (role =='support')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Disable"> 
+														<span class="glyphicon glyphicon-ok"></span>
+													</a>
+												</c:if>
+												<c:if test="${(account.accountstate.stateName =='Disable') and (role =='admin')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Removable"> 
+														<span class="glyphicon glyphicon-remove"></span>
+													</a>
+												</c:if>
+											</td>												
+										</tr>
+										<c:set var="i" value="${i+1 }" />
+									</c:forEach>
+									
 
 								</tbody>
 							</table>
@@ -239,7 +154,9 @@
 	</div>
 	<!-- /#wrapper -->
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<c:set var="i" value="${0 }" />
+	<c:forEach var="account" items="${accounts}">
+	<div class="modal fade" id="myModal${i}" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -251,18 +168,21 @@
 				<div class="modal-body">
 					<dl class="dl-horizontal">
 						<dt>Full Name</dt>
-						<dd>Jack Jones</dd>
+						<dd>${account.firstName} ${account.lastName} ${account.midName}</dd>
 						<dt>Account Number</dt>
-						<dd>10051234</dd>
+						<dd>${account.accountNumber}</dd>
 						<dt>ID Card Number</dt>
-						<dd>3205426</dd>
+						<dd>${account.idCardNumber}</dd>
 						<dt>Phone Number</dt>
-						<dd>01654896805</dd>
+						<dd>${account.phoneNumber1} - ${account.phoneNumber2}</dd>
 						<dt>Address</dt>
-						<dd>NTT, District 7</dd>
+						<dd>${account.address1} - ${account.address2}</dd>
 						<dt>Email</dt>
-						<dd>leechimi@gmail.com</dd>
-						<dd>lchimi@gmail.com</dd>
+						<dd>${account.email1} - ${account.email2}</dd>
+						<dt>Account State</dt>
+						<dd>${account.accountstate.stateName}</dd>
+						<dt>Account Type</dt>
+						<dd>${account.accounttype.typeName}</dd>
 					</dl>
 				</div>
 				<div class="modal-footer">
@@ -274,73 +194,8 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
-	<!-- /.modal -->
-	<!-- Filter -->
-	<div class="modal fade" id="myFilter" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Account Information</h4>
-				</div>
-				<div class="modal-body">
-					<dl class="dl-horizontal">
-						<dt>ID Card number</dt>
-						<dd>
-							<div class="form-group">
-								<input type="text" class="form-control" id="idCardNumber"
-									placeholder="ID Card Number"> <br>
-							</div>
-						</dd>
-						<dt>Full Name</dt>
-						<dd>
-							<div class="form-group">
-								<input type="text" class="form-control" id="fullName"
-									placeholder="Full Name"> <br>
-							</div>
-						</dd>
-						<dt>Account type</dt>
-						<dd>
-							<select class="form-control">
-								<option>Deposit account</option>
-								<option>Saving account</option>
-								<option>Others</option>
-							</select>
-						</dd>
-						<dt>Account Number</dt>
-						<dd>
-							<div class="form-group">
-								<input type="text" class="form-control" id="accNumber"
-									placeholder="Account Number"> <br>
-							</div>
-						</dd>
-						<dt>Address</dt>
-						<dd>
-							<div class="form-group">
-								<input type="text" class="form-control" id="address"
-									placeholder="Address"> <br>
-							</div>
-						</dd>
-						<dt>Phone</dt>
-						<dd>
-							<div class="form-group">
-								<input type="text" class="form-control" id="phone"
-									placeholder="Phone"> <br>
-							</div>
-						</dd>
-					</dl>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success centered"
-						data-dismiss="modal">Filter</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
+	<c:set var="i" value="${i+1 }" />
+	</c:forEach>
 	<!-- /.modal -->
 	<!-- jQuery Version 1.11.0 -->
 	<script src="<c:url value="/js/jquery-1.11.0.js"/>"></script>
