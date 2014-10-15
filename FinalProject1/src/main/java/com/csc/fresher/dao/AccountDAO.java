@@ -1,14 +1,16 @@
 package com.csc.fresher.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
-
-
 
 /**
  * DAO class for Account entity. This class contains all methods that
@@ -20,72 +22,19 @@ import com.csc.fresher.domain.Account;
 @Component
 public class AccountDAO {
 
-	// /**
-	// * @return all accounts from Account table
-	// */
-	// public List<Account> getAccounts() {
-	//
-	// // Obtains entity manager object
-	// EntityManager entityManager = EntityManagerFactoryUtil
-	// .createEntityManager();
-	//
-	// // Obtains transaction from entity manager
-	// EntityTransaction entr = entityManager.getTransaction();
-	//
-	// // -----------Begin transaction-----------
-	// List<Account> accounts = null;
-	// try {
-	// entr.begin();
-	// // Get a list of accounts from DB
-	// TypedQuery<Account> query = entityManager.createQuery(
-	// "SELECT a FROM Account a", Account.class);
-	// accounts = query.getResultList();
-	//
-	// entr.commit();
-	// } catch (Exception e) {
-	// entityManager.close();
-	// }
-	// // -----------End transaction-----------
-	//
-	// return accounts;
-	//
-	// }
-
-	// public void updateUserName() {
-	// EntityManager entityManager1 = EntityManagerFactoryUtil
-	// .createEntityManager();
-	// EntityTransaction entr = entityManager1.getTransaction();
-	//
-	//
-	// try {
-	// // -----------Begin transaction-----------
-	// entr.begin();
-	// Account user = entityManager1.find(Account.class, 4);
-	// Customer customer = entityManager1.getReference(Customer.class, "1");
-	// user.setAccountName("nghia");
-	// user.setAccountNumber("le");
-	// user.setAccountType("mama");
-	// user.setCustomer(customer);
-	// entityManager1.merge(user);
-	// entr.commit();
-	// } catch (Exception e) {
-	// entityManager1.close();
-	// }
-	// }
-
 	/**
 	 * Add account to Account table
 	 * 
 	 * @param account
-	 *            Account entity that contains mapped with each column in
-	 *            Account table
-	 * @return
+	 * 
+	 * 
+	 * @return bcheck
 	 */
 	public boolean addAccount(Account account) {
+		boolean bcheck = false;
 		// Obtains entity manager object
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
-
 		// Obtains transaction from entity manager
 		EntityTransaction entr = entityManager.getTransaction();
 		// -----------Begin transaction-----------
@@ -94,38 +43,85 @@ public class AccountDAO {
 			// Insert a row to Account table
 			entityManager.persist(account);
 			entr.commit();
+			bcheck = true;
 			System.out.println("persist account successfully");
 		} catch (Exception e) {
 			System.out.println("error:" + "\n" + e);
 			entityManager.close();
 		}
 		// -----------End transaction-----------
-
-		return true;
+		return bcheck;
 	}
 
+	/**
+	 * Get account info by ID
+	 * 
+	 * @param accountId
+	 * 
+	 * 
+	 * @return acc
+	 */
 	public Account getAccountInfoByAccountId(int accountId) {
-		
+		// Obtains entity manager object
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
-
+		// Obtains transaction from entity manager
 		EntityTransaction entr = entityManager.getTransaction();
-
 		Account acc = null;
 		try {
 			entr.begin();
 			System.out.println("aaa");
 			acc = entityManager.find(Account.class, accountId);
-			
-			//acc = query.getResultList();
-
 			entr.commit();
-			System.out.println("bb");
+			System.out.println("Get account info by ID successfully");
 		} catch (Exception e) {
+			System.out.println("error:" + "\n" + e);
 			entityManager.close();
 		}
-
 		return acc;
+	}
+
+	/**
+	 * Update account info
+	 * 
+	 * @param account
+	 * 
+	 * 
+	 * @return bcheck
+	 */
+	public boolean updateAccountInfo(Account account) {
+		// Obtains entity manager object
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+		// Obtains transaction from entity manager
+		EntityTransaction entr = entityManager.getTransaction();
+		boolean bcheck = false;
+		try {
+			entr.begin();
+			Account accountTemp = entityManager.find(Account.class,
+					account.getIdaccount());
+			System.out.print(account.getIdaccount());
+			accountTemp.setAccountNumber(account.getAccountNumber());
+			// accountTemp.setAccountstate(account.getAccountstate());
+			accountTemp.setAccounttype(account.getAccounttype());
+			accountTemp.setAddress1(account.getAddress1());
+			accountTemp.setAddress2(account.getAddress2());
+			accountTemp.setEmail1(account.getEmail1());
+			accountTemp.setEmail2(account.getEmail2());
+			accountTemp.setFirstName(account.getFirstName());
+			accountTemp.setIdCardNumber(account.getIdCardNumber());
+			accountTemp.setLastName(account.getLastName());
+			accountTemp.setMidName(account.getMidName());
+			accountTemp.setPhoneNumber1(account.getPhoneNumber1());
+			accountTemp.setPhoneNumber2(account.getPhoneNumber2());
+			bcheck = true;
+			entr.commit();
+			System.out.println("Update account info successfully");
+		} catch (Exception e) {
+			System.out.println("error:" + "\n" + e);
+			entityManager.close();
+		}
+		return bcheck;
 	}
 
 }
