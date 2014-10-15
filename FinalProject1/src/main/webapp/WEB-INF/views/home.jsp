@@ -45,8 +45,8 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<!-- +++++ Welcome Section +++++ -->
-	<div id="ww"style="height:700px">
-		<div class="container" style="padding-top:5%">
+	<div id="ww" style="height: 700px">
+		<div class="container" style="padding-top: 5%">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<img src="img/user.png" alt="Stanley">
@@ -55,26 +55,26 @@
 							<div class="col-lg-6 col-lg-offset-3 centered">
 								<h3>Login</h3>
 								<hr>
-								<c:if test="${!empty message}"> 
-									<p style="color:red; margin-left: 3%; margin-bottom: 3%">${message }</p>
-								</c:if> 
+								<c:if test="${!empty message}">
+									<p style="color: red; margin-left: 3%; margin-bottom: 3%">${message }</p>
+								</c:if>
 								<p>Please enter your information.</p>
 							</div>
 						</div>
 						<div class="row mt">
 							<div class="col-lg-6 col-lg-offset-3" centered>
-							
-								<form role="form" action="checkLogin.html" method="post">
+
+								<form:form action="checkLogin" method="post">
 									<div class="form-group">
-										<input type="name" class="form-control" name="username"
-											placeholder="User Name"> <br>
+										<input type="text" class="form-control" name="username">
+										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" name="password"
-											placeholder="Password"> <br>
+										<input type="password" class="form-control" name="password">
+										<br>
 									</div>
-									<button type="submit" class="btn btn-success centered" action="view">Submit</button>
-								</form>
+									<button type="submit" class="btn btn-success centered">Submit</button>
+								</form:form>
 							</div>
 						</div>
 						<!-- /row -->
