@@ -20,7 +20,8 @@ public class LoginController {
 	 * 
 	 * @param request
 	 * @param model
-	 * @return
+	 * @return search page if login success
+	 * home page and show error message if login fail
 	 */
 	@RequestMapping(value = "/checkLogin")
 	public String getCustomer(HttpServletRequest request, Model model) {
@@ -37,8 +38,6 @@ public class LoginController {
 		if(systemDAO.getSystemAccount(username, password).getId() >0){
 			session.setAttribute("username", systemDAO.getSystemAccount(username, password).getUsername());
 			session.setAttribute("role", systemDAO.getSystemAccount(username, password).getRole());
-			message = "Success!";
-			model.addAttribute("message", message );
 			
 			return "forward:/searchPage.html";
 		}
