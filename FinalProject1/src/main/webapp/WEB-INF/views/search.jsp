@@ -59,7 +59,7 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Search
-					<c:if test="${role}=='support'"> 
+					<c:if test="${role =='support'}"> 
 					<button type="submit" class="btn btn-success centered"
 						action="addAccount" style="float:right">Add Account</button></c:if>
 				</h1>
@@ -73,7 +73,9 @@
 					
 					<div class="row mt">
 						<div class="col-lg-4 col-lg-offset-4 centered">
-						<!-- <p class="alert alert-danger">No matching records found.</p> -->
+						<c:if test="${!empty message}"> 
+						<p class="alert alert-danger">${message }</p> 
+						</c:if>
 							<form role="form" action="search.html" method="post" style="margin-top: 5%">
 								<div class="form-group">
 									<input type="text" class="form-control" name="idCardNumber"
