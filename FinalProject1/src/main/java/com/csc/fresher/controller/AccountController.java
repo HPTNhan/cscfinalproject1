@@ -1,5 +1,6 @@
 package com.csc.fresher.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -67,19 +68,23 @@ public class AccountController {
 			accountDAO.updateAccountInfo(account);
 			message = "Update account successfully";
 		} catch (Exception e) {
-			message = "Error: " + e;
+			message = "Update account failed cause: " + e;
 		}
 
 		model.addAttribute("message", message);
-		// return ("forward:/addAccount.html");
+		// return "editAccount";
+		//return "redirect:/getAccountInfo";
 		return "home";
-
 	}
 
 	@RequestMapping(value = "/getAccountInfo")
 	public String getAccountInfo(HttpServletRequest request, Model model) {
 		// get id
-		int accountId = 384;
+		String SaccountId = request.getParameter("accountId");
+		if (SaccountId == null) {
+			SaccountId = "4";
+		}
+		int accountId = Integer.parseInt(SaccountId);
 		AccountDAO accDAO = new AccountDAO();
 		Account acc = accDAO.getAccountInfoByAccountId(accountId);
 		// add account to attribute of model
@@ -89,12 +94,18 @@ public class AccountController {
 	}
 
 	
+	
+	
 	@RequestMapping(value = "/getAddAccount")
-	public String getAddAccount(Model model) {
-
+	public String getAddAccount(HttpServletRequest request, Model model) {
+		System.out.println("aaaaaaaa");
+ 		AccountDAO accountDAO = new AccountDAO();
+ 		String accountNumber = accountDAO.checkAccountNumber();	
+		System.out.println("aaa" +accountNumber);
+		model.addAttribute("accountNumber", accountNumber);
 		return "addAccount";
 	}
-	
+
 	@RequestMapping(value = "/doAddAccount")
 	public String addAccount(HttpServletRequest request, Model model) {
 		// Read account info from request
@@ -129,14 +140,15 @@ public class AccountController {
 		AccountDAO accountDAO = new AccountDAO();
 
 		try {
-			// Save account to DB
-			accountDAO.addAccount(account);
-			message = "Add account successfully";
+				// Save account to DB
+				accountDAO.addAccount(account);
+				message = "Create account successfully";
+
 		} catch (Exception e) {
-			message = "Error: " + e;
+			message = "Create account failed cause: " + e;
 		}
 		model.addAttribute("message", message);
-		return "home";
+		return "addAccount";
 	}
 
 }
