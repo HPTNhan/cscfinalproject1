@@ -32,6 +32,8 @@
 <!-- Morris Charts CSS -->
 <link href="<c:url value="/css/plugins/morris.css"/>" rel="stylesheet">
 
+<link href="<c:url value="/css/all_check.css"/>" rel="stylesheet">
+
 
 <!-- Custom Fonts -->
 <link
@@ -73,10 +75,9 @@
 								id="dataTables-example">
 								<thead>
 									<tr>
-										<th><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></th>
+										<th class="">
+											<input class="second" id="selectall" name="check" type="checkbox"/>
+										</th>
 										<th>Account Number</th>
 										<th>Full Name</th>
 										<th>ID Card Number</th>
@@ -90,9 +91,7 @@
 									<c:forEach var="account" items="${accounts}">
 										<tr>
 											<td><input style="display:none" name="idaccount" value="${account.idaccount}"/>
-												<div class="checkbox">
-													<label> <input type="checkbox" value="" /></label>
-												</div>
+												<input class="second" id="selectall" name="option2" type="checkbox"/>
 											</td>
 											<td>${account.accountNumber}</td>
 											<td>${account.firstName} ${account.lastName} ${account.midName}</td>	
@@ -212,6 +211,40 @@
 			selector : "[data-toggle=tooltip]",
 			container : "body"
 		})
+	</script>
+	
+	<script>
+	$(document).ready(function() {
+		// Below code is used to remove all check property if,
+		// User select/unselect options with class first options.
+		$(".first").click(function() {
+		$("#checkAll").attr("data-type", "uncheck");
+		});
+		// Below code is used to remove all check property if,
+		// User select/unselect options with name=option2 options.
+		$("input[name=option2]").click(function() {
+		$("#selectall").prop("checked", false);
+		});
+		/////////////////////////////////////////////////////////////
+		// JS for Check/Uncheck all CheckBoxes by Button //
+		/////////////////////////////////////////////////////////////
+		$("#checkAll").attr("data-type", "check");
+		$("#checkAll").click(function() {
+		if ($("#checkAll").attr("data-type") === "check") {
+		$(".first").prop("checked", true);
+		$("#checkAll").attr("data-type", "uncheck");
+		} else {
+		$(".first").prop("checked", false);
+		$("#checkAll").attr("data-type", "check");
+		}
+		})
+		/////////////////////////////////////////////////////////////
+		// JS for Check/Uncheck all CheckBoxes by Checkbox //
+		/////////////////////////////////////////////////////////////
+		$("#selectall").click(function() {
+		$(".second").prop("checked", $("#selectall").prop("checked"))
+		})
+		});
 	</script>
 
 </body>
