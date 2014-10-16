@@ -10,5 +10,7 @@
 	${SystemAccount.stateName }
 	
 	${removeAccount}
+	
+	${idCardNumber.accountNumber}
 </body>
 </html>
