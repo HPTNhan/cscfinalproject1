@@ -1,6 +1,7 @@
 package com.csc.fresher.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.NhanDAO;
 import com.csc.fresher.dao.SystemAccountDAO;
+import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.domain.SystemAccount;
 
@@ -59,4 +61,32 @@ public class NhanController {
 		return "NhanRemoveAccount";
 	}
 	
+	
+	@RequestMapping(value = "/nhangetaccount", method = RequestMethod.GET)
+	public String getAccountByIdCard(HttpServletRequest request){		
+		String idCardNumber = "4445";
+		
+		Account account = nhanDao.getAccountByIdCard(idCardNumber);
+		
+		request.setAttribute("idCardNumber", account);
+		return "NhanRemoveAccount";
+	}
+	
+	
+	/*@RequestMapping(value = "/nhanAdmin", method = RequestMethod.GET)
+	public String getAdmin(HttpServletRequest request){		
+		String idCardNumber = "4445";
+		
+		Account account = nhanDao.getAccountByIdCard(idCardNumber);
+		
+		request.setAttribute("idCardNumber", account);						
+		
+		return "search";
+	}*/
+	
+	
+	@RequestMapping(value = "/nhanAdmin", method = RequestMethod.GET)
+	public String NhanAdmin(){
+		return "NhanAdmin";
+	}
 }
