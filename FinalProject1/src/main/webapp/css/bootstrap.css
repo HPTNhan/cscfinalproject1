@@ -633,7 +633,7 @@ dt {
 
 dd {
   margin-left: 0;
-  height: 40px;
+  height: 30px;
 }
 
 @media (min-width: 768px) {
@@ -6015,6 +6015,7 @@ button.close {
   min-height: 16.428571429px;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+  background-color: #1abc9c;
 }
 
 .modal-header .close {
