@@ -159,11 +159,11 @@
 						<dt>ID Card Number</dt>
 						<dd>${account.idCardNumber}</dd>
 						<dt>Phone Number</dt>
-						<dd>${account.phoneNumber1}   ${account.phoneNumber2}</dd>
+						<dd>${account.phoneNumber1}</dd><dd>${account.phoneNumber2}</dd>
 						<dt>Address</dt>
-						<dd>${account.address1}   ${account.address2}</dd>
+						<dd>${account.address1}</dd><dd>${account.address2}</dd>
 						<dt>Email</dt>
-						<dd>${account.email1}   ${account.email2}</dd>
+						<dd>${account.email1}</dd><dd>${account.email2}</dd>
 						<dt>Account State</dt>
 						<dd>${account.accountstate.stateName}</dd>
 						<dt>Account Type</dt>
