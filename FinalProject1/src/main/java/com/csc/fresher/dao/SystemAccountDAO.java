@@ -128,7 +128,10 @@ public class SystemAccountDAO {
 					.createQuery(
 							"SELECT c FROM "
 									+ Account.class.getName()
-									+ " c WHERE (c.firstName LIKE :fullname OR c.lastName LIKE :fullname OR c.midName LIKE :fullname) AND c.idCardNumber LIKE :idCardNumber AND (c.phoneNumber1 LIKE :phone OR c.phoneNumber2 LIKE :phone) AND (c.address1 LIKE :address OR c.address2 LIKE :address) AND c.accountNumber LIKE :accountNumber AND c.accountstate = "
+									+ " c WHERE (c.firstName LIKE :fullname OR c.lastName LIKE :fullname OR c.midName LIKE :fullname) "
+									+ "AND c.idCardNumber LIKE :idCardNumber AND (c.phoneNumber1 LIKE :phone OR c.phoneNumber2 LIKE :phone) "
+									+ "AND (c.address1 LIKE :address OR c.address2 LIKE :address) AND c.accountNumber LIKE :accountNumber "
+									+ "AND c.accountstate = "
 									+ state + " AND c.accounttype = "
 									+ accountType, Account.class);
 			query.setParameter("fullname", "%" + fullname + "%");
