@@ -1,12 +1,17 @@
 package com.csc.fresher.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
+
+
 
 /**
  * DAO class for Account entity. This class contains all methods that
@@ -118,6 +123,35 @@ public class AccountDAO {
 			entityManager.close();
 		}
 		return bcheck;
+	}
+
+	public String checkAccountNumber() {
+		// Obtains entity manager object
+		EntityManager entityManager = EntityManagerFactoryUtil
+    				.createEntityManager();
+		// Obtains transaction from entity manager
+		EntityTransaction enTr = entityManager.getTransaction();
+		List<String> accountNumber = null;
+		/*try {*/
+			enTr.begin();
+			TypedQuery<String> query = entityManager.createQuery(
+					"SELECT a.accountNumber FROM " + Account.class.getName()
+							+ " a ORDER BY  a.idaccount DESC ",
+					String.class);
+			accountNumber = query.getResultList();
+			enTr.commit();
+			Integer iacc = Integer.parseInt(accountNumber.get(0).toString());
+			
+			iacc+=1;
+			
+			//accountNumber = String.valueOf(iacc);
+					
+		/*} catch (Exception e) {
+			entityManager.close();
+		}*/
+		
+		return iacc.toString();
+
 	}
 
 }
