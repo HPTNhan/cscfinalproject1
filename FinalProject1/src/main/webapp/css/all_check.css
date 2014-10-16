@@ -1,0 +1,26 @@
+.check{
+margin-top:15px;
+border-top:1px dashed #ccc;
+padding-top:15px
+}
+input[type=checkbox].second{
+	/* display:none */
+}
+/*--------------------------------------------------------------------------------
+Creating Checkbox and label as a single unit(for Cross browser compatibility)
+----------------------------------------------------------------------------------*/
+input[type=checkbox].second + label.label2{
+padding-left:44px;
+display:inline-block;
+line-height:34px;
+background-repeat:no-repeat;
+cursor:pointer;
+margin-left:40px;
+margin-right:90px
+}
+input[type=checkbox].second:checked + label.label2{
+background-position:0 -34px
+}
+label.label2{
+background-image:url(../img/check2.png)
+}
