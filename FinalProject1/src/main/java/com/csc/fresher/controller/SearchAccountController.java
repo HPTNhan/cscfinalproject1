@@ -18,6 +18,9 @@ import com.csc.fresher.domain.Account;
  */
 @Controller
 public class SearchAccountController {
+	
+	
+	
 
 	/**
 	 * redirect search page
@@ -42,6 +45,7 @@ public class SearchAccountController {
 	public String getAccount(HttpServletRequest request, Model model) {
 		// Read account info from request and save into Account object
 		HttpSession session = request.getSession();
+		String role = (String) request.getSession().getAttribute("role");
 		String idCardNumber = request.getParameter("idCardNumber");
 		String fullname = request.getParameter("fullname");
 		int accountType = Integer.parseInt(request.getParameter("accountType"));
@@ -56,11 +60,16 @@ public class SearchAccountController {
 		if(records>0){
 			accounts = systemDAO.getAccount(idCardNumber, fullname, accountType, accountNumber, state, phone, address);
 			model.addAttribute("accounts", accounts );
-			return "forward:/view.html";
+			if(role.equals("admin"))
+				return "viewListAccountsSupport";
+			else
+				return "viewListAccountsAdmin";
+				
+				
 		}else{
 			message = "No matching records found.";
 			model.addAttribute("message", message );
-		return "search";
+			return "search";
 		}
 	}
 
