@@ -52,4 +52,11 @@ public class NhanController {
 		return "NhanRemoveAccount";
 	}
 	
+	@RequestMapping(value = "/updateSystemAccount", method = RequestMethod.GET)
+	public String updateSystemAccount(){
+		NhanDAO dao = new NhanDAO();
+		dao.updateSystemAccount(1);
+		return "NhanRemoveAccount";
+	}
+	
 }
