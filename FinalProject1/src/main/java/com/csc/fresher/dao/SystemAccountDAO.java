@@ -38,6 +38,8 @@ public class SystemAccountDAO {
 		return systemaccounts;
 	}
 
+	
+	
 	public boolean addSystemAccount(SystemAccount systemAccount) {
 		// Obtains entity manager object
 		EntityManager entityManager = EntityManagerFactoryUtil
