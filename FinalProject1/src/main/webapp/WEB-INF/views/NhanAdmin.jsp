@@ -10,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<table>
+	
 		<thead>
 			<tr>
 				<th><input type="checkbox" class="allstates" value="" /></th>
@@ -22,19 +24,30 @@
 				<th>Action</th>
 			</tr>
 		</thead>
+		
 		<c:set var="i" value="${0}" />
+		<form action="AdminSetListActive" method="post">		
 		<c:forEach var="account" items="${accounts}">
 			<tr>
-				<td><input type="checkbox" value="" /></td>
-				<td>${account.accountNumber}</td>
-				<td>${account.firstName}${account.lastName}${account.midName}</td>
+				<td><input type="checkbox" name="CheckBoxList" value="${account.idaccount}" /></td>
+				<td>
+					${account.accountNumber}
+					<%-- <input type="text" name="accountNumber" value="${account.accountNumber}" style="display: none;"> --%>
+				</td>
+				<td>
+					${account.firstName}${account.lastName}${account.midName}
+					<%-- <input type="text" name="accountNumber" value="${account.accountNumber}" style="display: none;"> --%>
+				</td>
 				<td>${account.idCardNumber}</td>
 				<td>${account.accountstate.stateName}</td>
 				<td>${account.accounttype.typeName}</td>
-				<td><a href="search">Set Active</a></td>
+				<td><a href="AdminSetActive?idaccount=${account.idaccount}">Set Active</a></td>
 			</tr>
 			<c:set var="i" value="${i+1 }" />
 		</c:forEach>
+		<tr><td colspan="6"><input type="submit" value="Set state"></td></tr>
+		</form>				
 	</table>
+	
 </body>
 </html>

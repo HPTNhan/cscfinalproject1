@@ -1,5 +1,7 @@
 package com.csc.fresher.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -67,6 +69,23 @@ public class NhanDAO {
 		return account;
 	}
 	
-	
+	public List<Account> getAccountByState(String stateName) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		entityManager.getTransaction().begin();
+
+		TypedQuery<Account> query = entityManager.createQuery("SELECT a FROM "
+				+ Account.class.getName()
+				+ " a WHERE a.accountstate.stateName = :stateName", Account.class);
+
+		query.setParameter("stateName", stateName);
+		
+		List<Account> account =  query.getResultList();
+		
+		entityManager.getTransaction().commit();
+		
+		return account;
+	}
 
 }
