@@ -79,10 +79,7 @@ public class AccountController {
 	public String getAccountInfo(HttpServletRequest request, Model model) {
 		// get id
 		String SaccountId = request.getParameter("accountId");
-		if (SaccountId == null) {
-			SaccountId = "4";
-		}
-		int accountId = Integer.parseInt(SaccountId);
+		int accountId = Integer.parseInt(SaccountId);	
 		AccountDAO accDAO = new AccountDAO();
 		Account acc = accDAO.getAccountInfoByAccountId(accountId);
 		// add account to attribute of model
