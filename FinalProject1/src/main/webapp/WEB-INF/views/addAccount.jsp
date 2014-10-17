@@ -86,7 +86,8 @@
 									<div class="col-sm-5">
 										<input class="form-control" type="text"
 											id="formGroupInputSmall" name="accountNumber"
-											placeholder="Acount Number" required value="${accountNumber}">
+											placeholder="Acount Number" value="${accountNumber}"
+											readonly="true">
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
