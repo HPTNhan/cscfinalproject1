@@ -32,6 +32,8 @@
 <!-- Morris Charts CSS -->
 <link href="<c:url value="/css/plugins/morris.css"/>" rel="stylesheet">
 
+<link href="<c:url value="/css/all_check.css"/>" rel="stylesheet">
+
 
 <!-- Custom Fonts -->
 <link
@@ -58,7 +60,12 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Account Management  and ${username }</h1>
+				<h1 class="page-header">Account Management  and ${username }
+				<c:if test="${(state =='4')}"> 
+					<button type="submit" class="btn btn-success centered"
+						action="approve" style="float:right">Delete</button>
+				</c:if>
+				</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
@@ -73,10 +80,9 @@
 								id="dataTables-example">
 								<thead>
 									<tr>
-										<th><div class="checkbox">
-												<label> <input type="checkbox" value="" />
-												</label>
-											</div></th>
+										<th>
+											<input class="second" id="selectall" name="check" type="checkbox"/>
+										</th>
 										<th>Account Number</th>
 										<th>Full Name</th>
 										<th>ID Card Number</th>
@@ -89,10 +95,9 @@
 									<c:set var="i" value="${0 }" />
 									<c:forEach var="account" items="${accounts}">
 										<tr>
-											<td><input style="display:none" name="idaccount" value="${account.idaccount}"/>
-												<div class="checkbox">
-													<label> <input type="checkbox" value="" /></label>
-												</div>
+											<td>
+												<input style="display:none" name="idaccount" value="${account.idaccount}"/>
+												<input class="second" id="selectall" name="option2" type="checkbox"/>
 											</td>
 											<td>${account.accountNumber}</td>
 											<td>${account.firstName} ${account.lastName} ${account.midName}</td>	
@@ -109,11 +114,6 @@
 												<c:if test="${(account.accountstate.stateName =='Removable')}"> 
 													<a href="#" data-toggle="tooltip" data-placement="right" title="Remove"> 
 														<span class="glyphicon glyphicon-trash"></span>
-													</a>
-												</c:if>
-												<c:if test="${(account.accountstate.stateName =='Active')}"> 
-													<a href="#" data-toggle="tooltip" data-placement="right" title="Disable"> 
-														<span class="glyphicon glyphicon-ok"></span>
 													</a>
 												</c:if>
 											</td>												
@@ -215,6 +215,40 @@
 			selector : "[data-toggle=tooltip]",
 			container : "body"
 		})
+	</script>
+	
+	<script>
+	$(document).ready(function() {
+		// Below code is used to remove all check property if,
+		// User select/unselect options with class first options.
+		$(".first").click(function() {
+		$("#checkAll").attr("data-type", "uncheck");
+		});
+		// Below code is used to remove all check property if,
+		// User select/unselect options with name=option2 options.
+		$("input[name=option2]").click(function() {
+		$("#selectall").prop("checked", false);
+		});
+		/////////////////////////////////////////////////////////////
+		// JS for Check/Uncheck all CheckBoxes by Button //
+		/////////////////////////////////////////////////////////////
+		$("#checkAll").attr("data-type", "check");
+		$("#checkAll").click(function() {
+		if ($("#checkAll").attr("data-type") === "check") {
+		$(".first").prop("checked", true);
+		$("#checkAll").attr("data-type", "uncheck");
+		} else {
+		$(".first").prop("checked", false);
+		$("#checkAll").attr("data-type", "check");
+		}
+		})
+		/////////////////////////////////////////////////////////////
+		// JS for Check/Uncheck all CheckBoxes by Checkbox //
+		/////////////////////////////////////////////////////////////
+		$("#selectall").click(function() {
+		$(".second").prop("checked", $("#selectall").prop("checked"))
+		})
+		});
 	</script>
 
 </body>
