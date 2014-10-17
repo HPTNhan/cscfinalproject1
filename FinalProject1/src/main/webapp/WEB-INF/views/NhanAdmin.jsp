@@ -15,7 +15,10 @@
 	
 		<thead>
 			<tr>
-				<th><input type="checkbox" class="allstates" value="" /></th>
+				<th>
+					<input type="checkbox" class="allstates" value="" />
+					
+				</th>
 				<th>Account Number</th>
 				<th>Full Name</th>
 				<th>ID Card Number</th>
@@ -27,9 +30,12 @@
 		
 		<c:set var="i" value="${0}" />
 		<form action="AdminSetListActive" method="post">		
+		<input type="text" name="currentState" value="${accounts[0].accountstate.stateName}" style="display: none;" />
 		<c:forEach var="account" items="${accounts}">
 			<tr>
-				<td><input type="checkbox" name="CheckBoxList" value="${account.idaccount}" /></td>
+				<td>
+					<input type="checkbox" name="CheckBoxList" value="${account.idaccount}" />					
+				</td>
 				<td>
 					${account.accountNumber}
 					<%-- <input type="text" name="accountNumber" value="${account.accountNumber}" style="display: none;"> --%>
