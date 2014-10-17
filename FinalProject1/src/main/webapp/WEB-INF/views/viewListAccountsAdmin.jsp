@@ -60,7 +60,22 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Account Management  and ${username }</h1>
+				<h1 class="page-header">Account Management  and ${username }
+				<c:if test="${(state =='1')}"> 
+					<button type="submit" class="btn btn-success centered"
+						action="approve" style="float:right">Set Active</button>
+				</c:if>
+				<c:if test="${(state =='2')}"> 
+					<button type="submit" class="btn btn-success centered"
+						action="approve" style="float:right">Set Disable</button>
+				</c:if>
+				<c:if test="${(state =='3')}"> 
+					<button type="submit" class="btn btn-success centered"
+						action="approve" style="float:right">Set Removable</button>
+					<button type="submit" class="btn btn-success centered"
+						action="approve" style="float:right; margin-right: 1%">Set Active</button>
+				</c:if>
+				</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
@@ -75,7 +90,7 @@
 								id="dataTables-example">
 								<thead>
 									<tr>
-										<th class="">
+										<th>
 											<input class="second" id="selectall" name="check" type="checkbox"/>
 										</th>
 										<th>Account Number</th>
@@ -104,10 +119,18 @@
 												</a>
 												<c:if test="${(account.accountstate.stateName =='New')}"> 
 													<a href="#" data-toggle="tooltip" data-placement="right" title="Active"> 
-														<span class="glyphicon glyphicon-plus"></span>
+														<span class="glyphicon glyphicon-check"></span>
+													</a>
+												</c:if>
+												<c:if test="${(account.accountstate.stateName =='Active')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Disable"> 
+														<span class="glyphicon glyphicon-ban-circle"></span>
 													</a>
 												</c:if>
 												<c:if test="${(account.accountstate.stateName =='Disable')}"> 
+													<a href="#" data-toggle="tooltip" data-placement="right" title="Active"> 
+														<span class="glyphicon glyphicon-check"></span>
+													</a>
 													<a href="#" data-toggle="tooltip" data-placement="right" title="Removable"> 
 														<span class="glyphicon glyphicon-remove"></span>
 													</a>
