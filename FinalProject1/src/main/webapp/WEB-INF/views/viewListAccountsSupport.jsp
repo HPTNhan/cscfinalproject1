@@ -108,10 +108,11 @@
 												<a href="#" data-toggle="tooltip" data-placement="right" title="View detail"> 
 													<span class="glyphicon glyphicon-list-alt" data-toggle="modal" data-target="#myModal${i }"></span>
 												</a> 
-												<a href="editAcc.html?accountId=id" data-toggle="tooltip" data-placement="right" title="Edit Account"> 
-													<span class="glyphicon glyphicon-edit"></span>
-												</a> 
-												<c:if test="${(account.accountstate.stateName =='Removable')}"> 
+												<a href="getAccountInfo?accountId=${account.idaccount}"
+												data-toggle="tooltip" data-placement="right"
+												title="Edit Account"> <span
+													class="glyphicon glyphicon-edit"></span>
+											</a> <c:if test="${(account.accountstate.stateName =='Removable')}"> 
 													<a href="#" data-toggle="tooltip" data-placement="right" title="Remove"> 
 														<span class="glyphicon glyphicon-trash"></span>
 													</a>
