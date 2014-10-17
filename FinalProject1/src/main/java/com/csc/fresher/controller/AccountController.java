@@ -1,6 +1,5 @@
 package com.csc.fresher.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -70,11 +69,10 @@ public class AccountController {
 		} catch (Exception e) {
 			message = "Update account failed cause: " + e;
 		}
-
 		model.addAttribute("message", message);
 		// return "editAccount";
-		//return "redirect:/getAccountInfo";
-		return "home";
+		// return "redirect:/getAccountInfo";
+		return "redirect:/view";
 	}
 
 	@RequestMapping(value = "/getAccountInfo")
@@ -93,15 +91,10 @@ public class AccountController {
 		return ("editAccount");
 	}
 
-	
-	
-	
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
-		System.out.println("aaaaaaaa");
- 		AccountDAO accountDAO = new AccountDAO();
- 		String accountNumber = accountDAO.checkAccountNumber();	
-		System.out.println("aaa" +accountNumber);
+		AccountDAO accountDAO = new AccountDAO();
+		String accountNumber = accountDAO.checkAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
 		return "addAccount";
 	}
@@ -140,15 +133,16 @@ public class AccountController {
 		AccountDAO accountDAO = new AccountDAO();
 
 		try {
-				// Save account to DB
-				accountDAO.addAccount(account);
-				message = "Create account successfully";
+			// Save account to DB
+			accountDAO.addAccount(account);
+			message = "Create account successfully";
 
 		} catch (Exception e) {
 			message = "Create account failed cause: " + e;
 		}
 		model.addAttribute("message", message);
-		return "addAccount";
+		// return "view";
+		return "redirect:/view";
 	}
 
 }

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 
-
-
 /**
  * DAO class for Account entity. This class contains all methods that
  * inserts/updates/deletes account info
@@ -128,30 +126,33 @@ public class AccountDAO {
 	public String checkAccountNumber() {
 		// Obtains entity manager object
 		EntityManager entityManager = EntityManagerFactoryUtil
-    				.createEntityManager();
+				.createEntityManager();
 		// Obtains transaction from entity manager
 		EntityTransaction enTr = entityManager.getTransaction();
 		List<String> accountNumber = null;
-		/*try {*/
+		String sacc = "";
+		try {
 			enTr.begin();
 			TypedQuery<String> query = entityManager.createQuery(
 					"SELECT a.accountNumber FROM " + Account.class.getName()
-							+ " a ORDER BY  a.idaccount DESC ",
-					String.class);
+							+ " a ORDER BY  a.idaccount DESC ", String.class);
 			accountNumber = query.getResultList();
 			enTr.commit();
-			Integer iacc = Integer.parseInt(accountNumber.get(0).toString());
-			
-			iacc+=1;
-			
-			//accountNumber = String.valueOf(iacc);
-					
-		/*} catch (Exception e) {
-			entityManager.close();
-		}*/
-		
-		return iacc.toString();
+			// generate Account Number by +1 and provide full 12 chars of number
+			Integer iacc = Integer.parseInt(accountNumber.get(0));
+			iacc += 1;
+			sacc = iacc.toString();
+			int accLength = sacc.length();
+			int missLength = 12 - accLength;
+			for (int i = 1; i <= missLength; i++) {
+				sacc = "0" + sacc;
+			}
 
+		} catch (Exception e) {
+			System.out.println(e);
+			entityManager.close();
+		}
+		return sacc;
 	}
 
 }

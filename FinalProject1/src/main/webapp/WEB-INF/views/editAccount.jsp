@@ -102,7 +102,7 @@
 										<input class="form-control" type="text" min="0"
 											id="formGroupInputSmall" name="accountNumber"
 											placeholder="Acount Number" required
-											value="${accountInfo.accountNumber.toString()}">
+											value="${accountInfo.accountNumber.toString()}" readonly="true">
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
