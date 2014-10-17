@@ -61,6 +61,7 @@ public class SearchAccountController {
 			accounts = systemDAO.getAccount(idCardNumber, fullname,
 					accountType, accountNumber, state, phone, address);
 			model.addAttribute("accounts", accounts);
+			model.addAttribute("state", state);
 			if (role.equals("admin"))
 				return "viewListAccountsAdmin";
 			else
