@@ -28,7 +28,7 @@ public class AccountController {
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
 		// Read account info from request
-		String sAccountType = request.getParameter("accountType");
+		String sAccountType = request.getParameter("account`Type");
 		String accountNumber = request.getParameter("accountNumber");
 		String idCardNumber = request.getParameter("idCardNumber");
 		String firstName = request.getParameter("firstName");
@@ -68,7 +68,7 @@ public class AccountController {
 		model.addAttribute("message", message);
 		// return "editAccount";
 		// return "redirect:/getAccountInfo";
-		return "redirect:/view";
+		return "viewListAccountsSupport";
 	}
 
 	@RequestMapping(value = "/getAccountInfo")
@@ -135,7 +135,7 @@ public class AccountController {
 		}
 		model.addAttribute("message", message);
 		// return "view";
-		return "redirect:/view";
+		return "viewListAccountsSupport";
 	}
 
 }
