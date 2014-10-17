@@ -21,13 +21,9 @@
 			<div class="navbar-header" STYLE="MARGIN-LEFT: 20px">
 				<a class="navbar-brand" href="index.html">FINAL PROJECT</a>
 			</div>
+			<c:if test="${!empty role }"> 
 			<div class="navbar-collapse collapse">
-				<!--<ul class="nav navbar-nav navbar-right">
-                <li><a href="work.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>-->
+				
 				<ul class="nav navbar-top-links navbar-right">
 
 					<!-- /.dropdown -->
@@ -75,20 +71,20 @@
 							<li><a class="text-center" href="#"> <strong>See
 										All Alerts</strong> <i class="fa fa-angle-right"></i>
 							</a></li>
-						</ul> <!-- /.dropdown-alerts --></li>
-					<!-- /.dropdown -->
+						</ul> <!-- /. end dropdown-alerts -->
+						</li>
+					<!-- /.end dropdown -->
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"
 							style="color: #2a6496"></i> <i class="fa fa-caret-down"
 							style="color: #2a6496"></i>
 					</a>
 						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-									Profile</a></li>
+							<li><a href="#"><i class="fa fa-user fa-fw"></i> ${role }</a></li>
 							<li><a href="#"><i class="fa fa-gear fa-fw"></i>
 									Settings</a></li>
 							<li class="divider"></li>
-							<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+							<li><a href="logout.html"><i class="fa fa-sign-out fa-fw"></i>
 									Logout</a></li>
 						</ul> <!-- /.dropdown-user --></li>
 					<!-- /.dropdown -->
@@ -96,6 +92,8 @@
 				<!-- /.navbar-top-links -->
 			</div>
 			<!--/.nav-collapse -->
+			
+				</c:if>
 		</div>
 	</div>
 </body>

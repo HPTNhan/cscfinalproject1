@@ -72,7 +72,10 @@
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
+				<div class="panel panel-success">
+				<c:if test="${message != null  }">
+					<div class="panel-heading">${message}</div>
+				</c:if>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<div class="table-responsive">

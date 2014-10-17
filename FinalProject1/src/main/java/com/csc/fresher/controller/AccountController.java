@@ -23,11 +23,7 @@ public class AccountController {
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
 
-	@RequestMapping(value = "/view")
-	public String getAccountList(Model model) {
-
-		return "viewAllAccs";
-	}
+	
 
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
