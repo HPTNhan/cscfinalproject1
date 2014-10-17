@@ -60,8 +60,8 @@
 				<h1 class="page-header">
 					Search
 					<c:if test="${role =='support'}"> 
-					<button type="submit" class="btn btn-success centered"
-						action="addAccount" style="float:right">Add Account</button></c:if>
+					<a href="getAddAccount.html"> <button type="submit" class="btn btn-success centered" 
+						 style="float:right">Add Account</button> </a> </c:if>
 				</h1>
 			</div>
 			<!-- /.col-lg-12 -->

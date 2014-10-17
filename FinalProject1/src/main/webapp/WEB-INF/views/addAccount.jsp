@@ -184,8 +184,8 @@
 									<div class="col-lg-offset-3 col-lg-7">
 										<button style="margin-right: 20%" type="submit"
 											class="btn btn-primary btn-sm">Submit</button>
-										<button type="button" class="btn btn-default btn-sm"
-											ONCLICK="window.location.href='/fresher/view'">Cancel</button>
+										<a href="view.html"><button type="button" class="btn btn-default btn-sm"
+											>Cancel</button></a>
 
 									</div>
 								</div>
