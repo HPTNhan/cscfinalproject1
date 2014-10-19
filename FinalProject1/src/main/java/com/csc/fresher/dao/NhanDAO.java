@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
+import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.domain.SystemAccount;
 
 @Component
@@ -87,5 +88,30 @@ public class NhanDAO {
 		
 		return account;
 	}
-
+	
+	public boolean setNextState(int idAccount) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+		
+		entityManager.getTransaction().begin();
+		
+		Account account = entityManager.find(Account.class, idAccount);
+		AccountState accountState = findNextState(account.getAccountstate().getIdstate()); 
+		account.setAccountstate(accountState);
+		entityManager.merge(account);
+		entityManager.getTransaction().commit();
+		
+		return true;
+	}
+	
+	public AccountState findNextState(int idAccountState){
+		EntityManager entityManager = EntityManagerFactoryUtil.createEntityManager();
+		
+		entityManager.getTransaction().begin();
+		int nextIdAccountState = idAccountState + 1;
+		AccountState accountState = entityManager.find(AccountState.class, nextIdAccountState);
+		entityManager.getTransaction().commit();
+		return accountState;
+	}
+	
 }
