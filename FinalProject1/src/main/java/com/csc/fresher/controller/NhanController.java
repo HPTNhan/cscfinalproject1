@@ -112,8 +112,13 @@ public class NhanController {
 		String[] lisIdAccounts = request.getParameterValues("CheckBoxList");	
 		String currentState = request.getParameter("currentState"); 
 		if (lisIdAccounts != null) {
-			for (String string : lisIdAccounts) {
-				System.out.println(string);
+			for (String idAccount : lisIdAccounts) {
+				System.out.println(idAccount);
+				if (nhanDao.setNextState(Integer.parseInt(idAccount))) {
+					System.out.println("update success");
+				} else {
+					System.out.println("update failed");
+				}
 			}
 			System.out.println(currentState);
 		}else {
