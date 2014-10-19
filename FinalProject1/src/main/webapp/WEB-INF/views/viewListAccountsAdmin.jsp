@@ -108,8 +108,8 @@
 									<c:set var="i" value="${0 }" />
 									<c:forEach var="account" items="${accounts}">
 										<tr>
-											<td><input style="display:none" name="idaccount" value="${account.idaccount}"/>
-												<input class="second" id="selectall" name="option2" type="checkbox"/>
+											<td>
+												<input class="second" id="selectall" name="idaccount" type="checkbox" value="${account.idaccount}"/>
 											</td>
 											<td>${account.accountNumber}</td>
 											<td>${account.firstName} ${account.lastName} ${account.midName}</td>	
