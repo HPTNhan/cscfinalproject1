@@ -62,14 +62,14 @@ public class NhanDAO {
 				+ " a WHERE a.idCardNumber like :idCardnumber", Account.class);
 
 		query.setParameter("idCardnumber", idCard);
-		
-		Account account =  query.getSingleResult();
-		
+
+		Account account = query.getSingleResult();
+
 		entityManager.getTransaction().commit();
-		
+
 		return account;
 	}
-	
+
 	public List<Account> getAccountByState(String stateName) {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
@@ -78,40 +78,50 @@ public class NhanDAO {
 
 		TypedQuery<Account> query = entityManager.createQuery("SELECT a FROM "
 				+ Account.class.getName()
-				+ " a WHERE a.accountstate.stateName = :stateName", Account.class);
+				+ " a WHERE a.accountstate.stateName = :stateName",
+				Account.class);
 
 		query.setParameter("stateName", stateName);
-		
-		List<Account> account =  query.getResultList();
-		
+
+		List<Account> account = query.getResultList();
+
 		entityManager.getTransaction().commit();
-		
+
 		return account;
 	}
-	
+
 	public boolean setNextState(int idAccount) {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
-		
-		entityManager.getTransaction().begin();
-		
-		Account account = entityManager.find(Account.class, idAccount);
-		AccountState accountState = findNextState(account.getAccountstate().getIdstate()); 
-		account.setAccountstate(accountState);
-		entityManager.merge(account);
-		entityManager.getTransaction().commit();
-		
+
+		try {
+			entityManager.getTransaction().begin();
+
+			Account account = entityManager.find(Account.class, idAccount);
+			AccountState accountState = findNextState(account.getAccountstate()
+					.getIdstate());
+			account.setAccountstate(accountState);
+			entityManager.merge(account);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
 		return true;
 	}
-	
-	public AccountState findNextState(int idAccountState){
-		EntityManager entityManager = EntityManagerFactoryUtil.createEntityManager();
-		
+
+	public AccountState findNextState(int idAccountState) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
 		entityManager.getTransaction().begin();
 		int nextIdAccountState = idAccountState + 1;
-		AccountState accountState = entityManager.find(AccountState.class, nextIdAccountState);
+		AccountState accountState = entityManager.find(AccountState.class,
+				nextIdAccountState);
 		entityManager.getTransaction().commit();
+
 		return accountState;
 	}
-	
+
 }
