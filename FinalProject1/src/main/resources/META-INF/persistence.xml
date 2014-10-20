@@ -9,7 +9,6 @@
 		<class>com.csc.fresher.domain.AccountState</class>
 		<class>com.csc.fresher.domain.AccountType</class>
 		<class>com.csc.fresher.domain.SystemAccount</class>
-
 		
 		<properties>
 			<property name="hibernate.connection.charSet" value="UTF-8" />
