@@ -109,8 +109,8 @@ public class NhanController {
 	
 	@RequestMapping(value = "/AdminSetListActive", method = RequestMethod.POST)
 	public String AdminSetListState(HttpServletRequest request) {
-		String[] lisIdAccounts = request.getParameterValues("CheckBoxList");	
-		String currentState = request.getParameter("currentState"); 
+		String[] lisIdAccounts = request.getParameterValues("idaccount");	
+		//String currentState = request.getParameter("currentState"); 
 		if (lisIdAccounts != null) {
 			for (String idAccount : lisIdAccounts) {
 				System.out.println(idAccount);
@@ -120,7 +120,7 @@ public class NhanController {
 					System.out.println("update failed");
 				}
 			}
-			System.out.println(currentState);
+			//System.out.println(currentState);
 		}else {
 			System.out.println("No checkbox checked");
 		}				
