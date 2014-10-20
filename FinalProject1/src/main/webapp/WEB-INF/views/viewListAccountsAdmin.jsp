@@ -50,7 +50,8 @@
 
 	<!-- Header -->
 	<jsp:include page="header.jsp"></jsp:include>
-
+	<form action="AdminSetListActive" method="post">
+	
 	<div id="page-wrapper">
 		<div class="row">
 			<ol class="breadcrumb">
@@ -160,7 +161,7 @@
 
 	</div>
 	<!-- /#page-wrapper -->
-
+	</form>
 	</div>
 	<!-- /#wrapper -->
 	<!-- Modal -->
