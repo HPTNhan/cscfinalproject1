@@ -102,6 +102,7 @@ public class AccountDAO {
 			System.out.print(account.getIdaccount());
 			// accountTemp.setAccountNumber(account.getAccountNumber());
 			// accountTemp.setAccountstate(account.getAccountstate());
+			accountTemp.setTimeStamp(account.getTimeStamp());
 			accountTemp.setAccounttype(account.getAccounttype());
 			accountTemp.setAddress1(account.getAddress1());
 			accountTemp.setAddress2(account.getAddress2());
@@ -113,6 +114,7 @@ public class AccountDAO {
 			accountTemp.setMidName(account.getMidName());
 			accountTemp.setPhoneNumber1(account.getPhoneNumber1());
 			accountTemp.setPhoneNumber2(account.getPhoneNumber2());
+			
 			bcheck = true;
 			entr.commit();
 			System.out.println("Update account info successfully");
