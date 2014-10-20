@@ -248,7 +248,7 @@
 		});
 		// Below code is used to remove all check property if,
 		// User select/unselect options with name=option2 options.
-		$("input[name=option2]").click(function() {
+		$("input[name=idaccount]").click(function() {
 		$("#selectall").prop("checked", false);
 		});
 		/////////////////////////////////////////////////////////////
