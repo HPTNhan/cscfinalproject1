@@ -60,20 +60,20 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Account Management  and ${username }
+				<h1 class="page-header">Account Management
 				<c:if test="${(state =='1')}"> 
 					<button type="submit" class="btn btn-success centered"
-						action="approve" style="float:right">Set Active</button>
+						action="active" style="float:right">Set Active</button>
 				</c:if>
 				<c:if test="${(state =='2')}"> 
 					<button type="submit" class="btn btn-success centered"
-						action="approve" style="float:right">Set Disable</button>
+						action="disable" style="float:right">Set Disable</button>
 				</c:if>
 				<c:if test="${(state =='3')}"> 
 					<button type="submit" class="btn btn-success centered"
-						action="approve" style="float:right">Set Removable</button>
+						action="removable" style="float:right">Set Removable</button>
 					<button type="submit" class="btn btn-success centered"
-						action="approve" style="float:right; margin-right: 1%">Set Active</button>
+						action="active" style="float:right; margin-right: 1%">Set Active</button>
 				</c:if>
 				</h1>
 			</div>
