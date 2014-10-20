@@ -95,16 +95,16 @@
 									</div>
 								</div>
 
-								<div class="form-group form-group-sm">
-									<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
-										Number</label>
-									<div class="col-sm-5">
-										<input class="form-control" type="text" min="0"
-											id="formGroupInputSmall" name="accountNumber"
-											placeholder="Acount Number" required
-											value="${accountInfo.accountNumber.toString()}" readonly="true">
-									</div>
-								</div>
+<!-- 								<div class="form-group form-group-sm"> -->
+<!-- 									<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount -->
+<!-- 										Number</label> -->
+<!-- 									<div class="col-sm-5"> -->
+<!-- 										<input class="form-control" type="text" min="0" -->
+<!-- 											id="formGroupInputSmall" name="accountNumber" -->
+<!-- 											placeholder="Acount Number" required -->
+<%-- 											value="${accountInfo.accountNumber.toString()}" readonly="true"> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
 								<div class="form-group form-group-sm">
 									<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
 										Card Number</label>
