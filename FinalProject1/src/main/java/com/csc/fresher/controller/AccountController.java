@@ -1,5 +1,9 @@
 package com.csc.fresher.controller;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +22,6 @@ import com.csc.fresher.domain.AccountType;
  */
 @Controller
 public class AccountController {
-
 	/**
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
@@ -48,10 +51,16 @@ public class AccountController {
 		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
 		AccountType accountType = accountTypeDAO
 				.getAccountTypeIdbyAccountTypeName(sAccountType);
-		// save Account info into Account object
-		Account account = new Account(accountNumber, accountState, accountType,
-				address1, address2, email1, email2, firstName, idCardNumber,
-				lastName, midName, phoneNumber1, phoneNumber2);
+		// Set isDeleted and Time
+		String isDeleted = "false";
+		// get current date time with Date()
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date timeStamp = new Date();
+
+		// save Account info into Account object		
+		Account account = new Account(accountNumber, address1, address2, email1, email2, firstName, idCardNumber, 
+				isDeleted, lastName, midName, phoneNumber1, phoneNumber2, timeStamp, accountState, accountType);
+		// set Account Id
 		account.setIdaccount(Integer.parseInt(idAccount));
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
@@ -114,11 +123,15 @@ public class AccountController {
 		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
 		AccountType accountType = accountTypeDAO
 				.getAccountTypeIdbyAccountTypeName(sAccountType);
-
+		// Set isDeleted and Time
+		String isDeleted = "false";
+		// get current date time with Date()
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date timeStamp = new Date();
 		// save Account info into Account object
-		Account account = new Account(accountNumber, accountState, accountType,
-				address1, address2, email1, email2, firstName, idCardNumber,
-				lastName, midName, phoneNumber1, phoneNumber2);
+		Account account = new Account(accountNumber, address1, address2, email1, email2, firstName, idCardNumber, 
+				isDeleted, lastName, midName, phoneNumber1, phoneNumber2, timeStamp, accountState, accountType);
+		
 
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
