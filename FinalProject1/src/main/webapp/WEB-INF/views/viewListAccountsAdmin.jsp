@@ -12,6 +12,7 @@
 <body>
 
 	<div class="col-lg-12">
+	<h1 class="page-header"></h1>
 			<c:if test="${(state =='1')}">
 				<button type="submit" class="btn btn-success centered"
 					action="active" style="float: right">Set Active</button>
@@ -44,7 +45,7 @@
 			<div class="panel-heading">${message}</div>
 		</c:if>
 		<!-- /.panel-heading -->
-		<div class="panel-body">
+		<div class="panel-body"  style="border-style: solid;border-width: 1px;margin-top: 1%;">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
