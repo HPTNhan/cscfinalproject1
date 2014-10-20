@@ -1,5 +1,6 @@
 package com.csc.fresher.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +28,31 @@ public class SearchAccountController {
 	 * @param model
 	 * @return
 	 */
+	@SuppressWarnings("null")
 	@RequestMapping(value = "/searchPage")
-	public String searchAccountList(Model model) {
+	public String searchAccountList(HttpServletRequest request, Model model) {
 
-		return "search";
+		String role = (String) request.getSession().getAttribute("role");
+		SystemAccountDAO systemDAO = new SystemAccountDAO();
+		List<Account> accounts = new ArrayList<Account>();
+		int records = systemDAO.getAccountsBaseOnDate().size();
+		
+		if (records > 0) {
+			List<Account> listAcc = systemDAO.getAccountsBaseOnDate();
+			for (int i = 0; i < 10; i++) {
+				Account account = listAcc.get(i);
+				accounts.add(account);
+			}
+			model.addAttribute("accounts", accounts);
+			if (role.equals("admin"))
+				return "adminSearch";
+			else
+				return "supportSearch";
+
+		} else {
+
+			return "search";
+		}
 	}
 
 	/**
@@ -63,9 +85,9 @@ public class SearchAccountController {
 			model.addAttribute("accounts", accounts);
 			model.addAttribute("state", state);
 			if (role.equals("admin"))
-				return "viewListAccountsAdmin";
+				return "adminSearch";
 			else
-				return "viewListAccountsSupport";
+				return "supportSearch";
 
 		} else {
 			message = "No matching records found.";
