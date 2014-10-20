@@ -87,6 +87,7 @@
 								</div>
 								<div>
 									<select class="form-control" style="padding-left:6px" name="accountType">
+										<option value="0">All</option>
 										<option value="1">Deposit account</option>
 										<option value="2">Saving account</option>
 										<option value="3">Others</option>
@@ -94,6 +95,7 @@
 								</div>
 								<div>
 									<select class="form-control" style="padding-left:6px" name="state">
+										<!-- <option value="0">All</option> -->
 										<option value="1">New</option>
 										<option value="2">Active</option>
 										<option value="3">Disable</option>
