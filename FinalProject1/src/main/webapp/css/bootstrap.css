@@ -1162,6 +1162,8 @@ pre code {
   }
   .col-sm-6 {
     width: 50%;
+    padding-left: 0px;
+padding-right: 0px;
   }
   .col-sm-5 {
     width: 41.66666666666667%;
