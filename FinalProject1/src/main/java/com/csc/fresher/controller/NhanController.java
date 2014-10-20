@@ -110,8 +110,9 @@ public class NhanController {
 	@RequestMapping(value = "/AdminSetListActive", method = RequestMethod.POST)
 	public String AdminSetListState(HttpServletRequest request) {
 		String[] lisIdAccounts = request.getParameterValues("idaccount");	
+		String action = request.getParameter("action");
 		//String currentState = request.getParameter("currentState"); 
-		if (lisIdAccounts != null) {
+		if (lisIdAccounts != null && !action.equals("disableToActive")) {
 			for (String idAccount : lisIdAccounts) {
 				System.out.println(idAccount);
 				if (nhanDao.setNextState(Integer.parseInt(idAccount))) {
@@ -121,6 +122,13 @@ public class NhanController {
 				}
 			}
 			//System.out.println(currentState);
+		}else if (lisIdAccounts != null && action.equals("disableToActive")) {
+			for (String idAccount : lisIdAccounts) {
+				System.out.println(idAccount);
+				/*if (condition) {
+					
+				}*/
+			}
 		}else {
 			System.out.println("No checkbox checked");
 		}				
