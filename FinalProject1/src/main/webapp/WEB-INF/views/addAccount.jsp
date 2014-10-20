@@ -63,6 +63,96 @@
 				</c:if>
 				<div class="panel-body">
 					<div class="row">
+					<form class="form-horizontal" role="form"
+								action="<c:url value="/doAddAccount" /> " method="post">
+						<div class="col-md-6">
+						
+							<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
+										Type</label>
+									<div class="col-sm-5">
+										<select id="selectAccountType" name="accountType"
+											class="form-control">
+											<option value="Deposit account">Deposit Account</option>
+											<option value="Saving account">Saving Account</option>
+											<option value="Others">Others</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
+										Number</label>
+		 							<div class="col-sm-5">
+										<input class="form-control" type="text"
+											id="formGroupInputSmall" name="accountNumber"
+											placeholder="Acount Number" value="${accountNumber}"
+											readonly="true">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
+										Card Number</label>
+									<div class="col-sm-5">
+										<input class="form-control" type="number" min="0"
+											id="formGroupInputSmall" name="idCardNumber"
+											placeholder="ID Card Number" >
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">First
+										Name</label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text"
+											id="formGroupInputSmall" name="firstName"
+											placeholder="First Name" required>
+									</div>
+								</div>
+						</div>
+						<div class="col-md-6"><div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">Account
+										Type</label>
+									<div class="col-sm-5">
+										<select id="selectAccountType" name="accountType"
+											class="form-control">
+											<option value="Deposit account">Deposit Account</option>
+											<option value="Saving account">Saving Account</option>
+											<option value="Others">Others</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">Acount
+										Number</label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text"
+											id="formGroupInputSmall" name="accountNumber"
+											placeholder="Acount Number" value="${accountNumber}"
+											readonly="true">
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">ID
+										Card Number</label>
+									<div class="col-sm-5">
+										<input class="form-control" type="number" min="0"
+											id="formGroupInputSmall" name="idCardNumber"
+											placeholder="ID Card Number" >
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-sm-4 control-label" for="formGroupInputSmall">First
+										Name</label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text"
+											id="formGroupInputSmall" name="firstName"
+											placeholder="First Name" required>
+									</div>
+								</div></div>
+						</form>
+					</div>
+					<div class="row">
 						<div class="col-lg-8 col-lg-offset-2 centered">
 							<form class="form-horizontal" role="form"
 								action="<c:url value="/doAddAccount" /> " method="post">
@@ -96,7 +186,7 @@
 									<div class="col-sm-5">
 										<input class="form-control" type="number" min="0"
 											id="formGroupInputSmall" name="idCardNumber"
-											placeholder="ID Card Number" required>
+											placeholder="ID Card Number" >
 									</div>
 								</div>
 								<div class="form-group form-group-sm">
