@@ -23,12 +23,10 @@ public class AccountController {
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
 
-	
-
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
 		// Read account info from request
-		String sAccountType = request.getParameter("account`Type");
+		String sAccountType = request.getParameter("accountType");
 		String accountNumber = request.getParameter("accountNumber");
 		String idCardNumber = request.getParameter("idCardNumber");
 		String firstName = request.getParameter("firstName");
@@ -57,7 +55,6 @@ public class AccountController {
 		account.setIdaccount(Integer.parseInt(idAccount));
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
-
 		try {
 			// Save account to DB
 			accountDAO.updateAccountInfo(account);
@@ -75,7 +72,7 @@ public class AccountController {
 	public String getAccountInfo(HttpServletRequest request, Model model) {
 		// get id
 		String SaccountId = request.getParameter("accountId");
-		int accountId = Integer.parseInt(SaccountId);	
+		int accountId = Integer.parseInt(SaccountId);
 		AccountDAO accDAO = new AccountDAO();
 		Account acc = accDAO.getAccountInfoByAccountId(accountId);
 		// add account to attribute of model
@@ -87,7 +84,7 @@ public class AccountController {
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
 		AccountDAO accountDAO = new AccountDAO();
-		String accountNumber = accountDAO.checkAccountNumber();
+		String accountNumber = accountDAO.getAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
 		return "addAccount";
 	}
@@ -108,6 +105,7 @@ public class AccountController {
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
 		String message = "";
+
 		// Get Id of AccountState where name State = New
 		AccountStateDAO accountStateDAO = new AccountStateDAO();
 		AccountState accountState = accountStateDAO
@@ -124,14 +122,19 @@ public class AccountController {
 
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
+		// check exist Account Number
+		if (accountDAO.existAccountNumber(accountNumber)) {
+			message = "Account Number has existed";
+			System.out.println("Account Number has existed");
+		} else {
+			try {
+				// Save account to DB
+				accountDAO.addAccount(account);
+				message = "Create account successfully";
 
-		try {
-			// Save account to DB
-			accountDAO.addAccount(account);
-			message = "Create account successfully";
-
-		} catch (Exception e) {
-			message = "Create account failed cause: " + e;
+			} catch (Exception e) {
+				message = "Create account failed cause: " + e;
+			}
 		}
 		model.addAttribute("message", message);
 		// return "view";

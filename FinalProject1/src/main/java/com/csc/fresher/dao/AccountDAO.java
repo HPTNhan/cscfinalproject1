@@ -100,7 +100,7 @@ public class AccountDAO {
 			Account accountTemp = entityManager.find(Account.class,
 					account.getIdaccount());
 			System.out.print(account.getIdaccount());
-			accountTemp.setAccountNumber(account.getAccountNumber());
+			// accountTemp.setAccountNumber(account.getAccountNumber());
 			// accountTemp.setAccountstate(account.getAccountstate());
 			accountTemp.setAccounttype(account.getAccounttype());
 			accountTemp.setAddress1(account.getAddress1());
@@ -123,7 +123,15 @@ public class AccountDAO {
 		return bcheck;
 	}
 
-	public String checkAccountNumber() {
+	/**
+	 * get Account Number
+	 * 
+	 * @param
+	 * 
+	 * 
+	 * @return sacc ( AccountNumber: String)
+	 */
+	public String getAccountNumber() {
 		// Obtains entity manager object
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
@@ -139,7 +147,7 @@ public class AccountDAO {
 			accountNumber = query.getResultList();
 			enTr.commit();
 			// generate Account Number by +1 and provide full 12 chars of number
-			Integer iacc = Integer.parseInt(accountNumber.get(0));
+			Long iacc = Long.parseLong(accountNumber.get(0));
 			iacc += 1;
 			sacc = iacc.toString();
 			int accLength = sacc.length();
@@ -153,6 +161,37 @@ public class AccountDAO {
 			entityManager.close();
 		}
 		return sacc;
+	}
+
+	/**
+	 * check existed AccountNumber
+	 * 
+	 * @param accountNumber
+	 * 
+	 * 
+	 * @return bcheck
+	 */
+	public boolean existAccountNumber(String accountNumber) {
+		// Obtains entity manager object
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+		// Obtains transaction from entity manager
+		EntityTransaction enTr = entityManager.getTransaction();
+		boolean bcheck = false;
+		try {
+			enTr.begin();
+
+			TypedQuery<Account> query = entityManager.createQuery(
+					"SELECT a FROM " + Account.class.getName()
+							+ " a Where a.accountNumber= :accountNumber ",
+					Account.class);
+			query.setParameter("accountNumber", accountNumber);
+			bcheck = query.getResultList().size() > 0;
+			enTr.commit();
+		} catch (Exception e) {
+			entityManager.close();
+		}
+		return bcheck;
 	}
 
 }
