@@ -82,25 +82,8 @@ public class NhanController {
 	 * return "search"; }
 	 */
 
-	@RequestMapping(value = "/nhanAdmin", method = RequestMethod.GET)
-	public String NhanAdmin(HttpServletRequest request) {
 
-		SystemAccountDAO systemAccountDAO = new SystemAccountDAO();
-		String idCardNumber = "";
-		String fullname = "";
-		int accountType = 1;
-		String accountNumber = "";
-		int state = 1;
-		String phone = "";
-		String address = "";
-		List<Account> accounts = systemAccountDAO.getAccount(idCardNumber,
-				fullname, accountType, accountNumber, state, phone, address);
 
-		request.setAttribute("accounts", accounts);
-
-		return "NhanAdmin";
-	}
-	
 	@RequestMapping(value = "/AdminSetActive", method = RequestMethod.GET)
 	public String AdminSetActive(HttpServletRequest request) {
 		System.out.println(request.getParameter("idaccount"));
