@@ -3,6 +3,12 @@ package com.csc.fresher.domain;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.Date;
 
@@ -22,9 +28,12 @@ public class Account implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int idaccount;
 
+	@NotEmpty //make sure accountNumber is not empty
 	@Column(length=12)
 	private String accountNumber;
 
+	
+	@NotEmpty //make sure address1 is not empty
 	@Column(length=150)
 	private String address1;
 
@@ -40,6 +49,7 @@ public class Account implements Serializable {
 	@Column(length=45)
 	private String firstName;
 
+	@Min(10)
 	@Column(length=45)
 	private String idCardNumber;
 
@@ -51,7 +61,7 @@ public class Account implements Serializable {
 
 	@Column(length=45)
 	private String midName;
-
+	
 	@Column(length=20)
 	private String phoneNumber1;
 
