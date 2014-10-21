@@ -12,32 +12,32 @@
 <body>
 
 	<div class="col-lg-12">
-	<h1 class="page-header"></h1>
-			<c:if test="${(state =='1')}">
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right">Set Active</button>
-			</c:if>
-			<c:if test="${(state =='2')}">
-				<button type="submit" class="btn btn-success centered"
-					action="disable" style="float: right">Set Disable</button>
-			</c:if>
-			<c:if test="${(state =='3')}">
-				<button type="submit" class="btn btn-success centered"
-					action="removable" style="float: right">Set Removable</button>
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right; margin-right: 1%">Set
-					Active</button>
-			</c:if>
-			<c:if test="${(state =='0')}">
-				<button type="submit" class="btn btn-success centered"
-					action="removable" style="float: right">Set Removable</button>
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right; margin-right: 1%">Set
-					Active</button>
-				<button type="submit" class="btn btn-success centered"
-					action="disable" style="float: right; margin-right: 1%">Set
-					Disable</button>
-			</c:if>
+		<h1 class="page-header"></h1>
+		<c:if test="${(state =='1')}">
+			<button type="submit" class="btn btn-success centered"
+				action="active" style="float: right">Set Active</button>
+		</c:if>
+		<c:if test="${(state =='2')}">
+			<button type="submit" class="btn btn-success centered"
+				action="disable" style="float: right">Set Disable</button>
+		</c:if>
+		<c:if test="${(state =='3')}">
+			<button type="submit" class="btn btn-success centered"
+				action="removable" style="float: right">Set Removable</button>
+			<button type="submit" class="btn btn-success centered"
+				action="active" style="float: right; margin-right: 1%">Set
+				Active</button>
+		</c:if>
+		<c:if test="${(state =='0')}">
+			<button type="submit" class="btn btn-success centered"
+				action="removable" style="float: right">Set Removable</button>
+			<button type="submit" class="btn btn-success centered"
+				action="active" style="float: right; margin-right: 1%">Set
+				Active</button>
+			<button type="submit" class="btn btn-success centered"
+				action="disable" style="float: right; margin-right: 1%">Set
+				Disable</button>
+		</c:if>
 	</div>
 	<!-- /.col-lg-12 -->
 	<div class="col-lg-12">
@@ -45,7 +45,8 @@
 			<div class="panel-heading">${message}</div>
 		</c:if>
 		<!-- /.panel-heading -->
-		<div class="panel-body"  style="border-style: solid;border-width: 1px;margin-top: 1%;">
+		<div class="panel-body"
+			style="border-style: solid; border-width: 1px; margin-top: 1%;">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
