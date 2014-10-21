@@ -1,14 +1,12 @@
 package com.csc.fresher.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.lang.annotation.Documented;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +18,7 @@ import com.csc.fresher.dao.AccountTypeDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.domain.AccountType;
-import com.csc.fresher.service.Service;
+import com.csc.fresher.service.MyService;
 
 /**
  * Handles requests for the application home page.
@@ -34,7 +32,8 @@ public class AccountController {
 	/**
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
-	private Service service = new Service();
+	@Autowired
+	private MyService service;
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
 		// Read account info from request
