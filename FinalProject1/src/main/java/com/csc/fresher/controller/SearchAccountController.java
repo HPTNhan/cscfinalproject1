@@ -36,7 +36,7 @@ public class SearchAccountController {
 		SystemAccountDAO systemDAO = new SystemAccountDAO();
 		List<Account> accounts = new ArrayList<Account>();
 		int records = systemDAO.getAccountsBaseOnDate().size();
-		
+
 		if (records > 0) {
 			List<Account> listAcc = systemDAO.getAccountsBaseOnDate();
 			for (int i = 0; i < 10; i++) {
@@ -69,11 +69,29 @@ public class SearchAccountController {
 		String role = (String) request.getSession().getAttribute("role");
 		String idCardNumber = request.getParameter("idCardNumber");
 		String fullname = request.getParameter("fullname");
-		int accountType = Integer.parseInt(request.getParameter("accountType"));
 		String accountNumber = request.getParameter("accountNumber");
-		int state = Integer.parseInt(request.getParameter("state"));
+		// int accountType =
+		// Integer.parseInt(request.getParameter("accountType"));
+		// int state = Integer.parseInt(request.getParameter("state"));
+		// List<String> accountType = new ArrayList<String>();
+		String[] accountType = request.getParameterValues("accountType");
+		String[] state = request.getParameterValues("state");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
+		String flat = "";
+		String temp = "";
+		if (state != null) {
+			for (int i = 0; i < state.length; i++) {
+				temp += state[i];
+			}
+			if (temp.contains("2") && temp.contains("1") && temp.contains("3"))
+				flat = "true";
+			else if (temp.contains("1") && temp.contains("3"))
+				flat = "false";
+		}else
+			flat = "true";
+		System.out.println(temp);
+		System.out.println(flat);
 		List<Account> accounts = null;
 		String message = "";
 		SystemAccountDAO systemDAO = new SystemAccountDAO();
@@ -84,6 +102,7 @@ public class SearchAccountController {
 					accountType, accountNumber, state, phone, address);
 			model.addAttribute("accounts", accounts);
 			model.addAttribute("state", state);
+			model.addAttribute("flat", flat);
 			if (role.equals("admin"))
 				return "adminSearch";
 			else
@@ -94,6 +113,7 @@ public class SearchAccountController {
 			model.addAttribute("message", message);
 			return "search";
 		}
+//		return "home";
 	}
 
 }
