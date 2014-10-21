@@ -59,6 +59,7 @@
 			</div>
 			<form class="form-horizontal" role="form"
 				action="<c:url value="/doAddAccount" /> " method="post">
+				<form:errors path="*" cssClass="errorblock" element="div" />
 				<div class="row">
 					<div class="col-sm-6 col-lg-4">
 						<div class="form-group form-group-sm">
@@ -80,7 +81,7 @@
 							<div class="col-md-8">
 								<input class="form-control" type="text" id="formGroupInputSmall"
 									name="accountNumber" placeholder="Acount Number"
-									value="${accountNumber}" readonly="true">
+									value="${accountNumber}" readonly="true" required>
 							</div>
 						</div>
 					</div>
@@ -92,6 +93,7 @@
 								<input class="form-control" type="number" min="0"
 									id="formGroupInputSmall" name="idCardNumber"
 									placeholder="ID Card Number" required>
+								<td><form:errors path="idCardNumber" cssClass="error" /></td>
 							</div>
 						</div>
 					</div>
@@ -154,6 +156,8 @@
 							<div class="col-md-8">
 								<input class="form-control" type="text" id="formGroupInputSmall"
 									name="address1" placeholder="Address 1" required>
+
+
 							</div>
 						</div>
 					</div>

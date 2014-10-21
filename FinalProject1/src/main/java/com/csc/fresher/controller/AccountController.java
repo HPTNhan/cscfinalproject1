@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -108,7 +110,7 @@ public class AccountController {
 
 	
 	@RequestMapping(value = "/doAddAccount")
-	public String addAccount(HttpServletRequest request, Model model) {
+	public String addAccount(@Valid Account accountV, BindingResult result,HttpServletRequest request, Model model) {
 		// Read account info from request
 		String sAccountType = request.getParameter("accountType");
 		String accountNumber = request.getParameter("accountNumber");
@@ -142,6 +144,16 @@ public class AccountController {
 				isDeleted, lastName, midName, phoneNumber1, phoneNumber2, timeStamp, accountState, accountType);
 		
 
+		if (result.hasErrors()) {
+			
+			
+			System.out.println("aaaa" + result.getFieldError().toString());
+			return "redirect:/getAddAccount";
+		} else {
+			System.out.println("bbbb");
+		}
+		
+		
 		// Create an AccountDAO
 		AccountDAO accountDAO = new AccountDAO();
 		// check exist Account Number
