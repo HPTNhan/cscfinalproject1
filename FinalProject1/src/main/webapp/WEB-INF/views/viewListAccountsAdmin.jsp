@@ -13,31 +13,44 @@
 
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
+		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
+		<c:if test="${(flat =='true')}">
+			<button type="submit" class="btn btn-success centered"
+				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
+			<button type="submit" class="btn btn-success centered"
+				action="disable" style="float: right; margin-left: 1%">Set Disable</button>
+			<button type="submit" class="btn btn-success centered"
+				action="active" style="float: right; margin-left: 1%">Set
+				Active</button>
+			
+		</c:if>
+		<c:if test="${(flat =='false')}">
+			<button type="submit" class="btn btn-success centered"
+				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
+			<button type="submit" class="btn btn-success centered"
+				action="active" style="float: right; margin-left: 1%">Set
+				Active</button>
+		</c:if>
+		<c:if test="${empty flat}">
+		<c:forEach var="state" items="${state}">
 		<c:if test="${(state =='1')}">
 			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right">Set Active</button>
+				action="active" style="float: right; margin-left: 1%">Set Active</button>
 		</c:if>
 		<c:if test="${(state =='2')}">
 			<button type="submit" class="btn btn-success centered"
-				action="disable" style="float: right">Set Disable</button>
+				action="disable" style="float: right; margin-left: 1%">Set Disable</button>
 		</c:if>
 		<c:if test="${(state =='3')}">
 			<button type="submit" class="btn btn-success centered"
-				action="removable" style="float: right">Set Removable</button>
+				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
 			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-right: 1%">Set
+				action="active" style="float: right; margin-left: 1%">Set
 				Active</button>
 		</c:if>
-		<c:if test="${(state =='0')}">
-			<button type="submit" class="btn btn-success centered"
-				action="removable" style="float: right">Set Removable</button>
-			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-right: 1%">Set
-				Active</button>
-			<button type="submit" class="btn btn-success centered"
-				action="disable" style="float: right; margin-right: 1%">Set
-				Disable</button>
+		</c:forEach>
 		</c:if>
+		</div>
 	</div>
 	<!-- /.col-lg-12 -->
 	<div class="col-lg-12">
@@ -52,10 +65,10 @@
 					id="dataTables-example">
 					<thead>
 						<tr>
-							<th><input class="second" id="selectall" name="check"
+							<th width="35px"><input class="second" id="selectall" name="check"
 								type="checkbox" /></th>
 							<th>Account Number</th>
-							<th width="270px">Full Name</th>
+							<th width="250px">Full Name</th>
 							<th>ID Card Number</th>
 							<th>State</th>
 							<th>Account Type</th>
