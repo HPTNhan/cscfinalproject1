@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+	<form action="deleteListAccount" method="post">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<c:if test="${(state =='4')}">
@@ -74,6 +74,7 @@
 		</div>
 		<!-- /.panel-body -->
 	</div>
+	</form>
 	<!-- /.panel -->
 	<!-- /#wrapper -->
 	<!-- Modal -->
