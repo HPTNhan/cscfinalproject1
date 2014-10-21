@@ -12,13 +12,15 @@
 <body>
 
 	<div class="col-lg-12">
-			<c:if test="${(state =='4')}">
-				<button type="submit" class="btn btn-success centered"
-					action="delete" style="float: right">Delete</button>
-			</c:if>
+		<h1 class="page-header"></h1>
+		<c:if test="${(state =='4')}">
+			<button type="submit" class="btn btn-success centered"
+				action="delete" style="float: right">Delete</button>
+		</c:if>
 	</div>
 	<div class="col-lg-12">
-		<div class="panel-body">
+		<div class="panel-body"
+			style="border-style: solid; border-width: 1px; margin-top: 1%;">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
@@ -38,9 +40,8 @@
 						<c:set var="i" value="${0 }" />
 						<c:forEach var="account" items="${accounts}">
 							<tr>
-								<td><input style="display: none" name="idaccount"
-									value="${account.idaccount}" /> <input class="second"
-									id="selectall" name="option2" type="checkbox" /></td>
+								<td><input class="second" id="selectall" name="idaccount"
+									type="checkbox" value="${account.idaccount}" /></td>
 								<td>${account.accountNumber}</td>
 								<td>${account.firstName}${account.lastName}
 									${account.midName}</td>
