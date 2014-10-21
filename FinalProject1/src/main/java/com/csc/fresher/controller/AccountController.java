@@ -1,6 +1,9 @@
 package com.csc.fresher.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.lang.annotation.Documented;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.dao.AccountStateDAO;
@@ -16,16 +20,21 @@ import com.csc.fresher.dao.AccountTypeDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.domain.AccountType;
+import com.csc.fresher.service.Service;
 
 /**
  * Handles requests for the application home page.
+ */
+/**
+ * @author cscadmin
+ *
  */
 @Controller
 public class AccountController {
 	/**
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
-
+	private Service service = new Service();
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
 		// Read account info from request
@@ -98,6 +107,7 @@ public class AccountController {
 		return "addAccount";
 	}
 
+	
 	@RequestMapping(value = "/doAddAccount")
 	public String addAccount(HttpServletRequest request, Model model) {
 		// Read account info from request
@@ -152,6 +162,21 @@ public class AccountController {
 		model.addAttribute("message", message);
 		// return "view";
 		return "viewListAccountsSupport";
+	}
+	
+	@RequestMapping(value="/deleteListAccount", method = RequestMethod.POST)
+	public String deleteListAccount(HttpServletRequest request) {
+		String[] listIdAccountString = new String[1];
+		listIdAccountString = request.getParameterValues("idaccount");		
+		//List<String> listIdAccount = new ArrayList<String>();
+		//listIdAccount = listIdAccountString;
+		service.deleteListAccount(listIdAccountString);
+		if (service.deleteListAccount(listIdAccountString)) {
+			System.out.println("delete completed");
+		} else {
+			System.out.println("delete failed");
+		}
+		return "";
 	}
 
 }
