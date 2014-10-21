@@ -79,12 +79,12 @@
 				<div class="panel panel-default">
 
 					<div class="row mt">
-						<div class="col-lg-4 col-lg-offset-4 centered">
 							<c:if test="${!empty message}">
 								<p class="alert alert-danger">${message }</p>
 							</c:if>
 							<form role="form" action="search.html" method="post"
-								style="margin-top: 5%">
+								style="margin-top: 1%">
+								<div class="col-xs-6 col-md-4">
 								<div class="form-group">
 									<input type="text" class="form-control" name="idCardNumber"
 										placeholder="ID Card Number"> <br>
@@ -102,6 +102,8 @@
 										<option value="3">Others</option>
 									</select><br>
 								</div>
+								</div>
+								<div class="col-xs-6 col-md-4">
 								<div>
 									<select class="form-control" style="padding-left: 6px"
 										name="state">
@@ -116,6 +118,8 @@
 									<input type="text" class="form-control" name="accountNumber"
 										placeholder="Account Number"><br>
 								</div>
+								</div>
+								<div class="col-xs-6 col-md-4">
 
 								<div class="form-group">
 									<input type="text" class="form-control" name="address"
@@ -126,8 +130,8 @@
 										placeholder="Phone"> <br>
 								</div>
 								<button type="submit" class="btn btn-success centered">Search</button>
+								</div>
 							</form>
-						</div>
 					<jsp:include page="viewListAccountsSupport.jsp"></jsp:include>
 					</div>
 					<!-- /row -->
