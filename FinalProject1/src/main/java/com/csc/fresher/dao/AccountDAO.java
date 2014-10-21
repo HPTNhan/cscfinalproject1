@@ -16,7 +16,7 @@ import com.csc.fresher.domain.Account;
  * inserts/updates/deletes account info
  * 
  * @author
- *
+ * 
  */
 @Component
 public class AccountDAO {
@@ -114,7 +114,7 @@ public class AccountDAO {
 			accountTemp.setMidName(account.getMidName());
 			accountTemp.setPhoneNumber1(account.getPhoneNumber1());
 			accountTemp.setPhoneNumber2(account.getPhoneNumber2());
-			
+
 			bcheck = true;
 			entr.commit();
 			System.out.println("Update account info successfully");
@@ -194,6 +194,93 @@ public class AccountDAO {
 			entityManager.close();
 		}
 		return bcheck;
+	}
+
+	/**
+	 * get current Account state name
+	 * 
+	 * @param
+	 * 
+	 * 
+	 * @return currentState ( StateName: String)
+	 */
+	public String getCurrentStateName(String idAccount) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+		String currentState = "";
+		entityManager.getTransaction().begin();
+
+		Account account = entityManager.find(Account.class, idAccount);
+		currentState = account.getAccountstate().getStateName();
+
+		entityManager.getTransaction().commit();
+
+		return currentState;
+	}
+
+	/**
+	 * delete account by idaccount
+	 * 
+	 * @param String
+	 *            idaccount
+	 * 
+	 * @return boolean ( boolean: true/false)
+	 */
+	public boolean deleteAccount(String idaccount) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+
+		try {
+			Account account = entityManager.find(Account.class, idaccount);
+
+			entityTransaction.begin();
+
+			entityManager.remove(account);
+
+			entityTransaction.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			entityTransaction.rollback();
+			return false;
+		} finally {
+			entityManager.close();
+		}
+		return true;
+	}
+
+	/**
+	 * delete list account by idaccount
+	 * 
+	 * @param String
+	 *            idaccount
+	 * 
+	 * @return boolean ( boolean: true/false)
+	 */
+	public boolean deleteListAccount(String[] listIdAccount) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+
+		try {
+			entityTransaction.begin();
+			for (String idAccount : listIdAccount) {
+				Account account = entityManager.find(Account.class,
+						Integer.parseInt(idAccount));
+				account.setIsDeleted("true");
+				entityManager.merge(account);
+			}
+			entityTransaction.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			entityTransaction.rollback();
+			return false;
+		} finally {
+			entityManager.close();
+		}
+		return true;
 	}
 
 }
