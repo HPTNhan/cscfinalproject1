@@ -47,12 +47,30 @@ public class NhanController {
 
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpServletRequest request) {
-
+		
 		boolean result = nhanDao.removeAccount(1);
 		request.setAttribute("removeAccount", result);
 		return "NhanRemoveAccount";
 	}
-
+	
+	// delete list accounts
+	//
+	//
+	//
+	//
+	@RequestMapping(value="/deleteListAccounts", method = RequestMethod.POST )
+	public String deleteListAccounts(HttpServletRequest request) {
+		String[] listIdAccount = request.getParameterValues("");
+		if (listIdAccount.length > 0) {
+			for (String string : listIdAccount) {
+				System.out.println(string);
+			}			
+		}else {
+			System.out.println("no checked");
+		}
+		return "";
+	}
+	
 	@RequestMapping(value = "/updateSystemAccount", method = RequestMethod.GET)
 	public String updateSystemAccount() {
 		NhanDAO dao = new NhanDAO();
