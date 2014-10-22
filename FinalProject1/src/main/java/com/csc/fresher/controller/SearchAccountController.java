@@ -35,13 +35,20 @@ public class SearchAccountController {
 	 */
 	@RequestMapping(value = "/searchPage")
 	public String searchAccountList(HttpServletRequest request, Model model) {
-
+		List<Account> accounts =  service.searchAccountsBaseOnDate();	
 		String role = (String) request.getSession().getAttribute("role");
-		if (service.searchAccountsBaseOnDate().size() > 0) {
-			model.addAttribute("accounts", service.searchAccountsBaseOnDate());
+		String state;
+		if (accounts.size() > 0) {
+			model.addAttribute("accounts",accounts);
+//			state = service.getState(accounts);
+			model.addAttribute("state", "");
 		} 
-		if (role.equals("admin"))
+		if (role.equals("admin")){
+			System.out.println("==="+service.getStateForAccountListAdmin(service.getState(accounts)));
+			System.out.println("==="+service.getState(accounts).length());
+			model.addAttribute("flat", service.getStateForAccountListAdmin(service.getState(accounts)));
 			return "adminSearch";
+		}
 		else
 			return "supportSearch";
 	}
@@ -71,15 +78,18 @@ public class SearchAccountController {
 					.searchAccounts(idCardNumber, fullname, accountType,
 							accountNumber, state, phone, address));
 			model.addAttribute("state", state);
-			model.addAttribute("flat", service.getStateForAccountList(state));
 		} else {
 			message = "No matching records found.";
 			model.addAttribute("message", message);
 		}
-		if (role.equals("admin"))
+		if (role.equals("admin")){
+			System.out.println( service.getStateForAccountListAdmin(service.convertListState(state)));
+			model.addAttribute("flat", service.getStateForAccountListAdmin(service.convertListState(state)));
 			return "adminSearch";
-		else
+		}else{
+			model.addAttribute("flat", service.getStateForAccountListSupport(service.convertListState(state)));
 			return "supportSearch";
+		}
 	}
 
 }
