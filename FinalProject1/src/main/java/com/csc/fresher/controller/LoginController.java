@@ -3,12 +3,14 @@ package com.csc.fresher.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.dao.SystemAccountDAO;
+import com.csc.fresher.service.MyService;
 
 /**@author TrinhLe
  * 
@@ -16,6 +18,9 @@ import com.csc.fresher.dao.SystemAccountDAO;
  */
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private MyService service;
 	/**
 	 * login systemAccount
 	 * 
@@ -31,19 +36,13 @@ public class LoginController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String message = "";
-
-		// Create an AccountDAO
-		SystemAccountDAO systemDAO = new SystemAccountDAO();
-
-		// Query customer to DB
-		if(systemDAO.getSystemAccount(username, password).getId() >0){
-			session.setAttribute("username", systemDAO.getSystemAccount(username, password).getUsername());
-			session.setAttribute("role", systemDAO.getSystemAccount(username, password).getRole());
-			
+		if(!service.checkLogin(username, password).equals("false")){
+			session.setAttribute("username", username);
+			session.setAttribute("role", service.checkLogin(username, password));
+			System.out.println(username + " login successful!");
 			return "forward:/searchPage.html";
 		}
 		else{
-			
 			message = "Wrong ID or Password!";
 			model.addAttribute("message", message );
 			return "home";
