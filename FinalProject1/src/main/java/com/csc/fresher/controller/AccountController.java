@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,9 +29,15 @@ import com.csc.fresher.service.MyService;
 /**
  * @author cscadmin
  *
- */
+ */ 	
 @Controller
 public class AccountController {
+	
+	@ModelAttribute("account")
+	public Account contructAccount(){
+		return new Account();
+	}
+	
 	/**
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
@@ -110,7 +117,9 @@ public class AccountController {
 
 	
 	@RequestMapping(value = "/doAddAccount")
-	public String addAccount(@Valid Account accountV, BindingResult result,HttpServletRequest request, Model model) {
+	public String addAccount( Model model, @Valid @ModelAttribute("account") Account accountV, BindingResult result,HttpServletRequest request)throws Exception {
+		System.out.println(accountV.getAccounttype().getTypeName());
+		System.out.println(accountV.getAccounttype().getIdtype());
 		// Read account info from request
 		String sAccountType = request.getParameter("accountType");
 		String accountNumber = request.getParameter("accountNumber");
@@ -147,10 +156,11 @@ public class AccountController {
 		if (result.hasErrors()) {
 			
 			
-			System.out.println("aaaa" + result.getFieldError().toString());
-			return "redirect:/getAddAccount";
+			System.out.println("Error: " + result.getFieldError().toString());
+			//return "redirect:/getAddAccount";
+			return "addAccount";
 		} else {
-			System.out.println("bbbb");
+			System.out.println("Input OK");
 		}
 		
 		
