@@ -1,5 +1,6 @@
 package com.csc.fresher.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -269,6 +270,8 @@ public class AccountDAO {
 			for (String idAccount : listIdAccount) {
 				Account account = entityManager.find(Account.class,
 						Integer.parseInt(idAccount));
+				Date timeStamp = new Date();
+				account.setTimeStamp(timeStamp);
 				account.setIsDeleted("true");
 				entityManager.merge(account);
 			}

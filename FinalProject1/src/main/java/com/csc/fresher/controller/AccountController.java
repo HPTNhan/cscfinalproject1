@@ -175,19 +175,21 @@ public class AccountController {
 		return "viewListAccountsSupport";
 	}
 	
+	/**
+	 * Delete list account by idAccount
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/deleteListAccount", method = RequestMethod.POST)
-	public String deleteListAccount(HttpServletRequest request) {
-		String[] listIdAccountString = new String[1];
-		listIdAccountString = request.getParameterValues("idaccount");		
-		//List<String> listIdAccount = new ArrayList<String>();
-		//listIdAccount = listIdAccountString;
+	public String deleteListAccount(HttpServletRequest request) {		
+		String[] listIdAccountString = request.getParameterValues("idaccount");				
 		service.deleteListAccount(listIdAccountString);
 		if (service.deleteListAccount(listIdAccountString)) {
-			System.out.println("delete completed");
+			System.out.println("delete completed");			
 		} else {
 			System.out.println("delete failed");
 		}
-		return "";
+		return "redirect:/searchPage";
 	}
 
 }
