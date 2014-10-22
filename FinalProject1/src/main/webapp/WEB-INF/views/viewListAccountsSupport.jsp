@@ -13,23 +13,31 @@
 	<form action="deleteListAccount" method="post">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
+		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
+		<c:forEach var="state" items="${state}">
 		<c:if test="${(state =='4')}">
 			<button type="submit" class="btn btn-success centered"
-				action="delete" style="float: right">Delete</button>
+				action="delete" style="float: right; margin-left: 1%">Delete</button>
 		</c:if>
+		</c:forEach>
+		<c:if test="${(flat =='true')}">
+			<button type="submit" class="btn btn-success centered"
+				action="delete" style="float: right; margin-left: 1%">Delete</button>
+		</c:if>
+		</div>
 	</div>
 	<div class="col-lg-12">
 		<div class="panel-body"
-			style="border-style: solid; border-width: 1px; margin-top: 1%;">
+			style="border-style: solid; border-width: 1px; margin-top: 1%; border-color: #eee">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
 					<thead>
 						<tr>
-							<th><input class="second" id="selectall" name="check"
+							<th width="35px"><input class="second" id="selectall" name="check"
 								type="checkbox" /></th>
 							<th>Account Number</th>
-							<th width="270px">Full Name</th>
+							<th width="200px">Full Name</th>
 							<th>ID Card Number</th>
 							<th>State</th>
 							<th>Account Type</th>

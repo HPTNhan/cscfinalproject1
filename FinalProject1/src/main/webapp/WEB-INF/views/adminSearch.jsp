@@ -66,21 +66,15 @@ table pre.prettyprint {
 	max-height: 250px;
 }
 </style>
-
-
-
-
 </head>
 
 <body>
 	<!-- Header -->
 	<jsp:include page="header.jsp"></jsp:include>
-
-	<!-- +++++ Welcome Section +++++ -->
-
+	<!-- End Header -->
+	<!-- +++++ Welcome Body Section +++++ -->
 	<div id="page-wrapper">
-
-		<!-- Multi-select example -->
+		<!-- Multi-select javascript-->
 		<script type="text/javascript">
 			$(document).ready(function() {
 				window.prettyPrint() && prettyPrint();
@@ -90,22 +84,19 @@ table pre.prettyprint {
 
 			});
 		</script>
+		<!-- End Multi-select -->
+		<!-- Breadcrumb -->
 		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li class="active">Search</li>
 			</ol>
 		</div>
+		<!-- End Breadcrumb -->
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Search
-					<c:if test="${role =='support'}">
-						<a href="getAddAccount.html">
-							<button type="submit" class="btn btn-success centered"
-								style="float: right">Add Account</button>
-						</a>
-					</c:if>
 				</h1>
 			</div>
 			<!-- /.col-lg-12 -->
@@ -180,15 +171,8 @@ table pre.prettyprint {
 		</div>
 	</div>
 	<!-- /container -->
+	<!-- End Body Section-->
 
-
-	<!-- jQuery Version 1.11.0 -->
-	<%-- <script src="<c:url value="/js/jquery-2.1.0.js"/>"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="<c:url value="/js/bootstrap-3.1.1.min.js"/>"></script> --%>
-	<%-- <script src="<c:url value="/js/jquery-1.11.0.js"/>"></script>
-<script src="<c:url value="/js/bootstrap.min.js"/>"></script> --%>
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
@@ -216,13 +200,13 @@ table pre.prettyprint {
 		});
 	</script>
 	<script>
-		// tooltip demo
+		// View detail pop up
 		$('.tooltip-demo').tooltip({
 			selector : "[data-toggle=tooltip]",
 			container : "body"
 		})
 	</script>
-
+	<!-- Multi Select -->
 	<script>
 		$(document).ready(function() {
 			// Below code is used to remove all check property if,
@@ -257,7 +241,5 @@ table pre.prettyprint {
 		});
 	</script>
 
-
 </body>
-
 </html>

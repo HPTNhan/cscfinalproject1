@@ -54,12 +54,8 @@
 	</div>
 	<!-- /.col-lg-12 -->
 	<div class="col-lg-12">
-		<c:if test="${message != null  }">
-			<div class="panel-heading">${message}</div>
-		</c:if>
-		<!-- /.panel-heading -->
 		<div class="panel-body"
-			style="border-style: solid; border-width: 1px; margin-top: 1%;">
+			style="border-style: solid; border-width: 1px; margin-top: 1%; border-color: #eee">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
@@ -68,7 +64,7 @@
 							<th width="35px"><input class="second" id="selectall" name="check"
 								type="checkbox" /></th>
 							<th>Account Number</th>
-							<th width="250px">Full Name</th>
+							<th width="200px">Full Name</th>
 							<th>ID Card Number</th>
 							<th>State</th>
 							<th>Account Type</th>
