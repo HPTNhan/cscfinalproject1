@@ -57,21 +57,20 @@
 					<h1 class="page-header">Create Account</h1>
 				</div>
 			</div>
-			<form class="form-horizontal" role="form"
-				action="<c:url value="/doAddAccount" /> " method="post">
-				<form:errors path="*" cssClass="errorblock" element="div" />
+			<form:form cssClass="form-horizontal" role="form"
+				action="${pageContext.request.contextPath}/doAddAccount"
+				method="post" modelAttribute="account">
 				<div class="row">
 					<div class="col-sm-6 col-lg-4">
 						<div class="form-group form-group-sm">
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Type:</label>
 							<div class="col-md-8">
-								<select id="selectAccountType" name="accountType"
-									class="form-control">
-									<option value="Deposit account">Deposit Account</option>
-									<option value="Saving account">Saving Account</option>
-									<option value="Others">Others</option>
-								</select>
-
+								<form:select path="accounttype.idtype" cssClass="form-control">
+									<form:option value="1">Deposit Account</form:option>
+									<form:option value="2">Saving Account</form:option>
+									<form:option value="3">Others</form:option>
+								</form:select>
+								<form:errors path="accounttype.idtype" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -79,9 +78,10 @@
 						<div class="form-group form-group-sm">
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Number:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="accountNumber" placeholder="Acount Number"
-									value="${accountNumber}" readonly="true" required>
+								<form:input cssClass="form-control" path="accountNumber"
+									type="text" placeholder="Acount Number"
+									value="${accountNumber}" readonly="true" />
+								<form:errors path="accountNumber" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -90,10 +90,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">ID
 								Card:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="number" min="0"
-									id="formGroupInputSmall" name="idCardNumber"
-									placeholder="ID Card Number" required>
-								<td><form:errors path="idCardNumber" cssClass="error" /></td>
+								<form:input cssClass="form-control" type="number" path="idCardNumber"
+									 placeholder="ID Card Number" required="true" />
+								<form:errors path="idCardNumber" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -102,8 +101,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">First
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="firstName" placeholder="First Name" required>
+								<form:input cssClass="form-control" path="firstName"
+									name="firstName" placeholder="First Name" />
+								<form:errors path="firstName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -112,8 +112,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Mid
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="midName" placeholder="Mid Name">
+								<form:input cssClass="form-control" path="midName"
+									name="midName" placeholder="Mid Name" />
+								<form:errors path="midName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -122,8 +123,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Last
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="lastName" placeholder="last Name" required>
+								<form:input cssClass="form-control" path="lastName" 
+									name="lastName" placeholder="last Name" />
+								<form:errors path="lastName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -132,9 +134,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Phone
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="number" min="0"
-									id="formGroupInputSmall" name="phoneNumber1"
-									placeholder="Phone Number 1" required>
+								<form:input cssClass="form-control" path="phoneNumber1"
+									type="number" min="0" name="phoneNumber1"
+									placeholder="Phone Number 1" />
+								<form:errors path="phoneNumber1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -143,9 +146,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Phone
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="number" min="0"
-									id="formGroupInputSmall" name="phoneNumber2"
-									placeholder="Phone Number 2">
+								<form:input cssClass="form-control" path="phoneNumber2"
+									 name="phoneNumber2"
+									placeholder="Phone Number 2" />
+								<form:errors path="phoneNumber2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -154,10 +158,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Address
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="address1" placeholder="Address 1" required>
-
-
+								<form:input cssClass="form-control" path="address1" 
+									name="address1" placeholder="Address 1" />
+								<form:errors path="address1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -166,8 +169,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Address
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="address2" placeholder="Address 2">
+								<form:input cssClass="form-control" path="address2" 
+									name="address2" placeholder="Address 2" />
+								<form:errors path="address2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -176,9 +180,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Email
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="email"
-									id="formGroupInputSmall" name="email1" placeholder="Email 1"
-									required>
+								<form:input cssClass="form-control" path="email1" 
+									name="email1" type="email" placeholder="Email 1" />
+								<form:errors path="email1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -187,8 +191,9 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Email
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="email"
-									id="formGroupInputSmall" name="email2" placeholder="Email 2">
+								<form:input cssClass="form-control" path="email2" 
+									name="email2" placeholder="Email 2" />
+								<form:errors path="email2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -203,7 +208,7 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 		<!-- /container -->
 	</div>

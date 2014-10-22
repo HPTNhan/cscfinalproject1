@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -28,11 +30,10 @@ public class Account implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int idaccount;
 
-	@NotEmpty //make sure accountNumber is not empty
+	@NotNull //make sure accountNumber is not empty
 	@Column(length=12)
 	private String accountNumber;
 
-	
 	@NotEmpty //make sure address1 is not empty
 	@Column(length=150)
 	private String address1;
@@ -49,7 +50,7 @@ public class Account implements Serializable {
 	@Column(length=45)
 	private String firstName;
 
-	@Min(10)
+	@NotEmpty(message = "Please enter ID card number")
 	@Column(length=45)
 	private String idCardNumber;
 
