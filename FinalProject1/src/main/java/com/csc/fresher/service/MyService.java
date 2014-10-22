@@ -66,20 +66,44 @@ public class MyService {
 		}
 	}
 
-	public String getStateForAccountList(String[] state) {
+	public String getStateForAccountListAdmin(String state) {
 		String flat = "";
-		String temp = "";
-		if (state != null) {
-			for (int i = 0; i < state.length; i++) {
-				temp += state[i];
-			}
-			if (temp.contains("2") && temp.contains("1") && temp.contains("3"))
+		if (state.length()>0) {
+			if (state.contains("2") && state.contains("1")
+					&& state.contains("3"))
 				flat = "true";
-			else if (temp.contains("1") && temp.contains("3"))
+			else if (state.contains("1") && state.contains("3"))
 				flat = "false";
 		} else
 			flat = "true";
 		return flat;
+	}
+
+	public String getStateForAccountListSupport(String state) {
+		String flat = "";
+		if (state != "") {
+			if (state.contains("4"))
+				flat = "true";
+		} else
+			flat = "true";
+		return flat;
+	}
+
+	public String convertListState(String[] state) {
+		String temp = "";
+
+		for (int i = 0; i < state.length; i++) {
+			temp += state[i];
+		}
+		return temp;
+	}
+	
+	public String getState(List<Account> accounts) {
+		String temp = "";
+		for (int i = 0; i < accounts.size(); i++) {
+			temp += Integer.toString(accounts.get(i).getAccountstate().getIdstate());
+		}
+		return temp;
 	}
 
 }

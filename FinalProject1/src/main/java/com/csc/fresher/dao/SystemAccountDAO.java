@@ -263,7 +263,7 @@ public class SystemAccountDAO {
 		List<Account> accounts = null;
 		String sql = "SELECT c FROM "
 				+ Account.class.getName()
-				+ " c ORDER BY (c.timeStamp) DESC";
+				+ " c WHERE c.isDeleted = 'false' ORDER BY (c.timeStamp) DESC";
 		
 		// -----------Begin transaction-----------
 		// boolean check = false;
