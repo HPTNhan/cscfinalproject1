@@ -24,7 +24,7 @@ public class LoginController {
 	 * @return search page if login success
 	 * home page and show error message if login fail
 	 */
-	@RequestMapping(value = "/checkLogin123", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	public String getCustomer(HttpServletRequest request, Model model) {
 		// Read account info from request and save into Account object
 		HttpSession session = request.getSession();
