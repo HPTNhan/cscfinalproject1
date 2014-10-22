@@ -14,7 +14,7 @@
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
-		<c:if test="${(flat =='true')}">
+		<c:if test="${(flat =='4')}">
 			<button type="submit" class="btn btn-success centered"
 				action="delete" style="float: right; margin-left: 1%">Delete</button>
 		</c:if>
