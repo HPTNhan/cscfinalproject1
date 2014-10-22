@@ -210,7 +210,7 @@
             // possible options: 'text', 'value', 'both'
             filterBehavior: 'text',
             preventInputChangeEvent: false,
-            nonSelectedText: 'All Account',
+            nonSelectedText: '      Choose All     ',
             nSelectedText: 'selected',
             numberDisplayed: 3,
             templates: {
