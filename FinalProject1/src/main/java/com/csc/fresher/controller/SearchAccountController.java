@@ -35,22 +35,26 @@ public class SearchAccountController {
 	 */
 	@RequestMapping(value = "/searchPage")
 	public String searchAccountList(HttpServletRequest request, Model model) {
-		List<Account> accounts =  service.searchAccountsBaseOnDate();	
+		List<Account> accounts =  service.searchAccountsBaseOnDate();
+		if(request.getSession().getAttribute("role") != null){
 		String role = (String) request.getSession().getAttribute("role");
+		
 		String state;
 		if (accounts.size() > 0) {
 			model.addAttribute("accounts",accounts);
-//			state = service.getState(accounts);
-			model.addAttribute("state", "");
 		} 
 		if (role.equals("admin")){
-			System.out.println("==="+service.getStateForAccountListAdmin(service.getState(accounts)));
-			System.out.println("==="+service.getState(accounts).length());
+			System.out.println("==="+service.getState(accounts));
 			model.addAttribute("flat", service.getStateForAccountListAdmin(service.getState(accounts)));
 			return "adminSearch";
 		}
-		else
+		else{
+			System.out.println("==="+service.getState(accounts));
+			model.addAttribute("flat", service.getStateForAccountListSupport(service.getState(accounts)));
 			return "supportSearch";
+		}}else{
+			model.addAttribute("message","You must login to access system!");
+			return "home";}
 	}
 
 	/**
@@ -91,5 +95,10 @@ public class SearchAccountController {
 			return "supportSearch";
 		}
 	}
+//	
+//	@RequestMapping(value = "/**")
+//	public String returnHome(HttpServletRequest request) {
+//		return "home";
+//	}
 
 }

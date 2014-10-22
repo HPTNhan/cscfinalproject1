@@ -68,14 +68,20 @@ public class MyService {
 
 	public String getStateForAccountListAdmin(String state) {
 		String flat = "";
-		if (state.length()>0) {
-			if (state.contains("2") && state.contains("1")
-					&& state.contains("3"))
-				flat = "true";
-			else if (state.contains("1") && state.contains("3"))
-				flat = "false";
+		if (state != "") {
+			if ((state.contains("2") && state.contains("1")
+					&& state.contains("3")) || (state.contains("2") && state.contains("3")))
+				flat = "123";
+			else if ((state.contains("1") && state.contains("3")) || (state.contains("3")))
+				flat = "13";
+			else if (state.contains("2") && state.contains("1"))
+				flat = "12";
+			else if ((state.contains("1")))
+				flat = "1";
+			else if ((state.contains("2")))
+				flat = "2";
 		} else
-			flat = "true";
+			flat = "123";
 		return flat;
 	}
 
@@ -83,18 +89,18 @@ public class MyService {
 		String flat = "";
 		if (state != "") {
 			if (state.contains("4"))
-				flat = "true";
+				flat = "4";
 		} else
-			flat = "true";
+			flat = "4";
 		return flat;
 	}
 
 	public String convertListState(String[] state) {
 		String temp = "";
-
+		if(state != null){
 		for (int i = 0; i < state.length; i++) {
 			temp += state[i];
-		}
+		}}
 		return temp;
 	}
 	
