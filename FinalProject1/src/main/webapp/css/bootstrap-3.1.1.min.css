@@ -593,7 +593,7 @@ dd {
 @media ( min-width :768px) {
 	.dl-horizontal dt {
 		float: left;
-		width: 160px;
+		width: 130px;
 		clear: left;
 		text-align: right;
 		overflow: hidden;
@@ -601,7 +601,7 @@ dd {
 		white-space: nowrap
 	}
 	.dl-horizontal dd {
-		margin-left: 180px
+		margin-left: 150px
 	}
 }
 
@@ -4504,7 +4504,7 @@ border-color: #16a085;
 	padding: 6px 12px;
 	line-height: 1.42857143;
 	text-decoration: none;
-	color: #428bca;
+	color: #1abc9c;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	margin-left: -1px
@@ -5683,7 +5683,7 @@ button.close {
 }
 
 .modal-footer {
-	margin-top: 15px;
+	/* margin-top: 15px; */
 	padding: 19px 20px 20px;
 	text-align: right;
 	border-top: 1px solid #e5e5e5
