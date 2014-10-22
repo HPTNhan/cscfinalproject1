@@ -87,8 +87,6 @@ public class SystemAccountDAO {
 			query.setParameter("username", username);
 			query.setParameter("password", password);
 			systemAccount = query.getSingleResult();
-			System.out.println(systemAccount.getUsername());
-			// check = query.getResultList().size() > 0;
 			entityTransaction.commit();
 		} catch (Exception e) {
 			entityManager.close();
@@ -166,7 +164,7 @@ public class SystemAccountDAO {
 	 *            address
 	 * @return list of accounts
 	 */
-	public List<Account> getAccount(String idCardNumber, String fullname,
+	public List<Account> getAccounts(String idCardNumber, String fullname,
 			String[] accountType, String accountNumber, String[] state, String phone,
 			String address) {
 
@@ -182,7 +180,7 @@ public class SystemAccountDAO {
 				+ " c WHERE (c.firstName LIKE :fullname OR c.lastName LIKE :fullname OR c.midName LIKE :fullname) "
 				+ "AND c.idCardNumber LIKE :idCardNumber AND (c.phoneNumber1 LIKE :phone OR c.phoneNumber2 LIKE :phone) "
 				+ "AND (c.address1 LIKE :address OR c.address2 LIKE :address) AND c.accountNumber LIKE :accountNumber AND c.isDeleted = 'false' ";
-		if(state.length > 0 && accountType.length > 0){
+		if(state != null && accountType != null){
 			sql += "AND ( ";
 			for(i=0; i<state.length;i++){
 				sql += "c.accountstate = "
@@ -200,7 +198,7 @@ public class SystemAccountDAO {
 				}
 			}
 			sql += " )";
-		} else if(state.length == 0 && accountType.length > 0){
+		} else if(state == null && accountType != null){
 			sql += "AND ( ";
 			for(i=0; i<accountType.length;i++){
 				sql += "c.accounttype = "
@@ -210,7 +208,7 @@ public class SystemAccountDAO {
 				}
 			}
 			sql += " )";
-		}else if(accountType.length == 0  && state.length > 0){
+		}else if(accountType == null  && state != null){
 			sql += "AND ( ";
 			for(i=0; i<state.length;i++){
 				sql += "c.accountstate = "
@@ -284,4 +282,6 @@ public class SystemAccountDAO {
 		return accounts;
 
 	}
+
+
 }
