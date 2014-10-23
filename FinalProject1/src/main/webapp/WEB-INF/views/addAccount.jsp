@@ -70,7 +70,9 @@
 									<form:option value="2">Saving Account</form:option>
 									<form:option value="3">Others</form:option>
 								</form:select>
-								<form:errors path="accounttype.idtype" cssClass="error" />
+								<c:if test="${!empty message}">
+									<p>${message }</p>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -213,7 +215,7 @@
 						<div class="form-group form-group-sm">
 							<button style="margin-left: 50%" type="submit"
 								class="btn btn-primary btn-sm">Submit</button>
-							<a href="view.html"><button type="button"
+							<a href="searchPage"><button type="button"
 									class="btn btn-default btn-sm">Cancel</button></a>
 						</div>
 					</div>
