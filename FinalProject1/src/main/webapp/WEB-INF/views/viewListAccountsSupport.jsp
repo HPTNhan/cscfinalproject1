@@ -58,7 +58,7 @@
 									title="Edit Account"> <span
 										class="glyphicon glyphicon-edit"></span>
 								</a> <c:if test="${(account.accountstate.stateName =='Removable')}">
-										<a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="deleteAccount?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Remove"> <span class="glyphicon glyphicon-trash"></span>
 										</a>
 									</c:if></td>

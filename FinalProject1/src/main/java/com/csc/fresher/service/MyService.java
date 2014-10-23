@@ -157,4 +157,12 @@ public class MyService {
 			return null;
 	}
 
+	public boolean deleteAccount(String idaccount) {
+		// TODO Auto-generated method stub
+		if (idaccount != null) {
+			return accountDAO.deleteAccount(idaccount);
+		}
+		return false;
+	}
+
 }

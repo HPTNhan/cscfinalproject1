@@ -226,5 +226,16 @@ public class AccountController {
 		return "redirect:/searchPage";
 	}		
 	
+	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
+	public String deleteAccount(HttpServletRequest request) {
+		String idaccount = request.getParameter("idaccount");		
+		if (service.deleteAccount(idaccount)) {
+			System.out.println("delete completed");
+		} else {
+			System.out.println("delete failed");
+		}
+		return "redirect:/searchPage";
+	}
+	
 	
 }
