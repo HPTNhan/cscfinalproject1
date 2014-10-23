@@ -217,14 +217,14 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
 	public String deleteListAccount(HttpServletRequest request) {
-		String[] listIdAccountString = request.getParameterValues("idaccount");
-		service.deleteListAccount(listIdAccountString);
+		String[] listIdAccountString = request.getParameterValues("idaccount");		
 		if (service.deleteListAccount(listIdAccountString)) {
 			System.out.println("delete completed");
 		} else {
 			System.out.println("delete failed");
 		}
 		return "redirect:/searchPage";
-	}
-
+	}		
+	
+	
 }
