@@ -234,16 +234,23 @@ public class AccountDAO {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 
 		try {
-			Account account = entityManager.find(Account.class, idaccount);
-
-			entityTransaction.begin();
-
-			entityManager.remove(account);
-
-			entityTransaction.commit();
+			Account account = entityManager.find(Account.class, Integer.parseInt(idaccount));
+			if (account == null) {
+				return false;
+			}						
+			if (("Removable").equals(account.getAccountstate().getStateName())) {
+				entityTransaction.begin();
+				Date timeStamp = new Date();
+				account.setTimeStamp(timeStamp);
+				account.setIsDeleted("true");
+				entityManager.merge(account);
+				entityTransaction.commit();
+			}			
 		} catch (Exception e) {
 			// TODO: handle exception
-			entityTransaction.rollback();
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}			
 			return false;
 		} finally {
 			entityManager.close();
