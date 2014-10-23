@@ -33,6 +33,7 @@ import com.csc.fresher.service.MyService;
 @Controller
 public class AccountController {
 	
+	// declare model Attribute
 	@ModelAttribute("account")
 	public Account contructAccount(){
 		return new Account();
@@ -44,20 +45,20 @@ public class AccountController {
 	@Autowired
 	private MyService service;
 	@RequestMapping(value = "/doUpdateAccountInfo")
-	public String doUpdateAccountInfo(HttpServletRequest request, Model model) {
+	public String doUpdateAccountInfo(Model model, @Valid @ModelAttribute("account") Account accountV, BindingResult result,HttpServletRequest request)throws Exception {
 		// Read account info from request
-		String sAccountType = request.getParameter("accountType");
-		String accountNumber = request.getParameter("accountNumber");
-		String idCardNumber = request.getParameter("idCardNumber");
-		String firstName = request.getParameter("firstName");
-		String midName = request.getParameter("midName");
-		String lastName = request.getParameter("lastName");
-		String phoneNumber1 = request.getParameter("phoneNumber1");
-		String phoneNumber2 = request.getParameter("phoneNumber2");
-		String address1 = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
+		int iAccountType = accountV.getAccounttype().getIdtype();
+		String accountNumber = accountV.getAccountNumber();
+		String idCardNumber = accountV.getIdCardNumber();
+		String firstName = accountV.getFirstName();
+		String midName = accountV.getMidName();
+		String lastName = accountV.getLastName();
+		String phoneNumber1 = accountV.getPhoneNumber1();
+		String phoneNumber2 = accountV.getPhoneNumber2();
+		String address1 = accountV.getAddress1();
+		String address2 = accountV.getAddress2();
+		String email1 = accountV.getEmail1();
+		String email2 = accountV.getEmail2();
 		String idAccount = request.getParameter("idAccount");
 		String message = "";
 		// Get Id of AccountState where name State = New
@@ -66,8 +67,10 @@ public class AccountController {
 				.getAccountStateByName("New");
 		// Get Id of AccountType where name = name in request
 		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
-		AccountType accountType = accountTypeDAO
-				.getAccountTypeIdbyAccountTypeName(sAccountType);
+//		AccountType accountType = accountTypeDAO
+//				.getAccountTypeIdbyAccountTypeName(sAccountType);
+		AccountType accountType = new AccountType();
+		accountType.setIdtype(iAccountType);
 		// Set isDeleted and Time
 		String isDeleted = "false";
 		// get current date time with Date()
@@ -118,21 +121,19 @@ public class AccountController {
 	
 	@RequestMapping(value = "/doAddAccount")
 	public String addAccount( Model model, @Valid @ModelAttribute("account") Account accountV, BindingResult result,HttpServletRequest request)throws Exception {
-		System.out.println(accountV.getAccounttype().getTypeName());
-		System.out.println(accountV.getAccounttype().getIdtype());
 		// Read account info from request
-		String sAccountType = request.getParameter("accountType");
-		String accountNumber = request.getParameter("accountNumber");
-		String idCardNumber = request.getParameter("idCardNumber");
-		String firstName = request.getParameter("firstName");
-		String midName = request.getParameter("midName");
-		String lastName = request.getParameter("lastName");
-		String phoneNumber1 = request.getParameter("phoneNumber1");
-		String phoneNumber2 = request.getParameter("phoneNumber2");
-		String address1 = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
+		int iAccountType = accountV.getAccounttype().getIdtype();
+		String accountNumber = accountV.getAccountNumber();
+		String idCardNumber = accountV.getIdCardNumber();
+		String firstName = accountV.getFirstName();
+		String midName = accountV.getMidName();
+		String lastName = accountV.getLastName();
+		String phoneNumber1 = accountV.getPhoneNumber1();
+		String phoneNumber2 = accountV.getPhoneNumber2();
+		String address1 = accountV.getAddress1();
+		String address2 = accountV.getAddress2();
+		String email1 = accountV.getEmail1();
+		String email2 = accountV.getEmail2();
 		String message = "";
 
 		// Get Id of AccountState where name State = New
@@ -141,8 +142,11 @@ public class AccountController {
 				.getAccountStateByName("New");
 		// Get Id of AccountType where name = name in request
 		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
-		AccountType accountType = accountTypeDAO
-				.getAccountTypeIdbyAccountTypeName(sAccountType);
+//		AccountType accountType = accountTypeDAO
+//				.getAccountTypeIdbyAccountTypeName(sAccountType);
+		
+		AccountType accountType = new AccountType();
+		accountType.setIdtype(iAccountType);
 		// Set isDeleted and Time
 		String isDeleted = "false";
 		// get current date time with Date()
