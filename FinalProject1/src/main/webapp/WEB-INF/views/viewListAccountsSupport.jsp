@@ -45,8 +45,7 @@
 								<td><input class="second" id="selectall" name="idaccount"
 									type="checkbox" value="${account.idaccount}" /></td>
 								<td>${account.accountNumber}</td>
-								<td>${account.firstName}${account.lastName}
-									${account.midName}</td>
+								<td>${account.firstName} ${account.lastName} ${account.midName}</td>
 								<td>${account.idCardNumber}</td>
 								<td>${account.accountstate.stateName}</td>
 								<td>${account.accounttype.typeName}</td>
@@ -94,8 +93,7 @@
 					<div class="modal-body">
 						<dl class="dl-horizontal">
 							<dt>Full Name</dt>
-							<dd>${account.firstName}${account.lastName}
-								${account.midName}</dd>
+							<dd>${account.firstName} ${account.lastName} ${account.midName}</dd>
 							<dt>Account Number</dt>
 							<dd>${account.accountNumber}</dd>
 							<dt>ID Card Number</dt>

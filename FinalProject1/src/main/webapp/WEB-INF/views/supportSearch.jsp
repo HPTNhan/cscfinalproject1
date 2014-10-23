@@ -148,8 +148,8 @@ table pre.prettyprint {
 									<label style="width:30%">Account Type</label>
 									<select id="accountType" multiple="multiple" class="form-control" name="accountType">
 										
-										<option value="1">Deposit account</option>
-										<option value="2">Saving account</option>
+										<option value="1">Deposit</option>
+										<option value="2">Saving</option>
 										<option value="3">Others</option>
 									</select>
 								</div>

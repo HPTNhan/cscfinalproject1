@@ -34,27 +34,36 @@ public class SearchAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/searchPage")
-	public String searchAccountList(HttpServletRequest request, Model model) {
-		List<Account> accounts =  service.searchAccountsBaseOnDate();
-		if(request.getSession().getAttribute("role") != null){
-		String role = (String) request.getSession().getAttribute("role");
-		
-		String state;
-		if (accounts.size() > 0) {
-			model.addAttribute("accounts",accounts);
-		} 
-		if (role.equals("admin")){
-			System.out.println("==="+service.getState(accounts));
-			model.addAttribute("flat", service.getStateForAccountListAdmin(service.getState(accounts)));
-			return "adminSearch";
+	public String searchAccountsBaseOnDate(HttpServletRequest request,
+			Model model) {
+		List<Account> accounts = service.searchAccountsBaseOnDate();
+		if (request.getSession().getAttribute("role") != null) {
+			String role = (String) request.getSession().getAttribute("role");
+			model.addAttribute("newAccount", service.searchAccountsBaseOnState(1).size());
+			model.addAttribute("activeAccount", service.searchAccountsBaseOnState(2).size());
+			model.addAttribute("disableAccount", service.searchAccountsBaseOnState(3).size());
+			model.addAttribute("removableAccount", service.searchAccountsBaseOnState(4).size());
+
+			if (accounts.size() > 0) {
+				model.addAttribute("accounts", accounts);
+			}
+			if (role.equals("admin")) {
+				System.out.println("===" + service.getState(accounts));
+				model.addAttribute("flat",
+						service.getStateForAccountListAdmin(service
+								.getState(accounts)));
+				return "adminSearch";
+			} else {
+				System.out.println("===" + service.getState(accounts));
+				model.addAttribute("flat", service
+						.getStateForAccountListSupport(service
+								.getState(accounts)));
+				return "supportSearch";
+			}
+		} else {
+			model.addAttribute("message", "You must login to access system!");
+			return "home";
 		}
-		else{
-			System.out.println("==="+service.getState(accounts));
-			model.addAttribute("flat", service.getStateForAccountListSupport(service.getState(accounts)));
-			return "supportSearch";
-		}}else{
-			model.addAttribute("message","You must login to access system!");
-			return "home";}
 	}
 
 	/**
@@ -65,7 +74,7 @@ public class SearchAccountController {
 	 * @return view list of accounts
 	 */
 	@RequestMapping(value = "/search")
-	public String getAccount(HttpServletRequest request, Model model) {
+	public String searchAccounts(HttpServletRequest request, Model model) {
 		// Read account info from request and save into Account object
 		String role = (String) request.getSession().getAttribute("role");
 		String idCardNumber = request.getParameter("idCardNumber");
@@ -77,7 +86,7 @@ public class SearchAccountController {
 		String address = request.getParameter("address");
 		String message = "";
 		if (service.searchAccounts(idCardNumber, fullname, accountType,
-				accountNumber, state, phone, address)!=null) {
+				accountNumber, state, phone, address) != null) {
 			model.addAttribute("accounts", service
 					.searchAccounts(idCardNumber, fullname, accountType,
 							accountNumber, state, phone, address));
@@ -86,19 +95,36 @@ public class SearchAccountController {
 			message = "No matching records found.";
 			model.addAttribute("message", message);
 		}
-		if (role.equals("admin")){
-			System.out.println( service.getStateForAccountListAdmin(service.convertListState(state)));
-			model.addAttribute("flat", service.getStateForAccountListAdmin(service.convertListState(state)));
+		if (role.equals("admin")) {
+			System.out.println(service.getStateForAccountListAdmin(service
+					.convertListState(state)));
+			model.addAttribute("flat", service
+					.getStateForAccountListAdmin(service
+							.convertListState(state)));
 			return "adminSearch";
-		}else{
-			model.addAttribute("flat", service.getStateForAccountListSupport(service.convertListState(state)));
+		} else {
+			model.addAttribute("flat", service
+					.getStateForAccountListSupport(service
+							.convertListState(state)));
 			return "supportSearch";
 		}
 	}
-//	
-//	@RequestMapping(value = "/**")
-//	public String returnHome(HttpServletRequest request) {
-//		return "home";
-//	}
+	
+	 @RequestMapping(value = "/searchState")
+	 public String searchAccountsBaseOnState(HttpServletRequest request, Model model) {
+		 int state = Integer.parseInt(request.getParameter("state"));
+		 String role = (String) request.getSession().getAttribute("role");
+		 if (service.searchAccountsBaseOnState(state) != null) {
+				model.addAttribute("accounts", service.searchAccountsBaseOnState(state));
+				model.addAttribute("flat", Integer.toString(state));
+			} else {
+				return "home";
+			}
+			if (role.equals("admin")) {
+				return "adminSearch";
+			} else {
+				return "supportSearch";
+			}
+	 }
 
 }
