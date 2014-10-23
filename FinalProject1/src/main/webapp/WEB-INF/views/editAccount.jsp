@@ -56,8 +56,9 @@
 					<h1 class="page-header">Edit Account</h1>
 				</div>
 			</div>
-			<form class="form-horizontal" role="form"
-				action="<c:url value="/doUpdateAccountInfo" /> " method="post">
+			<form:form class="form-horizontal" role="form"
+				action="${pageContext.request.contextPath}/doUpdateAccountInfo"
+				method="post" modelAttribute="account">
 				<div class="row">
 					<input type="text" style="display: none;" name="idAccount"
 						value="${ accountInfo.idaccount}">
@@ -66,27 +67,27 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Account
 								Type:</label>
 							<div class="col-md-8">
-								<select id="selectAccountType" name="accountType"
-									class="form-control">
+								<form:select path="accounttype.idtype" cssClass="form-control"
+									name="accountType">
 									<c:if test="${accountInfo.accounttype.idtype eq 1 }">
-										<option selected="selected" value="Deposit account">Deposit
-											Account</option>
-										<option value="Saving account">Saving Account</option>
-										<option value="Others">Others</option>
+										<form:option selected="selected" value="1">Deposit
+											Account</form:option>
+										<form:option value="2">Saving Account</form:option>
+										<form:option value="3">Others</form:option>
 									</c:if>
 									<c:if test="${accountInfo.accounttype.idtype eq 2 }">
-										<option value="Deposit account">Deposit Account</option>
-										<option selected="selected" value="Saving account">Saving
-											Account</option>
-										<option value="Others">Others</option>
+										<form:option value="1">Deposit Account</form:option>
+										<form:option selected="selected" value="2">Saving
+											Account</form:option>
+										<form:option value="3">Others</form:option>
 									</c:if>
 									<c:if test="${accountInfo.accounttype.idtype eq 3 }">
-										<option value="Deposit account">Deposit Account</option>
-										<option value="Saving account">Saving Account</option>
-										<option selected="selected" value="Others">Others</option>
+										<form:option value="1">Deposit Account</form:option>
+										<form:option value="2">Saving Account</form:option>
+										<form:option selected="selected" value="3">Others</form:option>
 									</c:if>
-								</select>
-
+								</form:select>
+								<form:errors path="accounttype.idtype" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -95,10 +96,12 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">ID
 								Card:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" 
-									id="formGroupInputSmall" name="idCardNumber"
-									placeholder="ID Card Number" required
-									value="${accountInfo.idCardNumber}">
+								<form:input cssClass="form-control" type="text"
+									pattern='[0-9]{9,10}'
+									title="ID Card Number has 9 or 10 numbers" path="idCardNumber"
+									placeholder="ID Card Number" required="true"
+									value="${accountInfo.idCardNumber}" />
+								<form:errors path="idCardNumber" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -107,9 +110,12 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">First
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="firstName" placeholder="First Name" required
-									value="${accountInfo.firstName}">
+								<form:input cssClass="form-control" type="text" path="firstName"
+									name="firstName" pattern="[A-Z a-z]{1,50}"
+									title="Only letter(no numbers or special characters)"
+									placeholder="First Name" required="true"
+									value="${accountInfo.firstName}" />
+								<form:errors path="firstName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -118,9 +124,11 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Mid
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="midName" placeholder="Mid Name"
-									value="${accountInfo.midName}">
+								<form:input cssClass="form-control" path="midName"
+									name="midName" pattern="[A-Z a-z]{1,50}"
+									title="Only letter(no numbers or special characters)"
+									placeholder="Mid Name" value="${accountInfo.midName}" />
+								<form:errors path="midName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -129,9 +137,12 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Last
 								Name:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="lastName" placeholder="last Name" required
-									value="${accountInfo.lastName}">
+								<form:input cssClass="form-control" path="lastName"
+									name="lastName" pattern="[A-Z a-z]{1,50}"
+									title="Only letter(no numbers or special characters)"
+									placeholder="last Name" required="true"
+									value="${accountInfo.lastName}" />
+								<form:errors path="lastName" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -140,10 +151,12 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Phone
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" 
-									id="formGroupInputSmall" name="phoneNumber1"
-									placeholder="Phone Number 1" required
-									value="${accountInfo.phoneNumber1}">
+								<form:input cssClass="form-control" path="phoneNumber1"
+									type="tel" pattern='[\+]\d{2}\d[0-9]{1,20}'
+									title='Phone Number (Format: +84909999999)' name="phoneNumber1"
+									placeholder="Phone Number 1" required="true"
+									value="${accountInfo.phoneNumber1}" />
+								<form:errors path="phoneNumber1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -152,10 +165,12 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Phone
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" min="0"
-									id="formGroupInputSmall" name="phoneNumber2"
-									placeholder="Phone Number 2"
-									value="${accountInfo.phoneNumber2}">
+								<form:input cssClass="form-control" type="tel"
+									pattern='[\+]\d{2}\d[0-9]{1,20}'
+									title='Phone Number (Format: +84909999999)' path="phoneNumber2"
+									name="phoneNumber2" placeholder="Phone Number 2"
+									value="${accountInfo.phoneNumber2}" />
+								<form:errors path="phoneNumber2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -164,9 +179,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Address
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
-									name="address1" placeholder="Address 1" required
-									value="${accountInfo.address1}">
+								<form:input cssClass="form-control" path="address1"
+									name="address1" placeholder="Address 1" required="true"
+									value="${accountInfo.address1}" />
+								<form:errors path="address1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -175,9 +191,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Address
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" id="formGroupInputSmall"
+								<form:input cssClass="form-control" path="address2"
 									name="address2" placeholder="Address 2"
-									value="${accountInfo.address2}">
+									value="${accountInfo.address2}" />
+								<form:errors path="address2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -186,9 +203,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Email
 								1:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="email"
-									id="formGroupInputSmall" name="email1" placeholder="Email 1"
-									required value="${accountInfo.email1}">
+								<form:input cssClass="form-control" path="email1" name="email1"
+									type="email" placeholder="Email 1" required="true"
+									value="${accountInfo.email1}" />
+								<form:errors path="email1" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -197,9 +215,10 @@
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Email
 								2:</label>
 							<div class="col-md-8">
-								<input class="form-control" type="email"
-									id="formGroupInputSmall" name="email2" placeholder="Email 2"
-									value="${accountInfo.email2}">
+								<form:input cssClass="form-control" path="email2" name="email2"
+									type="email" placeholder="Email 2"
+									value="${accountInfo.email2}" />
+								<form:errors path="email2" cssClass="error" />
 							</div>
 						</div>
 					</div>
@@ -212,7 +231,7 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 	</div>
 

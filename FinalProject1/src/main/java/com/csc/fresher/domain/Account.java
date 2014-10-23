@@ -2,11 +2,13 @@ package com.csc.fresher.domain;
 
 import java.io.Serializable;
 
+import javax.jws.soap.SOAPBinding.Style;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -30,26 +32,32 @@ public class Account implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int idaccount;
 
-	@NotNull //make sure accountNumber is not empty
+	@NotEmpty(message = "Please enter Account Number")
+	@Pattern(regexp ="^[0-9]+$", message ="Please enter only number")
+	@Size(min=12, max=12, message ="Account Number must have 12 numbers")
 	@Column(length=12)
 	private String accountNumber;
 
-	@NotEmpty //make sure address1 is not empty
+	@NotEmpty(message="Please enter Address")
 	@Column(length=150)
 	private String address1;
 
 	@Column(length=150)
 	private String address2;
-
+	
+	@NotEmpty(message="Please enter Email")
 	@Column(length=45)
 	private String email1;
 
 	@Column(length=45)
 	private String email2;
 
+	@NotEmpty(message="Please enter First Name")
 	@Column(length=45)
 	private String firstName;
-
+	
+	@Pattern(regexp ="^[0-9]+$", message ="Please enter only number")
+	@Size(min=9, max = 10, message ="ID Card Number must have 9 or 10 numbers")
 	@NotEmpty(message = "Please enter ID card number")
 	@Column(length=45)
 	private String idCardNumber;
@@ -57,12 +65,14 @@ public class Account implements Serializable {
 	@Column(length=5)
 	private String isDeleted;
 
+	@NotEmpty(message="Please enter Last Name")
 	@Column(length=45)
 	private String lastName;
 
 	@Column(length=45)
 	private String midName;
 	
+	@NotEmpty(message="Please enter Phone Number")
 	@Column(length=20)
 	private String phoneNumber1;
 

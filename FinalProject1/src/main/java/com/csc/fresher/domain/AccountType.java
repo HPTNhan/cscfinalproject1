@@ -1,7 +1,10 @@
 package com.csc.fresher.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 
@@ -15,10 +18,12 @@ import java.util.List;
 public class AccountType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true, nullable=false)
 	private int idtype;
+
 
 	@Column(nullable=false, length=45)
 	private String typeName;
