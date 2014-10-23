@@ -270,15 +270,20 @@ public class AccountDAO {
 			for (String idAccount : listIdAccount) {
 				Account account = entityManager.find(Account.class,
 						Integer.parseInt(idAccount));
-				Date timeStamp = new Date();
-				account.setTimeStamp(timeStamp);
-				account.setIsDeleted("true");
-				entityManager.merge(account);
+				if (("Removable").equals(account.getAccountstate()
+						.getStateName())) {
+					Date timeStamp = new Date();
+					account.setTimeStamp(timeStamp);
+					account.setIsDeleted("true");
+					entityManager.merge(account);
+				}
 			}
 			entityTransaction.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
-			entityTransaction.rollback();
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
 			return false;
 		} finally {
 			entityManager.close();
