@@ -29,12 +29,9 @@ public class MyService {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * @author TrinhLe
-	 * params username
-	 * params password
-	 * return system account 
+	 * @author TrinhLe params username params password return system account
 	 */
 	public String checkLogin(String username, String password) {
 		if (systemAccountDAO.getSystemAccount(username, password).getId() > 0) {
@@ -44,15 +41,14 @@ public class MyService {
 			return "false";
 		}
 	}
-	
+
 	/**
-	 * @author TrinhLe
-	 * params 
-	 * return 10 newest accounts  
+	 * @author TrinhLe params return 10 newest accounts
 	 */
 	public List<Account> searchAccountsBaseOnDate() {
 		List<Account> accounts = new ArrayList<Account>();
-		if (systemAccountDAO.getAccountsBaseOnDate().size() > 0) {
+		accounts = systemAccountDAO.getAccountsBaseOnDate();
+		if (accounts != null && accounts.size() > 0) {
 			List<Account> listAcc = systemAccountDAO.getAccountsBaseOnDate();
 			for (int i = 0; i < 10; i++) {
 				Account account = listAcc.get(i);
@@ -66,9 +62,9 @@ public class MyService {
 	}
 
 	/**
-	 * @author TrinhLe
-	 * params idCardNumber fullname accountType accountNumber state phone address
-	 * return list of accounts base on this conditions
+	 * @author TrinhLe params idCardNumber fullname accountType accountNumber
+	 *         state phone address return list of accounts base on this
+	 *         conditions
 	 */
 	public List<Account> searchAccounts(String idCardNumber, String fullname,
 			String[] accountType, String accountNumber, String[] state,
@@ -83,17 +79,18 @@ public class MyService {
 	}
 
 	/**
-	 * @author TrinhLe
-	 * params state
-	 * return flat to show button for each state (admin page)
+	 * @author TrinhLe params state return flat to show button for each state
+	 *         (admin page)
 	 */
 	public String getStateForAccountListAdmin(String state) {
 		String flat = "";
 		if (state != "") {
-			if ((state.contains("2") && state.contains("1")
-					&& state.contains("3")) || (state.contains("2") && state.contains("3")))
+			if ((state.contains("2") && state.contains("1") && state
+					.contains("3"))
+					|| (state.contains("2") && state.contains("3")))
 				flat = "123";
-			else if ((state.contains("1") && state.contains("3")) || (state.contains("3")))
+			else if ((state.contains("1") && state.contains("3"))
+					|| (state.contains("3")))
 				flat = "3";
 			else if (state.contains("2") && state.contains("1"))
 				flat = "12";
@@ -105,11 +102,10 @@ public class MyService {
 			flat = "123";
 		return flat;
 	}
-	
+
 	/**
-	 * @author TrinhLe
-	 * params state
-	 * return flat to show button for each state (support page)
+	 * @author TrinhLe params state return flat to show button for each state
+	 *         (support page)
 	 */
 	public String getStateForAccountListSupport(String state) {
 		String flat = "";
@@ -122,44 +118,43 @@ public class MyService {
 	}
 
 	/**
-	 * @author TrinhLe
-	 * params state
-	 * return a string contains state from string[] state
+	 * @author TrinhLe params state return a string contains state from string[]
+	 *         state
 	 */
 	public String convertListState(String[] state) {
 		String temp = "";
-		if(state != null){
-		for (int i = 0; i < state.length; i++) {
-			temp += state[i];
-		}}
+		if (state != null) {
+			for (int i = 0; i < state.length; i++) {
+				temp += state[i];
+			}
+		}
 		return temp;
 	}
-	
+
 	/**
-	 * @author TrinhLe
-	 * params state
-	 * return a string contains state from list of account
+	 * @author TrinhLe params state return a string contains state from list of
+	 *         account
 	 */
 	public String getState(List<Account> accounts) {
 		String temp = "";
 		for (int i = 0; i < accounts.size(); i++) {
-			temp += Integer.toString(accounts.get(i).getAccountstate().getIdstate());
+			temp += Integer.toString(accounts.get(i).getAccountstate()
+					.getIdstate());
 		}
 		return temp;
 	}
-	
+
 	/**
-	 * @author TrinhLe
-	 * params state
-	 * return a string contains state from list of account
+	 * @author TrinhLe params state return a string contains state from list of
+	 *         account
 	 */
 	public List<Account> searchAccountsBaseOnState(int state) {
-		if(systemAccountDAO.getAccountsBaseOnState(state).size() >0)
+
+		if (systemAccountDAO.getAccountsBaseOnState(state) != null
+				&& systemAccountDAO.getAccountsBaseOnState(state).size() > 0)
 			return systemAccountDAO.getAccountsBaseOnState(state);
 		else
 			return null;
 	}
-	
-	
 
 }
