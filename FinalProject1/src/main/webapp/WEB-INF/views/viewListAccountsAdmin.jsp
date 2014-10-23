@@ -24,7 +24,7 @@
 					Active</button>
 				
 			</c:if>
-			<c:if test="${(flat =='13')}">
+			<c:if test="${(flat =='3')}">
 				<button type="submit" class="btn btn-success centered"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
 				<button type="submit" class="btn btn-success centered"
@@ -48,45 +48,6 @@
 			</c:if>
 		
 		
-		
-		
-		
-		<%-- <c:if test="${(flat =='true')}">
-			<button type="submit" class="btn btn-success centered"
-				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-			<button type="submit" class="btn btn-success centered"
-				action="disable" style="float: right; margin-left: 1%">Set Disable</button>
-			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-left: 1%">Set
-				Active</button>
-			
-		</c:if>
-		<c:if test="${(flat =='false')}">
-			<button type="submit" class="btn btn-success centered"
-				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-left: 1%">Set
-				Active</button>
-		</c:if>
-		<c:if test="${empty flat}">
-		<c:forEach var="state" items="${state}">
-		<c:if test="${(state =='1')}">
-			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-left: 1%">Set Active</button>
-		</c:if>
-		<c:if test="${(state =='2')}">
-			<button type="submit" class="btn btn-success centered"
-				action="disable" style="float: right; margin-left: 1%">Set Disable</button>
-		</c:if>
-		<c:if test="${(state =='3')}">
-			<button type="submit" class="btn btn-success centered"
-				action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-			<button type="submit" class="btn btn-success centered"
-				action="active" style="float: right; margin-left: 1%">Set
-				Active</button>
-		</c:if>
-		</c:forEach>
-		</c:if> --%>
 		</div>
 	</div>
 	<!-- /.col-lg-12 -->
@@ -115,8 +76,7 @@
 								<td><input class="second" id="selectall" name="idaccount"
 									type="checkbox" value="${account.idaccount}" /></td>
 								<td>${account.accountNumber}</td>
-								<td>${account.firstName}${account.lastName}
-									${account.midName}</td>
+								<td>${account.firstName} ${account.lastName} ${account.midName}</td>
 								<td>${account.idCardNumber}</td>
 								<td>${account.accountstate.stateName}</td>
 								<td>${account.accounttype.typeName}</td>
@@ -173,8 +133,7 @@
 					<div class="modal-body">
 						<dl class="dl-horizontal">
 							<dt>Full Name</dt>
-							<dd>${account.firstName}${account.lastName}
-								${account.midName}</dd>
+							<dd>${account.firstName} ${account.lastName} ${account.midName}</dd>
 							<dt>Account Number</dt>
 							<dd>${account.accountNumber}</dd>
 							<dt>ID Card Number</dt>

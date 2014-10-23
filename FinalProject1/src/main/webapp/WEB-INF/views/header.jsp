@@ -32,44 +32,33 @@
 							style="color: #2a6496"></i> <i class="fa fa-caret-down"
 							style="color: #2a6496"></i>
 					</a>
-						<ul class="dropdown-menu dropdown-alerts">
-							<li><a href="#">
+						<ul class="dropdown-menu dropdown-alerts" style="width: 254px;">
+							<li><a href="searchState?state=1">
 									<div>
-										<i class="fa fa-comment fa-fw"></i> New Comment <span
-											class="pull-right text-muted small">4 minutes ago</span>
+										<i class="fa fa-user fa-fw"></i> New Account <span
+											class="pull-right text-muted small">${newAccount }</span>
 									</div>
 							</a></li>
 							<li class="divider"></li>
-							<li><a href="#">
+							<li><a href="searchState?state=2">
 									<div>
-										<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-											class="pull-right text-muted small">12 minutes ago</span>
+										<i class="fa fa-user fa-fw"></i> Active Account <span
+											class="pull-right text-muted small">${activeAccount }</span>
 									</div>
 							</a></li>
 							<li class="divider"></li>
-							<li><a href="#">
+							<li><a href="searchState?state=3">
 									<div>
-										<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-											class="pull-right text-muted small">4 minutes ago</span>
+										<i class="fa fa-user fa-fw"></i> Disable Account <span
+											class="pull-right text-muted small">${disableAccount }</span>
 									</div>
 							</a></li>
 							<li class="divider"></li>
-							<li><a href="#">
+							<li><a href="searchState?state=4">
 									<div>
-										<i class="fa fa-tasks fa-fw"></i> New Task <span
-											class="pull-right text-muted small">4 minutes ago</span>
+										<i class="fa fa-user fa-fw"></i> Removable Account <span
+											class="pull-right text-muted small">${removableAccount }</span>
 									</div>
-							</a></li>
-							<li class="divider"></li>
-							<li><a href="#">
-									<div>
-										<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-											class="pull-right text-muted small">4 minutes ago</span>
-									</div>
-							</a></li>
-							<li class="divider"></li>
-							<li><a class="text-center" href="#"> <strong>See
-										All Alerts</strong> <i class="fa fa-angle-right"></i>
 							</a></li>
 						</ul> <!-- /. end dropdown-alerts -->
 						</li>
