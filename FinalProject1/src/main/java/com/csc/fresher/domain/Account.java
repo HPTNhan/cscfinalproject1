@@ -57,7 +57,7 @@ public class Account implements Serializable {
 	private String firstName;
 	
 	@Pattern(regexp ="^[0-9]+$", message ="Please enter only number")
-	@Size(min=9, max = 10, message ="ID Card Number must have 9 or 10 numbers")
+	@Size(max = 10, message ="ID Card Number must have 9 or 10 numbers")
 	@NotEmpty(message = "Please enter ID card number")
 	@Column(length=45)
 	private String idCardNumber;
