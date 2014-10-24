@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
+import com.csc.fresher.domain.AccountState;
 
 /**
  * DAO class for Account entity. This class contains all methods that
@@ -232,10 +233,11 @@ public class AccountDAO {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 
 		try {
-			Account account = entityManager.find(Account.class, Integer.parseInt(idaccount));
+			Account account = entityManager.find(Account.class,
+					Integer.parseInt(idaccount));
 			if (account == null) {
 				return false;
-			}						
+			}
 			if (("Removable").equals(account.getAccountstate().getStateName())) {
 				entityTransaction.begin();
 				Date timeStamp = new Date();
@@ -243,12 +245,12 @@ public class AccountDAO {
 				account.setIsDeleted("true");
 				entityManager.merge(account);
 				entityTransaction.commit();
-			}			
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			if (entityTransaction.isActive()) {
 				entityTransaction.rollback();
-			}			
+			}
 			return false;
 		} finally {
 			entityManager.close();
@@ -300,10 +302,49 @@ public class AccountDAO {
 	 * @param idaccount
 	 * @return
 	 */
-	public boolean setAccountStateActiveById(String idaccount) {
+	public boolean setAccountStateById(String idaccount, String stateName) {
 		// TODO Auto-generated method stub
-		
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+
+		try {
+			Account account = entityManager.find(Account.class,
+					Integer.parseInt(idaccount));
+			if (account != null
+					&& stateName.equals(account.getAccountstate().getStateName())) {
+				entityTransaction.begin();
+				Date timeStamp = new Date();
+				account.setTimeStamp(timeStamp);
+				account.setAccountstate(findNextState(account.getAccountstate()
+						.getIdstate()));
+				entityManager.merge(account);
+				entityTransaction.commit();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			return false;
+		}
 		return true;
 	}
+
+	public AccountState findNextState(int idAccountState) {
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+
+		entityManager.getTransaction().begin();
+		int nextIdAccountState = idAccountState + 1;
+		AccountState accountState = entityManager.find(AccountState.class,
+				nextIdAccountState);
+		entityManager.getTransaction().commit();
+
+		return accountState;
+	}
+
+	
 
 }

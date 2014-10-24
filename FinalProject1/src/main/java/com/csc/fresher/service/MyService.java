@@ -180,10 +180,8 @@ public class MyService {
 		return false;
 	}
 
-	public boolean setAccountStateActiveById(String idaccount) {
+	public boolean setAccountStateById(String idaccount, String stateName) {
 		// TODO Auto-generated method stub
-		accountDAO.setAccountStateActiveById(idaccount);
-		return true;
-	}
-
+		return accountDAO.setAccountStateById(idaccount, stateName);
+	}	
 }
