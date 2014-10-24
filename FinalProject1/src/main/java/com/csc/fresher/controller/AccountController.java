@@ -93,8 +93,7 @@ public class AccountController {
 
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
-		AccountDAO accountDAO = new AccountDAO();
-		String accountNumber = accountDAO.getAccountNumber();
+		String accountNumber = service.getAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
 		return "addAccount";
 	}
@@ -113,9 +112,10 @@ public class AccountController {
 			}
 			if (service.checkExistAccountNumber(account)) {
 				String messageAN = "Account Number has existed";
-				model.addAttribute("messageAT", messageAN);
+				model.addAttribute("messageAN", messageAN);
 			}
-			return "redirect:/getAddAccount";
+			//return "redirect:/getAddAccount";
+			return "addAccount";
 		} else {
 			// Construct some attributes
 			String isDeleted = "false";
