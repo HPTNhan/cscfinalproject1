@@ -184,6 +184,15 @@ public class AccountController {
 		return "redirect:/searchPage";
 	}
 	
+	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
+	public String setAccountStateActiveFromDisable(HttpServletRequest request){
+		String idaccount = request.getParameter("idaccount");
+		if (idaccount != null) {
+			service.setAccountStateById(idaccount,"Disable");
+		}
+		return "redirect:/searchPage";
+	}
+	
 	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
 	public String setAccountStateDisable(HttpServletRequest request){
 		String idaccount = request.getParameter("idaccount");
