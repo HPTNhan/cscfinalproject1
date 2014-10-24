@@ -1,7 +1,5 @@
 package com.csc.fresher.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.dao.AccountStateDAO;
-import com.csc.fresher.dao.AccountTypeDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
-import com.csc.fresher.domain.AccountType;
 import com.csc.fresher.service.MyService;
 
 /**
@@ -178,5 +174,32 @@ public class AccountController {
 		}
 		return "redirect:/searchPage";
 	}
-
+	
+	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
+	public String setAccountStateActive(HttpServletRequest request){
+		String idaccount = request.getParameter("idaccount");
+		if (idaccount != null) {
+			service.setAccountStateById(idaccount,"New");
+		}
+		return "redirect:/searchPage";
+	}
+	
+	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
+	public String setAccountStateDisable(HttpServletRequest request){
+		String idaccount = request.getParameter("idaccount");
+		if (idaccount != null) {
+			service.setAccountStateById(idaccount,"Active");
+		}
+		return "redirect:/searchPage";
+	}
+	
+	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
+	public String setAccountStateRemovable(HttpServletRequest request){
+		String idaccount = request.getParameter("idaccount");
+		if (idaccount != null) {
+			service.setAccountStateById(idaccount,"Disable");
+		}
+		return "redirect:/searchPage";
+	}
+	
 }
