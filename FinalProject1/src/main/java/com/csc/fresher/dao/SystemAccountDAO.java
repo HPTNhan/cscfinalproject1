@@ -223,6 +223,11 @@ public class SystemAccountDAO {
 			accounts = (List<Account>) query.getResultList();
 			entityTransaction.commit();
 		} catch (Exception e) {
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			return null;
+		} finally {
 			entityManager.close();
 		}
 		// -----------End transaction-----------
@@ -260,6 +265,11 @@ public class SystemAccountDAO {
 			accounts = (List<Account>) query.getResultList();
 			entityTransaction.commit();
 		} catch (Exception e) {
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			return null;
+		} finally {
 			entityManager.close();
 		}
 		// -----------End transaction-----------
@@ -296,6 +306,11 @@ public class SystemAccountDAO {
 			accounts = (List<Account>) query.getResultList();
 			entityTransaction.commit();
 		} catch (Exception e) {
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			return null;
+		} finally {
 			entityManager.close();
 		}
 		// -----------End transaction-----------
