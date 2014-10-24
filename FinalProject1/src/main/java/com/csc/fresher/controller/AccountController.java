@@ -204,13 +204,9 @@ public class AccountController {
 	public String setListAccountState(HttpServletRequest request) {
 		String[] idaccount = request.getParameterValues("idaccount");
 		String action = request.getParameter("action");
-		if (action.equals("removable")) {
-
-		} else if (action.equals("active")) {
-
-		} else if (action.equals("removable")) {
-
-		}
+		if (idaccount != null) {
+			service.setListAccountStateById(idaccount, action);
+		}		
 		return "redirect:/searchPage";
 	}
 
