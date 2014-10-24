@@ -96,8 +96,8 @@
 										<form:option selected="selected" value="3">Others</form:option>
 									</c:if>
 								</form:select>
-								<c:if test="${!empty message}">
-									<p>${message }</p>
+								<c:if test="${!empty messageAS}">
+									<p>${messageAS }</p>
 								</c:if>
 							</div>
 						</div>
