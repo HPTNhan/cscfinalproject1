@@ -53,14 +53,13 @@ public class MyService {
 		List<Account> accounts = new ArrayList<Account>();
 		List<Account> listAcc = systemAccountDAO.getAccountsBaseOnDate();
 		if (listAcc != null && listAcc.size() > 0) {
-			if(listAcc.size()>10){
-			for (int i = 0; i < 10; i++) {
-				Account account = listAcc.get(i);
-				accounts.add(account);
-			}
-			return accounts;
-			}
-			else
+			if (listAcc.size() > 10) {
+				for (int i = 0; i < 10; i++) {
+					Account account = listAcc.get(i);
+					accounts.add(account);
+				}
+				return accounts;
+			} else
 				return listAcc;
 		} else {
 			return null;
@@ -124,29 +123,18 @@ public class MyService {
 	}
 
 	/**
-	 * @author TrinhLe params state return a string contains state from string[]
-	 *         state
-	 */
-	public String convertListState(String[] state) {
-		String temp = "";
-		if (state != null) {
-			for (int i = 0; i < state.length; i++) {
-				temp += state[i];
-			}
-		}
-		return temp;
-	}
-
-	/**
 	 * @author TrinhLe params state return a string contains state from list of
 	 *         account
 	 */
 	public String getState(List<Account> accounts) {
 		String temp = "";
-		for (int i = 0; i < accounts.size(); i++) {
-			temp += Integer.toString(accounts.get(i).getAccountstate()
-					.getIdstate());
-		}
+		if (accounts != null) {
+			for (int i = 0; i < accounts.size(); i++) {
+				temp += Integer.toString(accounts.get(i).getAccountstate()
+						.getIdstate());
+			}
+		} else
+			temp += "5";
 		return temp;
 	}
 
@@ -162,8 +150,7 @@ public class MyService {
 		else
 			return null;
 	}
-	
-	
+
 	/**
 	 * @author TrinhLe params state return a string contains state from list of
 	 *         account
