@@ -201,5 +201,10 @@ public class MyService {
 	public boolean setAccountStateById(String idaccount, String stateName) {
 		// TODO Auto-generated method stub
 		return accountDAO.setAccountStateById(idaccount, stateName);
+	}
+
+	public boolean setListAccountStateById(String[] idaccount, String action) {
+		// TODO Auto-generated method stub
+		return accountDAO.setListAccountStateById(idaccount, action);
 	}	
 }
