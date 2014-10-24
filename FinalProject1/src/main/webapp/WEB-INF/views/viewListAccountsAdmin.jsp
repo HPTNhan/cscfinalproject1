@@ -85,19 +85,19 @@
 										class="glyphicon glyphicon-list-alt" data-toggle="modal"
 										data-target="#myModal${i }"></span>
 								</a> <c:if test="${(account.accountstate.stateName =='New')}">
-										<a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="setAccountStateActive?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Active"> <span class="glyphicon glyphicon-check"></span>
 										</a>
 									</c:if> <c:if test="${(account.accountstate.stateName =='Active')}">
-										<a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="setAccountStateDisable?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Disable"> <span
 											class="glyphicon glyphicon-ban-circle"></span>
 										</a>
 									</c:if> <c:if test="${(account.accountstate.stateName =='Disable')}">
-										<a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="setAccountStateActive?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Active"> <span class="glyphicon glyphicon-check"></span>
 										</a>
-										<a href="#" data-toggle="tooltip" data-placement="right"
+										<a href="setAccountStateRemovable?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Removable"> <span
 											class="glyphicon glyphicon-remove"></span>
 										</a>
