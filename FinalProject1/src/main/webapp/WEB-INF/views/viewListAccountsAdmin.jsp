@@ -26,7 +26,7 @@
 			<c:if test="${(flat =='3')}">
 				<button type="submit" class="btn btn-success centered" name="action" value="removable"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered" name="action" value="active"
+				<button type="submit" class="btn btn-success centered" name="action" value="activefromdisable"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 			<c:if test="${(flat =='1')}">
