@@ -24,7 +24,7 @@ import com.csc.fresher.service.MyService;
  */
 /**
  * @author cscadmin
- *
+ * 
  */
 @Controller
 public class AccountController {
@@ -165,48 +165,55 @@ public class AccountController {
 		}
 		return "redirect:/searchPage";
 	}
-	
+
 	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
-	public String setAccountStateActive(HttpServletRequest request){
+	public String setAccountStateActive(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount,"New");
+			service.setAccountStateById(idaccount, "New");
 		}
 		return "redirect:/searchPage";
 	}
-	
+
 	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
-	public String setAccountStateActiveFromDisable(HttpServletRequest request){
+	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount,"Disable");
+			service.setAccountStateById(idaccount, "Disable");
 		}
 		return "redirect:/searchPage";
 	}
-	
+
 	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
-	public String setAccountStateDisable(HttpServletRequest request){
+	public String setAccountStateDisable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount,"Active");
+			service.setAccountStateById(idaccount, "Active");
 		}
 		return "redirect:/searchPage";
 	}
-	
+
 	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
-	public String setAccountStateRemovable(HttpServletRequest request){
+	public String setAccountStateRemovable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount,"Disable");
+			service.setAccountStateById(idaccount, "Disable");
 		}
 		return "redirect:/searchPage";
 	}
-	
+
 	@RequestMapping(value = "/setListAccountState", method = RequestMethod.GET)
-	public String setListAccountState(HttpServletRequest request){
+	public String setListAccountState(HttpServletRequest request) {
 		String[] idaccount = request.getParameterValues("idaccount");
-		
+		String action = request.getParameter("action");
+		if (action.equals("removable")) {
+
+		} else if (action.equals("active")) {
+
+		} else if (action.equals("removable")) {
+
+		}
 		return "redirect:/searchPage";
 	}
-	
+
 }
