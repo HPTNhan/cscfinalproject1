@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csc.fresher.dao.AccountDAO;
+import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.SystemAccountDAO;
 import com.csc.fresher.domain.Account;
+import com.csc.fresher.domain.AccountState;
 
 @Service
 public class MyService {
 
 	@Autowired
 	private AccountDAO accountDAO;
+	@Autowired
+	private AccountStateDAO accountStateDAO;
 	@Autowired
 	private SystemAccountDAO systemAccountDAO;
 
@@ -180,6 +184,33 @@ public class MyService {
 		return false;
 	}
 
+	// --------------Qui----------------------
+
+	public boolean checkAccountType(Account account) {
+		if (account.getAccounttype().getIdtype() < 1
+				|| account.getAccounttype().getIdtype() > 3) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public AccountState createAccountStateNew() {
+		AccountState accountState = accountStateDAO
+				.getAccountStateByName("New");
+		return accountState;
+	}
+
+	public boolean checkExistAccountNumber(Account account) {
+		if (accountDAO.existAccountNumber(account.getAccountNumber())) {
+			return true;
+		} else
+			return false;
+	}
+
+	public void addAccount(Account account){
+		accountDAO.addAccount(account);
+	}
 	public boolean setAccountStateById(String idaccount, String stateName) {
 		// TODO Auto-generated method stub
 		return accountDAO.setAccountStateById(idaccount, stateName);
