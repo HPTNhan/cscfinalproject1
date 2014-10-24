@@ -296,4 +296,14 @@ public class AccountDAO {
 		return true;
 	}
 
+	/**
+	 * @param idaccount
+	 * @return
+	 */
+	public boolean setAccountStateActiveById(String idaccount) {
+		// TODO Auto-generated method stub
+		
+		return true;
+	}
+
 }

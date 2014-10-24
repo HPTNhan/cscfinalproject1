@@ -15,8 +15,8 @@ import com.csc.fresher.domain.SystemAccount;
 import com.csc.fresher.service.MyService;
 
 @Component
-public class SystemAccountDAO {
-
+public class SystemAccountDAO {	
+	
 	public List<SystemAccount> getSystemAccounts() {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();

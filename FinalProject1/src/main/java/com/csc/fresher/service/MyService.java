@@ -23,7 +23,7 @@ public class MyService {
 	}
 
 	public boolean deleteListAccount(String[] listIdAccount) {
-		if (listIdAccount.length > 0) {
+		if (listIdAccount != null && listIdAccount.length > 0) {
 			return accountDAO.deleteListAccount(listIdAccount);
 		} else {
 			return false;
@@ -178,6 +178,12 @@ public class MyService {
 			return accountDAO.deleteAccount(idaccount);
 		}
 		return false;
+	}
+
+	public boolean setAccountStateActiveById(String idaccount) {
+		// TODO Auto-generated method stub
+		accountDAO.setAccountStateActiveById(idaccount);
+		return true;
 	}
 
 }
