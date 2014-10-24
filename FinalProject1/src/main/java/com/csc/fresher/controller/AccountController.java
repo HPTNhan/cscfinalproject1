@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.dao.AccountDAO;
-import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.domain.Account;
-import com.csc.fresher.domain.AccountState;
 import com.csc.fresher.service.MyService;
 
 /**
