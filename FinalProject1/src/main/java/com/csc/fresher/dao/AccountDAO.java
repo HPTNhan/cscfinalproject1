@@ -344,6 +344,12 @@ public class AccountDAO {
 		return accountState;
 	}
 
+	public boolean setListAccountStateById(String[] idaccount, String action) {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
+
 	
 
 }
