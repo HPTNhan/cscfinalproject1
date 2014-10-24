@@ -211,4 +211,11 @@ public class AccountController {
 		return "redirect:/searchPage";
 	}
 	
+	@RequestMapping(value = "/setListAccountState", method = RequestMethod.GET)
+	public String setListAccountState(HttpServletRequest request){
+		String[] idaccount = request.getParameterValues("idaccount");
+		
+		return "redirect:/searchPage";
+	}
+	
 }
