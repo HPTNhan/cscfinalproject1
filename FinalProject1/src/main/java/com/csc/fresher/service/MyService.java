@@ -47,15 +47,17 @@ public class MyService {
 	 */
 	public List<Account> searchAccountsBaseOnDate() {
 		List<Account> accounts = new ArrayList<Account>();
-		accounts = systemAccountDAO.getAccountsBaseOnDate();
-		if (accounts != null && accounts.size() > 0) {
-			List<Account> listAcc = systemAccountDAO.getAccountsBaseOnDate();
+		List<Account> listAcc = systemAccountDAO.getAccountsBaseOnDate();
+		if (listAcc != null && listAcc.size() > 0) {
+			if(listAcc.size()>10){
 			for (int i = 0; i < 10; i++) {
 				Account account = listAcc.get(i);
-				// temp += listAcc.get(i).getAccountstate().getIdstate();
 				accounts.add(account);
 			}
 			return accounts;
+			}
+			else
+				return listAcc;
 		} else {
 			return null;
 		}
@@ -155,6 +157,19 @@ public class MyService {
 			return systemAccountDAO.getAccountsBaseOnState(state);
 		else
 			return null;
+	}
+	
+	
+	/**
+	 * @author TrinhLe params state return a string contains state from list of
+	 *         account
+	 */
+	public int getSizeAccountsBaseOnState(List<Account> accounts) {
+
+		if (accounts != null)
+			return accounts.size();
+		else
+			return 0;
 	}
 
 	public boolean deleteAccount(String idaccount) {

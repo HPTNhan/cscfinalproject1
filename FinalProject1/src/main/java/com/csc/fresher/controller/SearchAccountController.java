@@ -39,11 +39,7 @@ public class SearchAccountController {
 		List<Account> accounts = service.searchAccountsBaseOnDate();
 		if (request.getSession().getAttribute("role") != null) {
 			String role = (String) request.getSession().getAttribute("role");
-			model.addAttribute("newAccount", service.searchAccountsBaseOnState(1).size());
-			model.addAttribute("activeAccount", service.searchAccountsBaseOnState(2).size());
-			model.addAttribute("disableAccount", service.searchAccountsBaseOnState(3).size());
-			model.addAttribute("removableAccount", service.searchAccountsBaseOnState(4).size());
-
+			getNotification(model);
 			if (accounts.size() > 0) {
 				model.addAttribute("accounts", accounts);
 			}
@@ -85,6 +81,7 @@ public class SearchAccountController {
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
 		String message = "";
+		getNotification(model);
 		if (service.searchAccounts(idCardNumber, fullname, accountType,
 				accountNumber, state, phone, address) != null) {
 			model.addAttribute("accounts", service
@@ -109,22 +106,43 @@ public class SearchAccountController {
 			return "supportSearch";
 		}
 	}
-	
-	 @RequestMapping(value = "/searchState")
-	 public String searchAccountsBaseOnState(HttpServletRequest request, Model model) {
-		 int state = Integer.parseInt(request.getParameter("state"));
-		 String role = (String) request.getSession().getAttribute("role");
-		 if (service.searchAccountsBaseOnState(state) != null) {
-				model.addAttribute("accounts", service.searchAccountsBaseOnState(state));
-				model.addAttribute("flat", Integer.toString(state));
-			} else {
-				return "home";
-			}
-			if (role.equals("admin")) {
-				return "adminSearch";
-			} else {
-				return "supportSearch";
-			}
-	 }
+
+	@RequestMapping(value = "/searchState")
+	public String searchAccountsBaseOnState(HttpServletRequest request,
+			Model model) {
+		int state = Integer.parseInt(request.getParameter("state"));
+		String role = (String) request.getSession().getAttribute("role");
+		String message = "";
+		getNotification(model);
+		if (service.searchAccountsBaseOnState(state) != null) {
+			model.addAttribute("accounts",
+					service.searchAccountsBaseOnState(state));
+			model.addAttribute("flat", Integer.toString(state));
+		} else {
+			message = "No matching records found.";
+			model.addAttribute("message", message);
+		}
+		if (role.equals("admin")) {
+			return "adminSearch";
+		} else {
+			return "supportSearch";
+		}
+	}
+
+	public void getNotification(Model model) {
+		model.addAttribute("newAccount", service
+				.getSizeAccountsBaseOnState(service
+						.searchAccountsBaseOnState(1)));
+		model.addAttribute("activeAccount", service
+				.getSizeAccountsBaseOnState(service
+						.searchAccountsBaseOnState(2)));
+		model.addAttribute("disableAccount", service
+				.getSizeAccountsBaseOnState(service
+						.searchAccountsBaseOnState(3)));
+		model.addAttribute("removableAccount", service
+				.getSizeAccountsBaseOnState(service
+						.searchAccountsBaseOnState(4)));
+
+	}
 
 }

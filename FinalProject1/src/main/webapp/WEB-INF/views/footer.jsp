@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- +++++ Footer Section +++++ -->
-	<div id="footer">
+	<div id="footer" style="width:100%; position:absolute; bottom:0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
