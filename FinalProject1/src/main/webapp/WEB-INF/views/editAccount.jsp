@@ -60,9 +60,11 @@
 				action="${pageContext.request.contextPath}/doUpdateAccountInfo"
 				method="post" modelAttribute="account">
 				<div class="row">
-					<input type="text" style="display: none;" name="idAccount"
-						value="${ accountInfo.idaccount}">
-					<div class="col-sm-6 col-lg-4">
+					<form:hidden path="idaccount" name="idaccount"
+						value="${ accountInfo.idaccount}" />
+					<form:hidden path="accountNumber" name="accountNumber"
+						value="${ accountInfo.accountNumber}" />
+					<div class="col-md-4 col-lg-4">
 						<div class="form-group form-group-sm">
 							<label class="col-md-4 control-label" for="formGroupInputSmall">Account
 								Type:</label>
@@ -231,7 +233,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-lg-4">
+					<div class="col-md-4 col-lg-4">
 						<div class="form-group form-group-sm">
 							<button style="margin-left: 50%" type="submit"
 								class="btn btn-primary btn-sm">Submit</button>

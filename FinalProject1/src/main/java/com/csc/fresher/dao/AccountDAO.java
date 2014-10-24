@@ -70,10 +70,8 @@ public class AccountDAO {
 		Account acc = null;
 		try {
 			entr.begin();
-			System.out.println("aaa");
 			acc = entityManager.find(Account.class, accountId);
 			entr.commit();
-			System.out.println("Get account info by ID successfully");
 		} catch (Exception e) {
 			System.out.println("error:" + "\n" + e);
 			entityManager.close();

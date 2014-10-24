@@ -47,71 +47,41 @@ public class AccountController {
 
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(Model model,
-			@Valid @ModelAttribute("account") Account accountV,
+			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request) throws Exception {
-		// Read account info from request
-		int iAccountType = accountV.getAccounttype().getIdtype();
-		String accountNumber = accountV.getAccountNumber();
-		String idCardNumber = accountV.getIdCardNumber();
-		String firstName = accountV.getFirstName();
-		String midName = accountV.getMidName();
-		String lastName = accountV.getLastName();
-		String phoneNumber1 = accountV.getPhoneNumber1();
-		String phoneNumber2 = accountV.getPhoneNumber2();
-		String address1 = accountV.getAddress1();
-		String address2 = accountV.getAddress2();
-		String email1 = accountV.getEmail1();
-		String email2 = accountV.getEmail2();
-		String idAccount = request.getParameter("idAccount");
 		String message = "";
-		// Get Id of AccountState where name State = New
-		AccountStateDAO accountStateDAO = new AccountStateDAO();
-		AccountState accountState = accountStateDAO
-				.getAccountStateByName("New");
-		// Get Id of AccountType where name = name in request
-		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
-		// AccountType accountType = accountTypeDAO
-		// .getAccountTypeIdbyAccountTypeName(sAccountType);
-		AccountType accountType = new AccountType();
-		accountType.setIdtype(iAccountType);
-		// Set isDeleted and Time
-		String isDeleted = "false";
-		// get current date time with Date()
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date timeStamp = new Date();
-
-		// save Account info into Account object
-		Account account = new Account(accountNumber, address1, address2,
-				email1, email2, firstName, idCardNumber, isDeleted, lastName,
-				midName, phoneNumber1, phoneNumber2, timeStamp, accountState,
-				accountType);
-		// set Account Id
-		account.setIdaccount(Integer.parseInt(idAccount));
-
-		if (iAccountType < 1 || iAccountType > 3) {
+		// check account type
+		if (account.getAccounttype().getIdtype() < 1
+				|| account.getAccounttype().getIdtype() > 3) {
 			String messageAS = "Account Type is not valid";
 			model.addAttribute("message", messageAS);
-			return "addAccount";
+			return "forward:/editAccount";
 		}
-
+		// validate fields
 		if (result.hasErrors()) {
-			return "addAccount";
-		} else {
-			System.out.println("Input OK");
-		}
+			System.out.println(result.getFieldError().toString());
+			System.out.println("Not OK");
+			return "forward:/getAccountInfo?accountId="
+					+ account.getIdaccount();
 
-		// Create an AccountDAO
-		AccountDAO accountDAO = new AccountDAO();
-		try {
-			// Save account to DB
-			accountDAO.updateAccountInfo(account);
-			message = "Update account successfully";
-		} catch (Exception e) {
-			message = "Update account failed cause: " + e;
+		} else {
+			// Construct some attributes
+			String isDeleted = "false";
+			Date timeStamp = new Date();
+			// add Attributes for account
+			account.setTimeStamp(timeStamp);
+			account.setIsDeleted(isDeleted);
+			// Create an AccountDAO
+			AccountDAO accountDAO = new AccountDAO();
+			try {
+				// Save account to DB
+				accountDAO.updateAccountInfo(account);
+				message = "Update account successfully";
+			} catch (Exception e) {
+				message = "Update account failed cause: " + e;
+			}
 		}
 		model.addAttribute("message", message);
-		// return "editAccount";
-		// return "redirect:/getAccountInfo";
 		return "forward:/searchPage";
 	}
 
@@ -124,7 +94,6 @@ public class AccountController {
 		Account acc = accDAO.getAccountInfoByAccountId(accountId);
 		// add account to attribute of model
 		model.addAttribute("accountInfo", acc);
-		System.out.println("get acc info uccessfully");
 		return ("editAccount");
 	}
 
@@ -138,71 +107,44 @@ public class AccountController {
 
 	@RequestMapping(value = "/doAddAccount")
 	public String addAccount(Model model,
-			@Valid @ModelAttribute("account") Account accountV,
+			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request) throws Exception {
-		// Read account info from request
-		int iAccountType = accountV.getAccounttype().getIdtype();
-		String accountNumber = accountV.getAccountNumber();
-		String idCardNumber = accountV.getIdCardNumber();
-		String firstName = accountV.getFirstName();
-		String midName = accountV.getMidName();
-		String lastName = accountV.getLastName();
-		String phoneNumber1 = accountV.getPhoneNumber1();
-		String phoneNumber2 = accountV.getPhoneNumber2();
-		String address1 = accountV.getAddress1();
-		String address2 = accountV.getAddress2();
-		String email1 = accountV.getEmail1();
-		String email2 = accountV.getEmail2();
 		String message = "";
-
-		// Get Id of AccountState where name State = New
-		AccountStateDAO accountStateDAO = new AccountStateDAO();
-		AccountState accountState = accountStateDAO
-				.getAccountStateByName("New");
-		// Get Id of AccountType where name = name in request
-		AccountTypeDAO accountTypeDAO = new AccountTypeDAO();
-		// AccountType accountType = accountTypeDAO
-		// .getAccountTypeIdbyAccountTypeName(sAccountType);
-
-		AccountType accountType = new AccountType();
-		accountType.setIdtype(iAccountType);
-		// Set isDeleted and Time
-		String isDeleted = "false";
-		// get current date time with Date()
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date timeStamp = new Date();
-		// save Account info into Account object
-		Account account = new Account(accountNumber, address1, address2,
-				email1, email2, firstName, idCardNumber, isDeleted, lastName,
-				midName, phoneNumber1, phoneNumber2, timeStamp, accountState,
-				accountType);
-
-		if (iAccountType < 1 || iAccountType > 3) {
+		// Check Account Type
+		if (account.getAccounttype().getIdtype() < 1
+				|| account.getAccounttype().getIdtype() > 3) {
 			String messageAS = "Account Type is not valid";
 			model.addAttribute("message", messageAS);
 			return "addAccount";
 		}
-
+		// Validate fields
 		if (result.hasErrors()) {
 			return "addAccount";
 		} else {
-			System.out.println("Input OK");
-		}
-
-		// Create an AccountDAO
-		AccountDAO accountDAO = new AccountDAO();
-		// check exist Account Number
-		if (accountDAO.existAccountNumber(accountNumber)) {
-			message = "Account Number has existed";
-			System.out.println("Account Number has existed");
-		} else {
-			try {
-				// Save account to DB
-				accountDAO.addAccount(account);
-				message = "Create account successfully";
-
-			} catch (Exception e) {
-				message = "Create account failed cause: " + e;
+			// Construct some attributes
+			AccountStateDAO accountStateDAO = new AccountStateDAO();
+			AccountState accountState = accountStateDAO
+					.getAccountStateByName("New");
+			String isDeleted = "false";
+			Date timeStamp = new Date();
+			// add Attributes for account
+			account.setAccountstate(accountState);
+			account.setTimeStamp(timeStamp);
+			account.setIsDeleted(isDeleted);
+			// Create an AccountDAO
+			AccountDAO accountDAO = new AccountDAO();
+			// check exist Account Number
+			if (accountDAO.existAccountNumber(account.getAccountNumber())) {
+				message = "Account Number has existed";
+				System.out.println("Account Number has existed");
+			} else {
+				try {
+					// Save account to DB
+					accountDAO.addAccount(account);
+					message = "Create account successfully";
+				} catch (Exception e) {
+					message = "Create account failed cause: " + e;
+				}
 			}
 		}
 		model.addAttribute("message", message);
@@ -217,18 +159,18 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
 	public String deleteListAccount(HttpServletRequest request) {
-		String[] listIdAccountString = request.getParameterValues("idaccount");		
+		String[] listIdAccountString = request.getParameterValues("idaccount");
 		if (service.deleteListAccount(listIdAccountString)) {
 			System.out.println("delete completed");
 		} else {
 			System.out.println("delete failed");
 		}
 		return "redirect:/searchPage";
-	}		
-	
+	}
+
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpServletRequest request) {
-		String idaccount = request.getParameter("idaccount");		
+		String idaccount = request.getParameter("idaccount");
 		if (service.deleteAccount(idaccount)) {
 			System.out.println("delete completed");
 		} else {
@@ -236,6 +178,5 @@ public class AccountController {
 		}
 		return "redirect:/searchPage";
 	}
-	
-	
+
 }
