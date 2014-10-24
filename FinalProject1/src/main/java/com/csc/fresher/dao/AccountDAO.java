@@ -182,7 +182,6 @@ public class AccountDAO {
 		boolean bcheck = false;
 		try {
 			enTr.begin();
-
 			TypedQuery<Account> query = entityManager.createQuery(
 					"SELECT a FROM " + Account.class.getName()
 							+ " a Where a.accountNumber= :accountNumber ",

@@ -51,13 +51,13 @@ public class AccountController {
 				|| account.getAccounttype().getIdtype() > 3) {
 			String messageAS = "Account Type is not valid";
 			model.addAttribute("message", messageAS);
-			return "forward:/editAccount";
+			return "redirect:/getAccountInfo";
 		}
 		// validate fields
 		if (result.hasErrors()) {
 			System.out.println(result.getFieldError().toString());
 			System.out.println("Not OK");
-			return "forward:/getAccountInfo?accountId="
+			return "redirect:/getAccountInfo?accountId="
 					+ account.getIdaccount();
 
 		} else {
@@ -106,41 +106,32 @@ public class AccountController {
 			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request) throws Exception {
 		String message = "";
-		// Check Account Type
-		if (account.getAccounttype().getIdtype() < 1
-				|| account.getAccounttype().getIdtype() > 3) {
-			String messageAS = "Account Type is not valid";
-			model.addAttribute("message", messageAS);
-			return "addAccount";
-		}
-		// Validate fields
-		if (result.hasErrors()) {
-			return "addAccount";
+		// Check Account Type and Validate Account fields
+		if (service.checkAccountType(account) == false || result.hasErrors()
+				|| service.checkExistAccountNumber(account)) {
+			if (service.checkAccountType(account) == false) {
+				String messageAS = "Account Type is not valid";
+				model.addAttribute("messageAS", messageAS);
+			}
+			if (service.checkExistAccountNumber(account)) {
+				String messageAN = "Account Number has existed";
+				model.addAttribute("messageAT", messageAN);
+			}
+			return "redirect:/getAddAccount";
 		} else {
 			// Construct some attributes
-			AccountStateDAO accountStateDAO = new AccountStateDAO();
-			AccountState accountState = accountStateDAO
-					.getAccountStateByName("New");
 			String isDeleted = "false";
 			Date timeStamp = new Date();
 			// add Attributes for account
-			account.setAccountstate(accountState);
+			account.setAccountstate(service.createAccountStateNew());
 			account.setTimeStamp(timeStamp);
 			account.setIsDeleted(isDeleted);
-			// Create an AccountDAO
-			AccountDAO accountDAO = new AccountDAO();
-			// check exist Account Number
-			if (accountDAO.existAccountNumber(account.getAccountNumber())) {
-				message = "Account Number has existed";
-				System.out.println("Account Number has existed");
-			} else {
-				try {
-					// Save account to DB
-					accountDAO.addAccount(account);
-					message = "Create account successfully";
-				} catch (Exception e) {
-					message = "Create account failed cause: " + e;
-				}
+			try {
+				// Save account to DB
+				service.addAccount(account);
+				message = "Create account successfully";
+			} catch (Exception e) {
+				message = "Create account failed cause: " + e;
 			}
 		}
 		model.addAttribute("message", message);

@@ -70,8 +70,8 @@
 									<form:option value="2">Saving Account</form:option>
 									<form:option value="3">Others</form:option>
 								</form:select>
-								<c:if test="${!empty message}">
-									<p>${message }</p>
+								<c:if test="${!empty messageAS}">
+									<p>${messageAS }</p>
 								</c:if>
 							</div>
 						</div>
@@ -84,6 +84,9 @@
 									type="text" placeholder="Acount Number"
 									value="${accountNumber}" readonly="true" />
 								<form:errors path="accountNumber" cssClass="error" />
+								<c:if test="${!empty messageAN}">
+									<p>${messageN }</p>
+								</c:if>
 							</div>
 						</div>
 					</div>
