@@ -3,6 +3,8 @@ package com.csc.fresher.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Spring;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -173,6 +175,14 @@ public class MyService {
 
 	// --------------Qui----------------------
 
+	
+	public String getAccountNumber(){	
+		String accountNumber =accountDAO.getAccountNumber();
+		return accountNumber;
+	}
+	
+	
+	
 	public boolean checkAccountType(Account account) {
 		if (account.getAccounttype().getIdtype() < 1
 				|| account.getAccounttype().getIdtype() > 3) {
