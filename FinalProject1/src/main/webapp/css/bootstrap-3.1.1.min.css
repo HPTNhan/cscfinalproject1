@@ -433,7 +433,7 @@ p {
 }
 
 small, .small {
-	font-size: 85%
+	font-size: 100%
 }
 
 cite {
@@ -457,7 +457,7 @@ cite {
 }
 
 .text-muted {
-	color: #999
+	color: red
 }
 
 .text-primary {
@@ -1556,7 +1556,7 @@ table td[class*=col-], table th[class*=col-] {
 .table-hover>tbody>tr>td.active:hover, .table-hover>tbody>tr>th.active:hover,
 	.table-hover>tbody>tr.active:hover>td, .table-hover>tbody>tr.active:hover>th
 	{
-	background-color: #e8e8e8
+	background-color: #66CC99
 }
 
 .table>thead>tr>td.success, .table>tbody>tr>td.success, .table>tfoot>tr>td.success,
