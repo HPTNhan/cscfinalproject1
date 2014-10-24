@@ -10,41 +10,38 @@
 </head>
 
 <body>
-
+	<form action="">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
 			<c:if test="${(flat =='123')}">
-				<button type="submit" class="btn btn-success centered"
+				<button type="submit" class="btn btn-success centered" name="action" value="removable"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered"
+				<button type="submit" class="btn btn-success centered" name="action" value="disable"
 					action="disable" style="float: right; margin-left: 1%">Set Disable</button>
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right; margin-left: 1%">Set
-					Active</button>
+				<button type="submit" class="btn btn-success centered" name="action" value="active"
+					action="active" style="float: right; margin-left: 1%">Set Active</button>
 				
 			</c:if>
 			<c:if test="${(flat =='3')}">
-				<button type="submit" class="btn btn-success centered"
+				<button type="submit" class="btn btn-success centered" name="action" value="removable"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right; margin-left: 1%">Set
-					Active</button>
+				<button type="submit" class="btn btn-success centered" name="action" value="active"
+					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 			<c:if test="${(flat =='1')}">
-				<button type="submit" class="btn btn-success centered"
+				<button type="submit" class="btn btn-success centered" name="action" value="active"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 			<c:if test="${(flat =='2')}">
-				<button type="submit" class="btn btn-success centered"
+				<button type="submit" class="btn btn-success centered" name="action" value="disable"
 					action="disable" style="float: right; margin-left: 1%">Set Disable</button>
 			</c:if>
 			<c:if test="${(flat =='12')}">
-				<button type="submit" class="btn btn-success centered"
-					action="removable" style="float: right; margin-left: 1%">Set Disable</button>
-				<button type="submit" class="btn btn-success centered"
-					action="active" style="float: right; margin-left: 1%">Set
-					Active</button>
+				<button type="submit" class="btn btn-success centered" name="action" value="removable"
+					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
+				<button type="submit" class="btn btn-success centered" name="action" value="active"
+					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 		
 		
@@ -94,7 +91,7 @@
 											class="glyphicon glyphicon-ban-circle"></span>
 										</a>
 									</c:if> <c:if test="${(account.accountstate.stateName =='Disable')}">
-										<a href="setAccountStateActive?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
+										<a href="setAccountStateActiveFromDisable?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Active"> <span class="glyphicon glyphicon-check"></span>
 										</a>
 										<a href="setAccountStateRemovable?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
@@ -116,7 +113,7 @@
 		<!-- /.panel-body -->
 	</div>
 	<!-- /.col-lg-12 -->
-
+	</form>
 	<!-- /#wrapper -->
 	<!-- Modal -->
 	<c:set var="i" value="${0 }" />
