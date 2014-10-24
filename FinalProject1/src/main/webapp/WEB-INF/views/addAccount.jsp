@@ -85,7 +85,7 @@
 									value="${accountNumber}" readonly="true" />
 								<form:errors path="accountNumber" cssClass="error" />
 								<c:if test="${!empty messageAN}">
-									<p>${messageN }</p>
+									<p>${messageAN }</p>
 								</c:if>
 							</div>
 						</div>
