@@ -207,6 +207,7 @@ public class SystemAccountDAO {
 			}
 			sql += " )";
 		}
+		sql += " ORDER BY (c.timeStamp) DESC";
 
 		// -----------Begin transaction-----------
 		// boolean check = false;
@@ -295,7 +296,7 @@ public class SystemAccountDAO {
 		List<Account> accounts = null;
 		String sql = "SELECT c FROM " + Account.class.getName()
 				+ " c WHERE c.isDeleted = 'false' AND c.accountstate = "
-				+ state;
+				+ state + " ORDER BY (c.timeStamp) DESC";;
 		// -----------Begin transaction-----------
 		// boolean check = false;
 		try {
