@@ -28,6 +28,11 @@ public class MyService {
 
 	}
 
+	/**
+	 * @param listIdAccount
+	 * @return
+	 * @author NhanHo
+	 */
 	public boolean deleteListAccount(String[] listIdAccount) {
 		if (listIdAccount != null && listIdAccount.length > 0) {
 			return accountDAO.deleteListAccount(listIdAccount);
@@ -165,6 +170,11 @@ public class MyService {
 			return 0;
 	}
 
+	/**
+	 * @param idaccount
+	 * @return
+	 * @author NhanHo
+	 */
 	public boolean deleteAccount(String idaccount) {
 		// TODO Auto-generated method stub
 		if (idaccount != null) {
@@ -175,14 +185,11 @@ public class MyService {
 
 	// --------------Qui----------------------
 
-	
-	public String getAccountNumber(){	
-		String accountNumber =accountDAO.getAccountNumber();
+	public String getAccountNumber() {
+		String accountNumber = accountDAO.getAccountNumber();
 		return accountNumber;
 	}
-	
-	
-	
+
 	public boolean checkAccountType(Account account) {
 		if (account.getAccounttype().getIdtype() < 1
 				|| account.getAccounttype().getIdtype() > 3) {
@@ -205,16 +212,29 @@ public class MyService {
 			return false;
 	}
 
-	public void addAccount(Account account){
+	public void addAccount(Account account) {
 		accountDAO.addAccount(account);
 	}
-	public boolean setAccountStateById(String idaccount, String stateName) {
+
+	public boolean setAccountStateById(String idaccount, String currentState,
+			String nextState) {
 		// TODO Auto-generated method stub
-		return accountDAO.setAccountStateById(idaccount, stateName);
+		return accountDAO.setAccountStateById(idaccount, currentState,
+				nextState);
 	}
 
-	public boolean setListAccountStateById(String[] idaccount, String action) {
+	/**
+	 * @param listIdAccount
+	 * @param action
+	 * @return
+	 * @author NhanHo
+	 */
+	public boolean setListAccountStateById(String[] listIdAccount, String action) {
 		// TODO Auto-generated method stub
-		return accountDAO.setListAccountStateById(idaccount, action);
-	}	
+		if (action.equals("Active") || action.equals("Disable")
+				|| action.equals("Removable")) {
+			return accountDAO.setListAccountStateById(listIdAccount, action);
+		}
+		return false;
+	}
 }
