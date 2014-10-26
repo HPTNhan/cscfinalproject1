@@ -168,7 +168,7 @@ public class AccountController {
 	public String setAccountStateActive(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "New");
+			service.setAccountStateById(idaccount, "New", "Active");
 		}
 		return "redirect:/searchPage";
 	}
@@ -177,7 +177,7 @@ public class AccountController {
 	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Disable");
+			service.setAccountStateById(idaccount, "Disable", "Active");
 		}
 		return "redirect:/searchPage";
 	}
@@ -186,7 +186,7 @@ public class AccountController {
 	public String setAccountStateDisable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Active");
+			service.setAccountStateById(idaccount, "Active", "Disable");
 		}
 		return "redirect:/searchPage";
 	}
@@ -195,12 +195,12 @@ public class AccountController {
 	public String setAccountStateRemovable(HttpServletRequest request) {
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Disable");
+			service.setAccountStateById(idaccount, "Disable", "Removable");
 		}
 		return "redirect:/searchPage";
 	}
 
-	@RequestMapping(value = "/setListAccountState", method = RequestMethod.GET)
+	@RequestMapping(value = "/setListAccountState", method = RequestMethod.POST)
 	public String setListAccountState(HttpServletRequest request) {
 		String[] idaccount = request.getParameterValues("idaccount");
 		String action = request.getParameter("action");
