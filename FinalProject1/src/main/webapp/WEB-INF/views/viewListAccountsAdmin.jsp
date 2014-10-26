@@ -10,37 +10,37 @@
 </head>
 
 <body>
-	<form action="">
+	<form action="setListAccountState" method="post">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
 			<c:if test="${(flat =='123')}">
-				<button type="submit" class="btn btn-success centered" name="action" value="removable"
+				<button type="submit" class="btn btn-success centered" name="action" value="Removable"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered" name="action" value="disable"
+				<button type="submit" class="btn btn-success centered" name="action" value="Disable"
 					action="disable" style="float: right; margin-left: 1%">Set Disable</button>
-				<button type="submit" class="btn btn-success centered" name="action" value="active"
+				<button type="submit" class="btn btn-success centered" name="action" value="Active"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 				
 			</c:if>
 			<c:if test="${(flat =='3')}">
-				<button type="submit" class="btn btn-success centered" name="action" value="removable"
+				<button type="submit" class="btn btn-success centered" name="action" value="Removable"
 					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered" name="action" value="activefromdisable"
+				<button type="submit" class="btn btn-success centered" name="action" value="Active"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 			<c:if test="${(flat =='1')}">
-				<button type="submit" class="btn btn-success centered" name="action" value="active"
+				<button type="submit" class="btn btn-success centered" name="action" value="Active"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 			<c:if test="${(flat =='2')}">
-				<button type="submit" class="btn btn-success centered" name="action" value="disable"
+				<button type="submit" class="btn btn-success centered" name="action" value="Disable"
 					action="disable" style="float: right; margin-left: 1%">Set Disable</button>
 			</c:if>
 			<c:if test="${(flat =='12')}">
-				<button type="submit" class="btn btn-success centered" name="action" value="removable"
-					action="removable" style="float: right; margin-left: 1%">Set Removable</button>
-				<button type="submit" class="btn btn-success centered" name="action" value="active"
+				<button type="submit" class="btn btn-success centered" name="action" value="Disable"
+					action="removable" style="float: right; margin-left: 1%">Set Disable</button>
+				<button type="submit" class="btn btn-success centered" name="action" value="Active"
 					action="active" style="float: right; margin-left: 1%">Set Active</button>
 			</c:if>
 		
