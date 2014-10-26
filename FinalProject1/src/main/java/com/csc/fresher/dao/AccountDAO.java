@@ -224,6 +224,7 @@ public class AccountDAO {
 	 *            idaccount
 	 * 
 	 * @return boolean ( boolean: true/false)
+	 * @author NhanHo
 	 */
 	public boolean deleteAccount(String idaccount) {
 		EntityManager entityManager = EntityManagerFactoryUtil
@@ -264,6 +265,7 @@ public class AccountDAO {
 	 *            idaccount
 	 * 
 	 * @return boolean ( boolean: true/false)
+	 * @author NhanHo
 	 */
 	public boolean deleteListAccount(String[] listIdAccount) {
 		EntityManager entityManager = EntityManagerFactoryUtil
@@ -300,8 +302,10 @@ public class AccountDAO {
 	/**
 	 * @param idaccount
 	 * @return
+	 * @author NhanHo
 	 */
-	public boolean setAccountStateById(String idaccount, String stateName) {
+	public boolean setAccountStateById(String idaccount, String currentState,
+			String nextState) {
 		// TODO Auto-generated method stub
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
@@ -312,14 +316,18 @@ public class AccountDAO {
 			Account account = entityManager.find(Account.class,
 					Integer.parseInt(idaccount));
 			if (account != null
-					&& stateName.equals(account.getAccountstate().getStateName())) {
+					&& currentState.equals(account.getAccountstate()
+							.getStateName())
+					&& findStateByName(nextState) != null) {
 				entityTransaction.begin();
 				Date timeStamp = new Date();
 				account.setTimeStamp(timeStamp);
-				account.setAccountstate(findNextState(account.getAccountstate()
-						.getIdstate()));
+				account.setAccountstate(findStateByName(nextState));
 				entityManager.merge(account);
 				entityTransaction.commit();
+				System.out.println(idaccount + currentState + nextState);
+			} else {
+				return false;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -331,25 +339,94 @@ public class AccountDAO {
 		return true;
 	}
 
-	public AccountState findNextState(int idAccountState) {
+	/**
+	 * @param AccountState
+	 * @return
+	 * @author NhanHo
+	 */
+	public AccountState findStateByName(String AccountState) {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
-
-		entityManager.getTransaction().begin();
-		int nextIdAccountState = idAccountState + 1;
-		AccountState accountState = entityManager.find(AccountState.class,
-				nextIdAccountState);
-		entityManager.getTransaction().commit();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		AccountState accountState = null;
+		try {
+			entityTransaction.begin();
+			TypedQuery<AccountState> query = entityManager.createQuery(
+					"SELECT a FROM " + AccountState.class.getName()
+							+ " a WHERE a.stateName= :stateName ",
+					AccountState.class);
+			query.setParameter("stateName", AccountState);
+			accountState = query.getSingleResult();
+			entityTransaction.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+		} finally {
+			entityManager.close();
+		}
 
 		return accountState;
 	}
 
-	public boolean setListAccountStateById(String[] idaccount, String action) {
+	/**
+	 * @param idaccount
+	 * @param action
+	 * @return
+	 * @author NhanHo
+	 */
+	public boolean setListAccountStateById(String[] idaccounts, String action) {
 		// TODO Auto-generated method stub
+		EntityManager entityManager = EntityManagerFactoryUtil
+				.createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		
+		/*try {*/
+			entityTransaction.begin();
+			// set New or Disable to Active
+			if (action.equals("Active")) {
+				for (String idaccount : idaccounts) {
+					Account account = entityManager.find(Account.class,
+							Integer.parseInt(idaccount));
+					if (account != null) {
+						String currentState = account.getAccountstate()
+								.getStateName();
+						if (currentState.equals("New") || currentState.equals("Disable")) {
+							setAccountStateById(idaccount, currentState, action);
+						}						
+					}
+				}
+			} else if (action.equals("Disable")) {
+				for (String idaccount : idaccounts) {
+					Account account = entityManager.find(Account.class,
+							Integer.parseInt(idaccount));
+					if (account != null) {
+						String currentState = account.getAccountstate()
+								.getStateName();
+						if (currentState.equals("Active")) {
+							setAccountStateById(idaccount, currentState, action);
+						}						
+					}
+				}
+			} else if (action.equals("Removable")) {
+				for (String idaccount : idaccounts) {
+					Account account = entityManager.find(Account.class,
+							Integer.parseInt(idaccount));
+					if (account != null) {
+						String currentState = account.getAccountstate()
+								.getStateName();
+						if (currentState.equals("Disable")) {
+							setAccountStateById(idaccount, currentState, action);
+						}						
+					}
+				}
+			}
+		/*} catch (Exception e) {
+			// TODO: handle exception
+		}*/		
 		
 		return false;
 	}
-
-	
 
 }
