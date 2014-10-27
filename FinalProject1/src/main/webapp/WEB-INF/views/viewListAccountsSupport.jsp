@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	<form action="deleteListAccount" method="post"> name="submitAction"
+	<form action="deleteListAccount" method="post" name="submitAction">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
