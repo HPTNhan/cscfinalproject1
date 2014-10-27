@@ -26,6 +26,7 @@ import com.csc.fresher.service.MyService;
  */
 @Controller
 public class AccountController {
+	private Account accountTemp;
 
 	// declare model Attribute
 	@ModelAttribute("account")
@@ -44,35 +45,35 @@ public class AccountController {
 			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request) throws Exception {
 		String message = "";
-		// check account type
-		if (account.getAccounttype().getIdtype() < 1
-				|| account.getAccounttype().getIdtype() > 3) {
-			String messageAS = "Account Type is not valid";
-			model.addAttribute("message", messageAS);
-			return "redirect:/getAccountInfo";
-		}
-		// validate fields
-		if (result.hasErrors()) {
-			System.out.println(result.getFieldError().toString());
-			System.out.println("Not OK");
-			return "redirect:/getAccountInfo?accountId="
-					+ account.getIdaccount();
-
+		String alert = "";
+		// Check Account Type and Validate Account fields
+		if (service.checkAccountType(account) == false || result.hasErrors()) {
+			String messageAS = "";
+			if (service.checkAccountType(account) == false) {
+				messageAS = "Account Type is not valid";
+				model.addAttribute("messageAS", messageAS);
+			}
+			// send Account Info
+			model.addAttribute("accountInfo", accountTemp);
+			// return "forward:/getAccountInfo?accountId="+
+			// account.getIdaccount() + "&messageAS=" + messageAS;
+			return "editAccount";
 		} else {
 			// Construct some attributes
 			String isDeleted = "false";
 			Date timeStamp = new Date();
 			// add Attributes for account
+			// account.setAccountstate(service.createAccountStateNew());
 			account.setTimeStamp(timeStamp);
 			account.setIsDeleted(isDeleted);
-			// Create an AccountDAO
-			AccountDAO accountDAO = new AccountDAO();
 			try {
 				// Save account to DB
-				accountDAO.updateAccountInfo(account);
-				message = "Update account successfully";
+				service.updateAccountInfo(account);
+				message = "Update  account successfully";
+				alert = "success";
 			} catch (Exception e) {
-				message = "Update account failed cause: " + e;
+				message = "Update  account failed, please try again";
+				alert = "error";
 			}
 		}
 		model.addAttribute("message", message);
@@ -84,10 +85,11 @@ public class AccountController {
 		// get id
 		String SaccountId = request.getParameter("accountId");
 		int accountId = Integer.parseInt(SaccountId);
-		AccountDAO accDAO = new AccountDAO();
-		Account acc = accDAO.getAccountInfoByAccountId(accountId);
 		// add account to attribute of model
-		model.addAttribute("accountInfo", acc);
+		model.addAttribute("accountInfo",
+				service.getAccountInfoByAccountId(accountId));
+		// set Account Info Temp for do Update Account
+		accountTemp = service.getAccountInfoByAccountId(accountId);
 		return ("editAccount");
 	}
 
@@ -103,6 +105,7 @@ public class AccountController {
 			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request) throws Exception {
 		String message = "";
+		String alert = "";
 		// Check Account Type and Validate Account fields
 		if (service.checkAccountType(account) == false || result.hasErrors()
 				|| service.checkExistAccountNumber(account)) {
@@ -114,7 +117,6 @@ public class AccountController {
 				String messageAN = "Account Number has existed";
 				model.addAttribute("messageAN", messageAN);
 			}
-			//return "redirect:/getAddAccount";
 			return "addAccount";
 		} else {
 			// Construct some attributes
@@ -128,11 +130,14 @@ public class AccountController {
 				// Save account to DB
 				service.addAccount(account);
 				message = "Create account successfully";
+				alert = "success";
 			} catch (Exception e) {
-				message = "Create account failed cause: " + e;
+				alert = "error";
+				message = "Create account failed, please try again";
 			}
 		}
 		model.addAttribute("message", message);
+		model.addAttribute("alert", alert);
 		return "forward:/searchPage";
 	}
 
@@ -206,7 +211,7 @@ public class AccountController {
 		String action = request.getParameter("action");
 		if (idaccount != null) {
 			service.setListAccountStateById(idaccount, action);
-		}		
+		}
 		return "redirect:/searchPage";
 	}
 
