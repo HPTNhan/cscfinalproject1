@@ -52,6 +52,14 @@
 	<!-- +++++ Container +++++ -->
 	<div id="ww">
 		<div class="container">
+			<!-- Breadcrumb -->
+			<div class="row">
+				<ol class="breadcrumb">
+					<li><a href="searchPage">Search</a></li>
+					<li class="active">Create Account</li>
+				</ol>
+			</div>
+			<!-- End Breadcrumb -->
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Create Account</h1>
