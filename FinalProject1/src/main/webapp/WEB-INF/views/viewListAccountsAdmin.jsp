@@ -9,6 +9,14 @@
 <script type="text/javascript">
 	function isChecked()
 	{
+		$(document).ready(function() {
+			  var oTable = $('#dataTables-example').dataTable();
+			   
+			  // Get the nodes from the table
+			  var nNodes = oTable.fnGetNodes();
+			  alert(nNodes.length);
+			} );
+		
 		var x = document.forms["submitAction"].idaccount;
 		for (i = 0; i < x.length; i++) {
 			if (x[i].checked) {
@@ -18,6 +26,8 @@
 		alert("Please select one !");
 		return false;
 	}
+   
+
 </script>
 </head>
 

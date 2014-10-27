@@ -6,11 +6,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+	<script type="text/javascript">
+	function isChecked()
+	{
+		$(document).ready(function() {
+			  var oTable = $('#dataTables-example').dataTable();
+			   
+			  // Get the nodes from the table
+			  var nNodes = oTable.fnGetNodes();
+			  alert(nNodes.length);
+			} );
+		
+		var x = document.forms["submitAction"].idaccount;
+		for (i = 0; i < x.length; i++) {
+			if (x[i].checked) {
+				return true;
+			}
+		}
+		alert("Please select one !");
+		return false;
+	}
+	</script>
 </head>
 
 <body>
-	<form action="deleteListAccount" method="post">
+	<form action="deleteListAccount" method="post"> name="submitAction"
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
