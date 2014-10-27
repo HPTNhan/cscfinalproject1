@@ -26,14 +26,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<!-- <context:component-scan base-package="com.csc.fresher.controller" />
-<context:component-scan base-package="com.csc.fresher.service" />
-	<context:component-scan base-package="com.csc.fresher.dao" /> -->
-	<aop:aspectj-autoproxy/>
+	<!-- <context:component-scan base-package="com.csc.fresher.controller" /> 
+		<context:component-scan base-package="com.csc.fresher.service" /> <context:component-scan 
+		base-package="com.csc.fresher.dao" /> -->
+	<aop:aspectj-autoproxy />
 	<context:component-scan base-package="com.csc.fresher" />
-	<!-- <aop:aspectj-autoproxy />
-	<beans:bean id="accountController" class="com.csc.fresher.controller.SearchAccountController"></beans:bean>
-	<beans:bean id="notify" class="com.csc.fresher.controller.NotifyController" /> -->
+	<!-- <aop:aspectj-autoproxy /> <beans:bean id="accountController" class="com.csc.fresher.controller.SearchAccountController"></beans:bean> 
+		<beans:bean id="notify" class="com.csc.fresher.controller.NotifyController" 
+		/> -->
 
 
 </beans:beans>
