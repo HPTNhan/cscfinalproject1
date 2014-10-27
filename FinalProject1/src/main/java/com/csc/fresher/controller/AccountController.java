@@ -75,8 +75,9 @@ public class AccountController {
 				message = "Update  account failed, please try again";
 				alert = "error";
 			}
-		}
+		}	
 		model.addAttribute("message", message);
+		model.addAttribute("alert", alert);
 		return "forward:/searchPage";
 	}
 
