@@ -36,7 +36,7 @@ public class SearchAccountController {
 		// get list of accounts base on date (10 newest accounts)
 		List<Account> accounts = service.searchAccountsBaseOnDate();
 		String role = (String) request.getSession().getAttribute("role");
-		getNotification(model);
+//		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (accounts != null) {
 			model.addAttribute("accounts", accounts);
@@ -76,7 +76,7 @@ public class SearchAccountController {
 		List<Account> accounts = service.searchAccounts(idCardNumber, fullname,
 				accountType, accountNumber, state, phone, address);
 		// check notification for all account's states
-		getNotification(model);
+//		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (accounts != null) {
 			model.addAttribute("accounts", accounts);
@@ -107,7 +107,7 @@ public class SearchAccountController {
 		String role = (String) request.getSession().getAttribute("role");
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
-		getNotification(model);
+//		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (service.searchAccountsBaseOnState(state) != null) {
 			model.addAttribute("accounts",
