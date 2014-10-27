@@ -113,10 +113,19 @@ table pre.prettyprint {
 				<div class="panel panel-default">
 
 					<div class="row mt">
-							<c:if test="${!empty message}">
-								<p class="alert alert-danger">${message }</p>
+						<c:if test="${!empty message}">
+							<c:if test="${alert eq 'success'}">
+								<div class="alert alert-success">
+									<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${message }!</strong>
+								</div>
 							</c:if>
-							<form role="form" action="search.html" method="post"
+							<c:if test="${alert eq 'error'}">
+								<div class="alert alert-error">
+									<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${message }!</strong>
+								</div>
+							</c:if>
+						</c:if>
+						<form role="form" action="search.html" method="post"
 							style="margin-top: 1%">
 							<div class="col-xs-6 col-md-4">
 								<div class="form-group">
@@ -145,18 +154,20 @@ table pre.prettyprint {
 							</div>
 							<div class="col-xs-6 col-md-4">
 								<div style="margin-bottom: 20px;">
-									<label style="width:30%">Account Type</label>
-									<select id="accountType" multiple="multiple" class="form-control" name="accountType">
-										
+									<label style="width: 30%">Account Type</label> <select
+										id="accountType" multiple="multiple" class="form-control"
+										name="accountType">
+
 										<option value="1">Deposit</option>
 										<option value="2">Saving</option>
 										<option value="3">Others</option>
 									</select>
 								</div>
 								<div style="margin-bottom: 20px;">
-									<label style="width:30%">Account State</label>
-									<select id="state" multiple="multiple" class="form-control" name="state" >
-										
+									<label style="width: 30%">Account State</label> <select
+										id="state" multiple="multiple" class="form-control"
+										name="state">
+
 										<option value="1">New</option>
 										<option value="2">Active</option>
 										<option value="3">Disable</option>
@@ -173,7 +184,7 @@ table pre.prettyprint {
 
 			</div>
 			<!-- /col-lg-8 -->
-			
+
 		</div>
 	</div>
 	<!-- /container -->
