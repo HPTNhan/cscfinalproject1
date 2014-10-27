@@ -190,6 +190,11 @@ public class MyService {
 		return accountNumber;
 	}
 
+	public Account getAccountInfoByAccountId(int accountId) {
+		Account account = accountDAO.getAccountInfoByAccountId(accountId);
+		return account;
+	}
+
 	public boolean checkAccountType(Account account) {
 		if (account.getAccounttype().getIdtype() < 1
 				|| account.getAccounttype().getIdtype() > 3) {
@@ -216,6 +221,10 @@ public class MyService {
 		accountDAO.addAccount(account);
 	}
 
+	public void updateAccountInfo(Account account) {
+		accountDAO.updateAccountInfo(account);
+	}
+	
 	public boolean setAccountStateById(String idaccount, String currentState,
 			String nextState) {
 		// TODO Auto-generated method stub
