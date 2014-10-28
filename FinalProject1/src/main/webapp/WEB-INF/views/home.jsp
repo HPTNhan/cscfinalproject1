@@ -55,10 +55,12 @@
 							<div class="col-lg-6 col-lg-offset-3 centered">
 								<h3>Login</h3>
 								<hr>
-								<c:if test="${!empty message}">
-									<p style="color: red; margin-left: 3%; margin-bottom: 3%">${message }</p>
+								<c:if test="${message == 'loginfail'}">
+									<p class="alert alert-danger"  data-dismiss="alert">Wrong ID or Password!</p>
 								</c:if>
-								<p>Please enter your information.</p>
+								<c:if test="${message == 'logout'}">
+									<p class="alert alert-success" data-dismiss="alert">Successfully logged you out!</p>
+								</c:if>
 							</div>
 						</div>
 						<div class="row mt">
@@ -66,11 +68,11 @@
 
 								<form:form action="checkLogin" method="post">
 									<div class="form-group">
-										<input type="text" class="form-control" name="username">
+										<input type="text" class="form-control" name="username" title="Please enter your username.">
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" name="password">
+										<input type="password" class="form-control" name="password" title="Please enter your password.">
 										<br>
 									</div>
 									<button type="submit" class="btn btn-success centered">Submit</button>
