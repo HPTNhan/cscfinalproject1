@@ -9,39 +9,23 @@
 </head>
 <body>
 	<!-- +++++ Footer Section +++++ -->
-	<div id="footer" style="width:100%; position:absolute; bottom:0">
+	<div id="footer" style="width: 100%; position: absolute; bottom: 0">
+		<footer id="footer" class="midnight-blue">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<p style="margin-top: 10%">
-						Java Fresher Final Project<br>Manage accounts in banking
-						system
-					</p>
+				<div class="col-sm-6">
+					© 2014 <a target="_blank" href=# title="Team No.1">Team No.1</a>.
+					All Rights Reserved.
 				</div>
-				<!-- /col-lg-4 -->
-				<div class="col-lg-4">
-					<p style="margin-top: 10%">
-						Team 1<br>
-
-					</p>
+				<div class="col-sm-6">
+					<ul class="pull-right">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About Us</a></li>
+					</ul>
 				</div>
-				<div class="col-lg-4">
-					<h4>My Links</h4>
-
-					<p>
-						<a href="#">Instagram</a><br /> 
-						<a href="#">Twitter</a><br /> 
-						<a href="#">Facebook</a>
-					</p>
-				</div>
-				<!-- /col-lg-4 -->
-
-
 			</div>
-
 		</div>
+		</footer>
 	</div>
-
-
 </body>
 </html>
