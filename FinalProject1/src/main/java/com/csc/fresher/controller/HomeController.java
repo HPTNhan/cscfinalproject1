@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -25,7 +27,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -35,14 +37,9 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		// comment if you have error when run
-		/*SystemAccountDAO systemAccountDAO = new SystemAccountDAO();
-		List<SystemAccount> systemaccounts = systemAccountDAO.getSystemAccounts();
-		for (SystemAccount systemaccount : systemaccounts) {
-			System.out.println(systemaccount.getUsername());
-		}*/
-		//
-		
+		//if user logined, redirect to search page
+		if(request.getSession(false) != null)
+			return "forward:/searchPage.html";
 		return "home";
 	}
 	
