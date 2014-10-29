@@ -12,18 +12,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.service.MyService;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the application account page 
  */
-/**
- * @author cscadmin
- * 
- */
+
 @Controller
 public class AccountController {
 	private Account accountTemp;
@@ -40,10 +38,15 @@ public class AccountController {
 	@Autowired
 	private MyService service;
 
+	/**
+	 * Edit account info
+	 * @param request
+	 * @return page
+	 */
 	@RequestMapping(value = "/doUpdateAccountInfo")
 	public String doUpdateAccountInfo(Model model,
 			@Valid @ModelAttribute("account") Account account,
-			BindingResult result, HttpServletRequest request) throws Exception {
+			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
 		String message = "";
 		String alert = "";
 		// Check Account Type and Validate Account fields
@@ -76,11 +79,16 @@ public class AccountController {
 				alert = "error";
 			}
 		}	
-		model.addAttribute("message", message);
-		model.addAttribute("alert", alert);
-		return "forward:/searchPage";
+		attr.addFlashAttribute("message", message);
+		attr.addFlashAttribute("alert", alert);
+		return "redirect:searchPage";
 	}
-
+	
+	/**
+	 * get Account Info page to edit
+	 * @param request
+	 * @return page
+	 */
 	@RequestMapping(value = "/getAccountInfo")
 	public String getAccountInfo(HttpServletRequest request, Model model) {
 		// get id
@@ -94,6 +102,11 @@ public class AccountController {
 		return ("editAccount");
 	}
 
+	/**
+	 * get Add account page
+	 * @param request
+	 * @return page
+	 */
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
 		String accountNumber = service.getAccountNumber();
@@ -101,10 +114,15 @@ public class AccountController {
 		return "addAccount";
 	}
 
+	/**
+	 * Add account
+	 * @param request
+	 * @return page
+	 */
 	@RequestMapping(value = "/doAddAccount")
 	public String addAccount(Model model,
 			@Valid @ModelAttribute("account") Account account,
-			BindingResult result, HttpServletRequest request) throws Exception {
+			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
 		String message = "";
 		String alert = "";
 		// Check Account Type and Validate Account fields
@@ -121,6 +139,7 @@ public class AccountController {
 			return "addAccount";
 		} else {
 			// Construct some attributes
+			
 			String isDeleted = "false";
 			Date timeStamp = new Date();
 			// add Attributes for account
@@ -137,9 +156,9 @@ public class AccountController {
 				message = "Create account failed, please try again";
 			}
 		}
-		model.addAttribute("message", message);
-		model.addAttribute("alert", alert);
-		return "forward:/searchPage";
+		attr.addFlashAttribute("message", message);
+		attr.addFlashAttribute("alert", alert);
+		return "redirect:searchPage";
 	}
 
 	/**
