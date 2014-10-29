@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,7 @@ import com.csc.fresher.domain.AccountState;
 @Component
 public class AccountDAO {
 	
-	@Autowired
+	@PersistenceContext
 	private EntityManager tempEntityManager;
 	/**
 	 * Add account to Account table
@@ -231,7 +230,7 @@ public class AccountDAO {
 	 * @return boolean ( boolean: true/false)
 	 * @author NhanHo
 	 */
-	/*@Transactional*/
+	@Transactional
 	public boolean deleteAccount(String idaccount) {
 		/*EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
@@ -245,11 +244,11 @@ public class AccountDAO {
 				return false;
 			}
 			if (("Removable").equals(account.getAccountstate().getStateName())) {
-				//entityTransaction.begin();
+				//entityTransaction.begin();				
 				Date timeStamp = new Date();
 				account.setTimeStamp(timeStamp);
 				account.setIsDeleted("true");
-				tempEntityManager.merge(account);
+				tempEntityManager.merge(account);				
 				//entityManager.merge(account);
 				//entityTransaction.commit();
 			}

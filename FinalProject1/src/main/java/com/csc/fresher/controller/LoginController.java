@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.csc.fresher.dao.SystemAccountDAO;
 import com.csc.fresher.service.MyService;
 
 /**@author TrinhLe
@@ -34,8 +33,7 @@ public class LoginController {
 		// Read account info from request and save into Account object
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String message = "";
+		String password = request.getParameter("password");		
 		if(!service.checkLogin(username, password).equals("false")){
 			session.setAttribute("username", username);
 			session.setAttribute("role", service.checkLogin(username, password));
