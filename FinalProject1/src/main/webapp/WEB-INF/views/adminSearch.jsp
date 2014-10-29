@@ -201,6 +201,8 @@ table pre.prettyprint {
 		$(document).ready(function() {
 			$('#dataTables-example').dataTable();
 		});
+		
+		
 	</script>
 	<script>
 		// View detail pop up
