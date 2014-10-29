@@ -69,7 +69,7 @@
 							style="color: #2a6496"></i>
 					</a>
 						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="fa fa-user fa-fw"></i> ${role }</a></li>
+							<li><a href="#"><i class="fa fa-user fa-fw"></i> ${username }</a></li>
 							<li><a href="#"><i class="fa fa-gear fa-fw"></i>
 									Settings</a></li>
 							<li class="divider"></li>

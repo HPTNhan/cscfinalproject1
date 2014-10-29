@@ -33,6 +33,8 @@ public class SearchAccountController {
 	@RequestMapping(value = "/searchPage")
 	public String searchAccountsBaseOnDate(HttpServletRequest request,
 			Model model) {
+		if(request.getSession(false) == null) return "home";
+		
 		// get list of accounts base on date (10 newest accounts)
 		List<Account> accounts = service.searchAccountsBaseOnDate();
 		String role = (String) request.getSession().getAttribute("role");
@@ -63,6 +65,8 @@ public class SearchAccountController {
 	 */
 	@RequestMapping(value = "/search")
 	public String searchAccounts(HttpServletRequest request, Model model) {
+		if(request.getSession(false) == null) return "home";
+		
 		String role = (String) request.getSession().getAttribute("role");
 		// Read conditions from request
 		String idCardNumber = request.getParameter("idCardNumber");
@@ -104,6 +108,8 @@ public class SearchAccountController {
 	@RequestMapping(value = "/searchState")
 	public String searchAccountsBaseOnState(HttpServletRequest request,
 			Model model) {
+		if(request.getSession(false) == null) return "home";
+		
 		String role = (String) request.getSession().getAttribute("role");
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
