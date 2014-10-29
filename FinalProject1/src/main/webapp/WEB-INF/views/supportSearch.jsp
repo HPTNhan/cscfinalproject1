@@ -130,7 +130,7 @@ table pre.prettyprint {
 							<div class="col-xs-6 col-md-4">
 								<div class="form-group">
 									<input type="text" class="form-control" name="idCardNumber"
-										placeholder="ID Card Number"> <br>
+										placeholder="ID Card Number" title="Numbers only"> <br>
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" name="fullname"
@@ -138,7 +138,7 @@ table pre.prettyprint {
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" name="accountNumber"
-										placeholder="Account Number"><br>
+										placeholder="Account Number" title="Numbers only"><br>
 								</div>
 							</div>
 							<div class="col-xs-6 col-md-4">
@@ -149,7 +149,7 @@ table pre.prettyprint {
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" name="phone"
-										placeholder="Phone"> <br>
+										placeholder="Phone" title="Numbers only"> <br>
 								</div>
 							</div>
 							<div class="col-xs-6 col-md-4">
@@ -193,6 +193,9 @@ table pre.prettyprint {
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
+	<!-- Numeric JavaScript -->
+	<script src="<c:url value="/js/jquery.numeric.js"/>"></script>
+	
 	<!-- DataTables JavaScript -->
 	<script
 		src="<c:url value="/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
@@ -222,6 +225,14 @@ table pre.prettyprint {
 			selector : "[data-toggle=tooltip]",
 			container : "body"
 		})
+	</script>
+	<script type="text/javascript">
+		$ = jQuery;
+		$(document).ready(function() {
+			$("input[name=idCardNumber]").numeric();
+			$("input[name=accountNumber]").numeric();
+			$("input[name=phone]").numeric();
+		});
 	</script>
 	<!-- Multi Select -->
 	<script>

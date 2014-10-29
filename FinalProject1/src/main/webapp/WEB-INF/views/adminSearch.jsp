@@ -95,9 +95,7 @@ table pre.prettyprint {
 		<!-- End Breadcrumb -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">
-					Search
-				</h1>
+				<h1 class="page-header">Search</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
@@ -139,18 +137,20 @@ table pre.prettyprint {
 							</div>
 							<div class="col-xs-6 col-md-4">
 								<div style="margin-bottom: 20px;">
-									<label style="width:30%">Account Type</label>
-									<select id="accountType" multiple="multiple" class="form-control" name="accountType">
-										
+									<label style="width: 30%">Account Type</label> <select
+										id="accountType" multiple="multiple" class="form-control"
+										name="accountType">
+
 										<option value="1">Deposit</option>
 										<option value="2">Saving</option>
 										<option value="3">Others</option>
 									</select>
 								</div>
 								<div style="margin-bottom: 20px;">
-									<label style="width:30%">Account State</label>
-									<select id="state" multiple="multiple" class="form-control" name="state" >
-										
+									<label style="width: 30%">Account State</label> <select
+										id="state" multiple="multiple" class="form-control"
+										name="state">
+
 										<option value="1">New</option>
 										<option value="2">Active</option>
 										<option value="3">Disable</option>
@@ -175,6 +175,9 @@ table pre.prettyprint {
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+
+	<!-- Numeric JavaScript -->
+	<script src="<c:url value="/js/jquery.numeric.js"/>"></script>
 
 	<!-- DataTables JavaScript -->
 	<script
@@ -206,6 +209,16 @@ table pre.prettyprint {
 			container : "body"
 		})
 	</script>
+	<script type="text/javascript">
+		$ = jQuery;
+		$(document).ready(function() {
+			$("input[name=idCardNumber]").numeric();
+			$("input[name=accountNumber]").numeric();
+			$("input[name=phone]").numeric();
+		});
+	</script>
+
+
 	<!-- Multi Select -->
 	<script>
 		$(document).ready(function() {
