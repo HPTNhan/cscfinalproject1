@@ -24,7 +24,7 @@ public class EntityManagerFactoryUtil implements ServletContextListener {
 	 */
 	public static EntityManager createEntityManager() {
 		if (emf == null) {
-			throw new IllegalStateException("Context is not initialized yet.");
+			emf = Persistence.createEntityManagerFactory("myjpa");
 		}
 		return emf.createEntityManager();
 	}

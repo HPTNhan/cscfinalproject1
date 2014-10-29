@@ -33,11 +33,11 @@ public class SearchAccountController {
 	@RequestMapping(value = "/searchPage")
 	public String searchAccountsBaseOnDate(HttpServletRequest request,
 			Model model) {
-		if(request.getSession(false) == null) return "home";
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "redirect:home.jsp";
 		
 		// get list of accounts base on date (10 newest accounts)
 		List<Account> accounts = service.searchAccountsBaseOnDate();
-		String role = (String) request.getSession().getAttribute("role");
 //		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (accounts != null) {
@@ -65,9 +65,12 @@ public class SearchAccountController {
 	 */
 	@RequestMapping(value = "/search")
 	public String searchAccounts(HttpServletRequest request, Model model) {
-		if(request.getSession(false) == null) return "home";
 		
 		String role = (String) request.getSession().getAttribute("role");
+		
+		if(role == null) return "home";
+		
+		
 		// Read conditions from request
 		String idCardNumber = request.getParameter("idCardNumber");
 		String fullname = request.getParameter("fullname");
@@ -108,12 +111,12 @@ public class SearchAccountController {
 	@RequestMapping(value = "/searchState")
 	public String searchAccountsBaseOnState(HttpServletRequest request,
 			Model model) {
-		if(request.getSession(false) == null) return "home";
 		
 		String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
-//		getNotification(model);
+		
 		// add attribute to show list of account for admin / support
 		if (service.searchAccountsBaseOnState(state) != null) {
 			model.addAttribute("accounts",
@@ -129,27 +132,5 @@ public class SearchAccountController {
 		}
 	}
 	
-	/**
-	 * get size of list of accounts base on state to show the notification
-	 * 
-	 * @param request
-	 * @param model
-	 * @return size of list of accounts
-	 */
-	public void getNotification(Model model) {
-		model.addAttribute("newAccount", service
-				.getSizeAccountsBaseOnState(service
-						.searchAccountsBaseOnState(1)));
-		model.addAttribute("activeAccount", service
-				.getSizeAccountsBaseOnState(service
-						.searchAccountsBaseOnState(2)));
-		model.addAttribute("disableAccount", service
-				.getSizeAccountsBaseOnState(service
-						.searchAccountsBaseOnState(3)));
-		model.addAttribute("removableAccount", service
-				.getSizeAccountsBaseOnState(service
-						.searchAccountsBaseOnState(4)));
-
-	}
 
 }
