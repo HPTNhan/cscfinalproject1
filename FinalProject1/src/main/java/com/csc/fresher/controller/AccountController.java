@@ -1,4 +1,4 @@
-package com.csc.fresher.controller;
+	package com.csc.fresher.controller;
 
 import java.util.Date;
 
@@ -97,7 +97,7 @@ public class AccountController {
 		// add account to attribute of model
 		model.addAttribute("accountInfo",
 				service.getAccountInfoByAccountId(accountId));
-		// set Account Info Temp for do Update Account
+		// set Account Info Temp to do Update Account in case account info is not valid 
 		accountTemp = service.getAccountInfoByAccountId(accountId);
 		return ("editAccount");
 	}
