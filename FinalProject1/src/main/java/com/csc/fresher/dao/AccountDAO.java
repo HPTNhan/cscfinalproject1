@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
@@ -22,7 +25,9 @@ import com.csc.fresher.domain.AccountState;
  */
 @Component
 public class AccountDAO {
-
+	
+	@Autowired
+	private EntityManager tempEntityManager;
 	/**
 	 * Add account to Account table
 	 * 
@@ -226,27 +231,29 @@ public class AccountDAO {
 	 * @return boolean ( boolean: true/false)
 	 * @author NhanHo
 	 */
+	/*@Transactional*/
 	public boolean deleteAccount(String idaccount) {
-		EntityManager entityManager = EntityManagerFactoryUtil
+		/*EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
 
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 
-		try {
-			Account account = entityManager.find(Account.class,
+		try {*/
+			Account account = tempEntityManager.find(Account.class,
 					Integer.parseInt(idaccount));
 			if (account == null) {
 				return false;
 			}
 			if (("Removable").equals(account.getAccountstate().getStateName())) {
-				entityTransaction.begin();
+				//entityTransaction.begin();
 				Date timeStamp = new Date();
 				account.setTimeStamp(timeStamp);
 				account.setIsDeleted("true");
-				entityManager.merge(account);
-				entityTransaction.commit();
+				tempEntityManager.merge(account);
+				//entityManager.merge(account);
+				//entityTransaction.commit();
 			}
-		} catch (Exception e) {
+		/*} catch (Exception e) {
 			// TODO: handle exception
 			if (entityTransaction.isActive()) {
 				entityTransaction.rollback();
@@ -254,7 +261,7 @@ public class AccountDAO {
 			return false;
 		} finally {
 			entityManager.close();
-		}
+		}*/
 		return true;
 	}
 
