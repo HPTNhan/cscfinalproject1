@@ -6,13 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.SystemAccount;
-import com.csc.fresher.service.MyService;
 
 @Component
 public class SystemAccountDAO {	

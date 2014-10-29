@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.csc.fresher.dao.AccountDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.service.MyService;
 
