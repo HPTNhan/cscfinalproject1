@@ -88,7 +88,6 @@ table pre.prettyprint {
 		<!-- Breadcrumb -->
 		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="/">Home</a></li>
 				<li class="active">Search</li>
 			</ol>
 		</div>
