@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.csc.fresher.service.MyService;
+import com.csc.fresher.service.AccountService;
 
 /**
  * @author TrinhLe
@@ -19,21 +19,21 @@ import com.csc.fresher.service.MyService;
 @ContextConfiguration("classpath:servlet-context.xml")
 public class SystemAccountDAOTest {
 	@Autowired 
-	MyService myService;
+	AccountService accountService;
 	
 	@Test
 	public void testLogin(){
-		assertEquals("admin", myService.checkLogin("admin", "123456"));
-		assertEquals("support", myService.checkLogin("support1", "sup123"));
-		assertEquals("false", myService.checkLogin("admin", "123"));
+		assertEquals("admin", accountService.checkLogin("admin", "123456"));
+		assertEquals("support", accountService.checkLogin("support1", "sup123"));
+		assertEquals("false", accountService.checkLogin("admin", "123"));
 	}
 	
 	@Test
 	public void testSearch(){
 		
 		String[] state = {"1","2"};
-		assertEquals(61, myService.searchAccounts("", "", null, "", null, "", "").size());
-		assertEquals(43, myService.searchAccounts("", "",state , "",null , "", "").size());
+		assertEquals(61, accountService.searchAccounts("", "", null, "", null, "", "").size());
+		assertEquals(43, accountService.searchAccounts("", "",state , "",null , "", "").size());
 //		assertEquals("false", myService.checkLogin("admin", "123"));
 	}
 
