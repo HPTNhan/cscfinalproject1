@@ -341,18 +341,19 @@ public class AccountDAO {
 	 * @return
 	 * @author NhanHo
 	 */
+	@Transactional
 	public boolean setListAccountStateById(String[] idaccounts, String action) {
 		// TODO Auto-generated method stub
-		EntityManager entityManager = EntityManagerFactoryUtil
+		/*EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
+		EntityTransaction entityTransaction = entityManager.getTransaction();*/
 
 		/* try { */
-		entityTransaction.begin();
+		//entityTransaction.begin();
 		// set New or Disable to Active
 		if (action.equals("Active")) {
 			for (String idaccount : idaccounts) {
-				Account account = entityManager.find(Account.class,
+				Account account = tempEntityManager.find(Account.class,
 						Integer.parseInt(idaccount));
 				if (account != null) {
 					String currentState = account.getAccountstate()
@@ -365,7 +366,7 @@ public class AccountDAO {
 			}
 		} else if (action.equals("Disable")) {
 			for (String idaccount : idaccounts) {
-				Account account = entityManager.find(Account.class,
+				Account account = tempEntityManager.find(Account.class,
 						Integer.parseInt(idaccount));
 				if (account != null) {
 					String currentState = account.getAccountstate()
@@ -377,7 +378,7 @@ public class AccountDAO {
 			}
 		} else if (action.equals("Removable")) {
 			for (String idaccount : idaccounts) {
-				Account account = entityManager.find(Account.class,
+				Account account = tempEntityManager.find(Account.class,
 						Integer.parseInt(idaccount));
 				if (account != null) {
 					String currentState = account.getAccountstate()
