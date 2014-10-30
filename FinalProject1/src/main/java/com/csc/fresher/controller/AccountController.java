@@ -46,6 +46,10 @@ public class AccountController {
 	public String doUpdateAccountInfo(Model model,
 			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		String message = "";
 		String alert = "";
 		// Check Account Type and Validate Account fields
@@ -90,6 +94,10 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/getAccountInfo")
 	public String getAccountInfo(HttpServletRequest request, Model model) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		// get id
 		String SaccountId = request.getParameter("accountId");
 		int accountId = Integer.parseInt(SaccountId);
@@ -108,6 +116,10 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		String accountNumber = service.getAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
 		return "addAccount";
@@ -122,6 +134,10 @@ public class AccountController {
 	public String addAccount(Model model,
 			@Valid @ModelAttribute("account") Account account,
 			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		String message = "";
 		String alert = "";
 		// Check Account Type and Validate Account fields
@@ -168,6 +184,10 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
 	public String deleteListAccount(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		String[] listIdAccountString = request.getParameterValues("idaccount");
 		if (service.deleteListAccount(listIdAccountString)) {
 			System.out.println("delete completed");
@@ -179,6 +199,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("admin")) return "home";
+		
 		String idaccount = request.getParameter("idaccount");
 		if (service.deleteAccount(idaccount)) {
 			System.out.println("delete completed");
@@ -190,6 +214,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
 	public String setAccountStateActive(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("support")) return "home";
+		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
 			service.setAccountStateById(idaccount, "New", "Active");
@@ -199,6 +227,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
 	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("support")) return "home";
+		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
 			service.setAccountStateById(idaccount, "Disable", "Active");
@@ -208,6 +240,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
 	public String setAccountStateDisable(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("support")) return "home";
+		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
 			service.setAccountStateById(idaccount, "Active", "Disable");
@@ -217,6 +253,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
 	public String setAccountStateRemovable(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("support")) return "home";
+		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
 			service.setAccountStateById(idaccount, "Disable", "Removable");
@@ -226,6 +266,10 @@ public class AccountController {
 
 	@RequestMapping(value = "/setListAccountState", method = RequestMethod.POST)
 	public String setListAccountState(HttpServletRequest request) {
+		
+		String role = (String) request.getSession().getAttribute("role");
+		if(role == null || role.equals("support")) return "home";
+		
 		String[] idaccount = request.getParameterValues("idaccount");
 		String action = request.getParameter("action");
 		if (idaccount != null) {

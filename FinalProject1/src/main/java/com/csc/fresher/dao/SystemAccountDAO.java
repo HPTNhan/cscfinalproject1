@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
@@ -13,46 +15,26 @@ import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.SystemAccount;
 
 @Component
-public class SystemAccountDAO {	
-	
+public class SystemAccountDAO {
+
+	@PersistenceContext
+	private EntityManager tempEntityManager;
+
+	@Transactional
 	public List<SystemAccount> getSystemAccounts() {
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-
 		List<SystemAccount> systemaccounts = null;
-
-		entityTransaction.begin();
-		try {
-			TypedQuery<SystemAccount> query = entityManager.createQuery(
-					"SELECT a FROM SystemAccount a", SystemAccount.class);
-			systemaccounts = query.getResultList();
-
-			entityTransaction.commit();
-
-		} catch (Exception e) {
-			entityManager.close();
-		}
+		TypedQuery<SystemAccount> query = tempEntityManager.createQuery(
+				"SELECT a FROM SystemAccount a", SystemAccount.class);
+		systemaccounts = query.getResultList();
 
 		return systemaccounts;
 	}
 
+	@Transactional
 	public boolean addSystemAccount(SystemAccount systemAccount) {
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-
+		
 		boolean result = true;
-
-		entityTransaction.begin();
-
-		entityManager.persist(systemAccount);
-
-		entityTransaction.commit();
-
+		tempEntityManager.persist(systemAccount);
 		return result;
 	}
 
@@ -63,20 +45,12 @@ public class SystemAccountDAO {
 	 * @param password
 	 * @return systemAccount
 	 */
+	@Transactional
 	public SystemAccount getSystemAccount(String username, String password) {
 
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
 		SystemAccount systemAccount = new SystemAccount();
-		// -----------Begin transaction-----------
-		// boolean check = false;
 		try {
-			entityTransaction.begin();
-
-			TypedQuery<SystemAccount> query = entityManager
+			TypedQuery<SystemAccount> query = tempEntityManager
 					.createQuery(
 							"SELECT c FROM "
 									+ SystemAccount.class.getName()
@@ -85,12 +59,10 @@ public class SystemAccountDAO {
 			query.setParameter("username", username);
 			query.setParameter("password", password);
 			systemAccount = query.getSingleResult();
-			entityTransaction.commit();
+			
 		} catch (Exception e) {
-			entityManager.close();
+			return null;
 		}
-		// -----------End transaction-----------
-
 		return systemAccount;
 
 	}
@@ -145,6 +117,8 @@ public class SystemAccountDAO {
 	 * 
 	 * }
 	 */
+	
+	
 	/**
 	 * @author TrinhLe search account for 7 fields condition
 	 * 
@@ -154,15 +128,11 @@ public class SystemAccountDAO {
 	 *            address
 	 * @return list of accounts
 	 */
+	@Transactional
 	public List<Account> getAccounts(String idCardNumber, String fullname,
 			String[] accountType, String accountNumber, String[] state,
 			String phone, String address) {
 
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
 		List<Account> accounts = null;
 		int i;
 		String sql = "SELECT c FROM "
@@ -207,12 +177,9 @@ public class SystemAccountDAO {
 		}
 		sql += " ORDER BY (c.timeStamp) DESC";
 
-		// -----------Begin transaction-----------
-		// boolean check = false;
 		try {
-			entityTransaction.begin();
 
-			TypedQuery<Account> query = entityManager.createQuery(sql,
+			TypedQuery<Account> query = tempEntityManager.createQuery(sql,
 					Account.class);
 			query.setParameter("fullname", "%" + fullname + "%");
 			query.setParameter("idCardNumber", "%" + idCardNumber + "%");
@@ -220,16 +187,10 @@ public class SystemAccountDAO {
 			query.setParameter("address", "%" + address + "%");
 			query.setParameter("accountNumber", "%" + accountNumber + "%");
 			accounts = (List<Account>) query.getResultList();
-			entityTransaction.commit();
+			
 		} catch (Exception e) {
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
 			return null;
-		} finally {
-			entityManager.close();
 		}
-		// -----------End transaction-----------
 
 		return accounts;
 
@@ -243,35 +204,22 @@ public class SystemAccountDAO {
 	 * @return list of accounts
 	 */
 	// ID Card number, Name, Account type/number, state, phone & address
+	@Transactional
 	public List<Account> getAccountsBaseOnDate() {
 
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
 		List<Account> accounts = null;
 		String sql = "SELECT c FROM " + Account.class.getName()
 				+ " c WHERE c.isDeleted = 'false' ORDER BY (c.timeStamp) DESC";
 
-		// -----------Begin transaction-----------
-		// boolean check = false;
 		try {
-			entityTransaction.begin();
-
-			TypedQuery<Account> query = entityManager.createQuery(sql,
+			
+			TypedQuery<Account> query = tempEntityManager.createQuery(sql,
 					Account.class);
 			accounts = (List<Account>) query.getResultList();
-			entityTransaction.commit();
+			
 		} catch (Exception e) {
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
 			return null;
-		} finally {
-			entityManager.close();
 		}
-		// -----------End transaction-----------
 
 		return accounts;
 
@@ -284,33 +232,21 @@ public class SystemAccountDAO {
 	 * 
 	 * @return size of list of accounts
 	 */
+	@Transactional
 	public List<Account> getAccountsBaseOnState(int state) {
 
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
 		List<Account> accounts = null;
 		String sql = "SELECT c FROM " + Account.class.getName()
 				+ " c WHERE c.isDeleted = 'false' AND c.accountstate = "
-				+ state + " ORDER BY (c.timeStamp) DESC";;
-		// -----------Begin transaction-----------
-		// boolean check = false;
+				+ state + " ORDER BY (c.timeStamp) DESC";
+		;
 		try {
-			entityTransaction.begin();
-
-			TypedQuery<Account> query = entityManager.createQuery(sql,
+			TypedQuery<Account> query = tempEntityManager.createQuery(sql,
 					Account.class);
 			accounts = (List<Account>) query.getResultList();
-			entityTransaction.commit();
+			
 		} catch (Exception e) {
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
 			return null;
-		} finally {
-			entityManager.close();
 		}
 		// -----------End transaction-----------
 

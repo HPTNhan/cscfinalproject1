@@ -33,12 +33,12 @@ public class SearchAccountController {
 	@RequestMapping(value = "/searchPage")
 	public String searchAccountsBaseOnDate(HttpServletRequest request,
 			Model model) {
+		
 		String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "redirect:home.jsp";
 		
 		// get list of accounts base on date (10 newest accounts)
 		List<Account> accounts = service.searchAccountsBaseOnDate();
-//		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (accounts != null) {
 			model.addAttribute("accounts", accounts);
@@ -67,10 +67,8 @@ public class SearchAccountController {
 	public String searchAccounts(HttpServletRequest request, Model model) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		
 		if(role == null) return "home";
-		
-		
+				
 		// Read conditions from request
 		String idCardNumber = request.getParameter("idCardNumber");
 		String fullname = request.getParameter("fullname");
@@ -82,8 +80,6 @@ public class SearchAccountController {
 		// search list of accounts base on conditions
 		List<Account> accounts = service.searchAccounts(idCardNumber, fullname,
 				accountType, accountNumber, state, phone, address);
-		// check notification for all account's states
-//		getNotification(model);
 		// add attribute to show list of account for admin / support
 		if (accounts != null) {
 			model.addAttribute("accounts", accounts);
@@ -114,6 +110,7 @@ public class SearchAccountController {
 		
 		String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
+		
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
 		
@@ -131,6 +128,7 @@ public class SearchAccountController {
 			return "supportSearch";
 		}
 	}
+	
 	
 
 }
