@@ -38,7 +38,7 @@ public class LoginController {
 			session.setAttribute("username", username);
 			session.setAttribute("role", service.checkLogin(username, password));
 			System.out.println(username + " login successful!");
-			return "forward:/searchPage.html";
+			return "redirect:/searchPage";
 		}
 		else{
 			model.addAttribute("message", "loginfail" );

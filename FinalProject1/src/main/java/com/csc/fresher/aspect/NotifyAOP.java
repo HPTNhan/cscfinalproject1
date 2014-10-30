@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.csc.fresher.controller.SearchAccountController;
 import com.csc.fresher.service.AccountService;
 /**
  * @author TrinhLe
@@ -19,21 +20,11 @@ public class NotifyAOP {
 
 	@Autowired
 	private AccountService service;
-	
 		
 	@Before("execution(* com.csc.fresher.controller.*AccountController.*(..))  && args(*, model)")
-	public String getMethodName(JoinPoint joinPoint, Model model){
+	public void getMethodName(JoinPoint joinPoint, Model model){
 		
 		System.out.println("Method name: " + joinPoint.getSignature().getName());
-//		HttpSession s = (HttpSession) RequestContextHolder
-//				.currentRequestAttributes()
-//				.resolveReference(RequestAttributes.REFERENCE_SESSION);
-//		System.out.println("Method name: " + joinPoint.getSignature().getName());
-//		System.out.println("****************************");
-//		System.out.println((String) s.getAttribute("role"));
-//		if((String) s.getAttribute("role")==""){
-//			s..getRequestDispatcher("/logon.xthml").forward(request, response);
-//		}
 		model.addAttribute("newAccount", service
 				.getSizeAccountsBaseOnState(service
 						.searchAccountsBaseOnState(1)));
@@ -47,7 +38,7 @@ public class NotifyAOP {
 				.getSizeAccountsBaseOnState(service
 						.searchAccountsBaseOnState(4)));
 		System.out.println("===========================================");
-		return null;
+		
 	}
 
 
