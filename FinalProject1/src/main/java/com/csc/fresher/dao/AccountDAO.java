@@ -8,7 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
@@ -22,7 +22,7 @@ import com.csc.fresher.domain.AccountState;
  * @author
  * 
  */
-@Component
+@Repository
 public class AccountDAO {
 
 	@PersistenceContext
