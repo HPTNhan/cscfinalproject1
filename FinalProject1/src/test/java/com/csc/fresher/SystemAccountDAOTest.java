@@ -16,7 +16,7 @@ import com.csc.fresher.service.AccountService;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:servlet-context.xml")
+@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class SystemAccountDAOTest {
 	@Autowired 
 	AccountService accountService;
