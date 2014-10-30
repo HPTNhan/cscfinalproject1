@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
-import com.csc.fresher.service.MyService;
+import com.csc.fresher.service.AccountService;
 /**
  * @author TrinhLe
  * 
@@ -18,7 +18,7 @@ import com.csc.fresher.service.MyService;
 public class NotifyAOP {
 
 	@Autowired
-	private MyService service;
+	private AccountService service;
 	
 		
 	@Before("execution(* com.csc.fresher.controller.*AccountController.*(..))  && args(*, model)")

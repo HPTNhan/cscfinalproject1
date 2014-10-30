@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.csc.fresher.domain.Account;
-import com.csc.fresher.service.MyService;
+import com.csc.fresher.service.AccountService;
 
 /**
  * Handles requests for the application account page 
@@ -35,7 +35,7 @@ public class AccountController {
 	 * Simply selects the list of accounts view to render by returning its name.
 	 */
 	@Autowired
-	private MyService service;
+	private AccountService service;
 
 	/**
 	 * Edit account info

@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.csc.fresher.service.MyService;
+import com.csc.fresher.service.AccountService;
 
 /**@author TrinhLe
  * 
@@ -19,7 +19,7 @@ import com.csc.fresher.service.MyService;
 public class LoginController {
 	
 	@Autowired
-	private MyService service;
+	private AccountService service;
 	/**
 	 * login systemAccount
 	 * 

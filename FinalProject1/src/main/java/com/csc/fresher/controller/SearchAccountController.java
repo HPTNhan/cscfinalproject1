@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.csc.fresher.domain.Account;
-import com.csc.fresher.service.MyService;
+import com.csc.fresher.service.AccountService;
 
 /**
  * @author TrinhLe
@@ -21,7 +21,7 @@ import com.csc.fresher.service.MyService;
 public class SearchAccountController {
 
 	@Autowired
-	private MyService service;
+	private AccountService service;
 
 	/**
 	 * redirect search page and show list of 10 newest accounts
