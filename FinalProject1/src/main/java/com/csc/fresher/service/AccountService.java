@@ -15,7 +15,7 @@ import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
 
 @Service
-public class MyService {
+public class AccountService {
 
 	@Autowired
 	private AccountDAO accountDAO;
@@ -24,7 +24,7 @@ public class MyService {
 	@Autowired
 	private SystemAccountDAO systemAccountDAO;
 
-	private MyService() {
+	private AccountService() {
 
 	}
 
