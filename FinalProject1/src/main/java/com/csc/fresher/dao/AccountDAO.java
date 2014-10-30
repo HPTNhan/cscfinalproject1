@@ -24,37 +24,29 @@ import com.csc.fresher.domain.AccountState;
  */
 @Component
 public class AccountDAO {
-	
+
 	@PersistenceContext
 	private EntityManager tempEntityManager;
+
 	/**
 	 * Add account to Account table
-	 * 
+	 *
 	 * @param account
 	 * 
 	 * 
 	 * @return bcheck
 	 */
+	@Transactional
 	public boolean addAccount(Account account) {
 		boolean bcheck = false;
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		// Obtains transaction from entity manager
-		EntityTransaction entr = entityManager.getTransaction();
-		// -----------Begin transaction-----------
 		try {
-			entr.begin();
 			// Insert a row to Account table
-			entityManager.persist(account);
-			entr.commit();
+			tempEntityManager.persist(account);
 			bcheck = true;
 			System.out.println("persist account successfully");
 		} catch (Exception e) {
 			System.out.println("error:" + "\n" + e);
-			entityManager.close();
 		}
-		// -----------End transaction-----------
 		return bcheck;
 	}
 
@@ -66,20 +58,13 @@ public class AccountDAO {
 	 * 
 	 * @return acc
 	 */
+	@Transactional
 	public Account getAccountInfoByAccountId(int accountId) {
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		// Obtains transaction from entity manager
-		EntityTransaction entr = entityManager.getTransaction();
 		Account acc = null;
 		try {
-			entr.begin();
-			acc = entityManager.find(Account.class, accountId);
-			entr.commit();
+			acc = tempEntityManager.find(Account.class, accountId);
 		} catch (Exception e) {
 			System.out.println("error:" + "\n" + e);
-			entityManager.close();
 		}
 		return acc;
 	}
@@ -92,20 +77,13 @@ public class AccountDAO {
 	 * 
 	 * @return bcheck
 	 */
+	@Transactional
 	public boolean updateAccountInfo(Account account) {
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		// Obtains transaction from entity manager
-		EntityTransaction entr = entityManager.getTransaction();
 		boolean bcheck = false;
 		try {
-			entr.begin();
-			Account accountTemp = entityManager.find(Account.class,
+			Account accountTemp = tempEntityManager.find(Account.class,
 					account.getIdaccount());
 			System.out.print(account.getIdaccount());
-			// accountTemp.setAccountNumber(account.getAccountNumber());
-			// accountTemp.setAccountstate(account.getAccountstate());
 			accountTemp.setTimeStamp(account.getTimeStamp());
 			accountTemp.setAccounttype(account.getAccounttype());
 			accountTemp.setAddress1(account.getAddress1());
@@ -118,13 +96,10 @@ public class AccountDAO {
 			accountTemp.setMidName(account.getMidName());
 			accountTemp.setPhoneNumber1(account.getPhoneNumber1());
 			accountTemp.setPhoneNumber2(account.getPhoneNumber2());
-
 			bcheck = true;
-			entr.commit();
 			System.out.println("Update account info successfully");
 		} catch (Exception e) {
 			System.out.println("error:" + "\n" + e);
-			entityManager.close();
 		}
 		return bcheck;
 	}
@@ -137,21 +112,15 @@ public class AccountDAO {
 	 * 
 	 * @return sacc ( AccountNumber: String)
 	 */
+	@Transactional
 	public String getAccountNumber() {
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		// Obtains transaction from entity manager
-		EntityTransaction enTr = entityManager.getTransaction();
 		List<String> accountNumber = null;
 		String sacc = "";
 		try {
-			enTr.begin();
-			TypedQuery<String> query = entityManager.createQuery(
+			TypedQuery<String> query = tempEntityManager.createQuery(
 					"SELECT a.accountNumber FROM " + Account.class.getName()
 							+ " a ORDER BY  a.idaccount DESC ", String.class);
 			accountNumber = query.getResultList();
-			enTr.commit();
 			// generate Account Number by +1 and provide full 12 chars of number
 			Long iacc = Long.parseLong(accountNumber.get(0));
 			iacc += 1;
@@ -161,10 +130,8 @@ public class AccountDAO {
 			for (int i = 1; i <= missLength; i++) {
 				sacc = "0" + sacc;
 			}
-
 		} catch (Exception e) {
 			System.out.println(e);
-			entityManager.close();
 		}
 		return sacc;
 	}
@@ -177,24 +144,18 @@ public class AccountDAO {
 	 * 
 	 * @return bcheck
 	 */
+	@Transactional
 	public boolean existAccountNumber(String accountNumber) {
-		// Obtains entity manager object
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		// Obtains transaction from entity manager
-		EntityTransaction enTr = entityManager.getTransaction();
 		boolean bcheck = false;
 		try {
-			enTr.begin();
-			TypedQuery<Account> query = entityManager.createQuery(
+			TypedQuery<Account> query = tempEntityManager.createQuery(
 					"SELECT a FROM " + Account.class.getName()
 							+ " a Where a.accountNumber= :accountNumber ",
 					Account.class);
 			query.setParameter("accountNumber", accountNumber);
 			bcheck = query.getResultList().size() > 0;
-			enTr.commit();
 		} catch (Exception e) {
-			entityManager.close();
+			System.out.println(e);
 		}
 		return bcheck;
 	}
@@ -232,35 +193,33 @@ public class AccountDAO {
 	 */
 	@Transactional
 	public boolean deleteAccount(String idaccount) {
-		/*EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-
-		try {*/
-			Account account = tempEntityManager.find(Account.class,
-					Integer.parseInt(idaccount));
-			if (account == null) {
-				return false;
-			}
-			if (("Removable").equals(account.getAccountstate().getStateName())) {
-				//entityTransaction.begin();				
-				Date timeStamp = new Date();
-				account.setTimeStamp(timeStamp);
-				account.setIsDeleted("true");
-				tempEntityManager.merge(account);				
-				//entityManager.merge(account);
-				//entityTransaction.commit();
-			}
-		/*} catch (Exception e) {
-			// TODO: handle exception
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
+		/*
+		 * EntityManager entityManager = EntityManagerFactoryUtil
+		 * .createEntityManager();
+		 * 
+		 * EntityTransaction entityTransaction = entityManager.getTransaction();
+		 * 
+		 * try {
+		 */
+		Account account = tempEntityManager.find(Account.class,
+				Integer.parseInt(idaccount));
+		if (account == null) {
 			return false;
-		} finally {
-			entityManager.close();
-		}*/
+		}
+		if (("Removable").equals(account.getAccountstate().getStateName())) {
+			// entityTransaction.begin();
+			Date timeStamp = new Date();
+			account.setTimeStamp(timeStamp);
+			account.setIsDeleted("true");
+			tempEntityManager.merge(account);
+			// entityManager.merge(account);
+			// entityTransaction.commit();
+		}
+		/*
+		 * } catch (Exception e) { // TODO: handle exception if
+		 * (entityTransaction.isActive()) { entityTransaction.rollback(); }
+		 * return false; } finally { entityManager.close(); }
+		 */
 		return true;
 	}
 
@@ -387,51 +346,52 @@ public class AccountDAO {
 		EntityManager entityManager = EntityManagerFactoryUtil
 				.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		
-		/*try {*/
-			entityTransaction.begin();
-			// set New or Disable to Active
-			if (action.equals("Active")) {
-				for (String idaccount : idaccounts) {
-					Account account = entityManager.find(Account.class,
-							Integer.parseInt(idaccount));
-					if (account != null) {
-						String currentState = account.getAccountstate()
-								.getStateName();
-						if (currentState.equals("New") || currentState.equals("Disable")) {
-							setAccountStateById(idaccount, currentState, action);
-						}						
-					}
-				}
-			} else if (action.equals("Disable")) {
-				for (String idaccount : idaccounts) {
-					Account account = entityManager.find(Account.class,
-							Integer.parseInt(idaccount));
-					if (account != null) {
-						String currentState = account.getAccountstate()
-								.getStateName();
-						if (currentState.equals("Active")) {
-							setAccountStateById(idaccount, currentState, action);
-						}						
-					}
-				}
-			} else if (action.equals("Removable")) {
-				for (String idaccount : idaccounts) {
-					Account account = entityManager.find(Account.class,
-							Integer.parseInt(idaccount));
-					if (account != null) {
-						String currentState = account.getAccountstate()
-								.getStateName();
-						if (currentState.equals("Disable")) {
-							setAccountStateById(idaccount, currentState, action);
-						}						
+
+		/* try { */
+		entityTransaction.begin();
+		// set New or Disable to Active
+		if (action.equals("Active")) {
+			for (String idaccount : idaccounts) {
+				Account account = entityManager.find(Account.class,
+						Integer.parseInt(idaccount));
+				if (account != null) {
+					String currentState = account.getAccountstate()
+							.getStateName();
+					if (currentState.equals("New")
+							|| currentState.equals("Disable")) {
+						setAccountStateById(idaccount, currentState, action);
 					}
 				}
 			}
-		/*} catch (Exception e) {
-			// TODO: handle exception
-		}*/		
-		
+		} else if (action.equals("Disable")) {
+			for (String idaccount : idaccounts) {
+				Account account = entityManager.find(Account.class,
+						Integer.parseInt(idaccount));
+				if (account != null) {
+					String currentState = account.getAccountstate()
+							.getStateName();
+					if (currentState.equals("Active")) {
+						setAccountStateById(idaccount, currentState, action);
+					}
+				}
+			}
+		} else if (action.equals("Removable")) {
+			for (String idaccount : idaccounts) {
+				Account account = entityManager.find(Account.class,
+						Integer.parseInt(idaccount));
+				if (account != null) {
+					String currentState = account.getAccountstate()
+							.getStateName();
+					if (currentState.equals("Disable")) {
+						setAccountStateById(idaccount, currentState, action);
+					}
+				}
+			}
+		}
+		/*
+		 * } catch (Exception e) { // TODO: handle exception }
+		 */
+
 		return false;
 	}
 
