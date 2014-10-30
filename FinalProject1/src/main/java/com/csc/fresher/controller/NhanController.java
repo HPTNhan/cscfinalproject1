@@ -1,4 +1,4 @@
-package com.csc.fresher.controller;
+/*package com.csc.fresher.controller;
 
 import java.util.List;
 
@@ -45,20 +45,20 @@ public class NhanController {
 		return "NhanRemoveAccount";
 	}
 
-	/*@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpServletRequest request) {
 		
 		boolean result = nhanDao.removeAccount(1);
 		request.setAttribute("removeAccount", result);
 		return "NhanRemoveAccount";
-	}*/
+	}
 	
 	// delete list accounts
 	//
 	//
 	//
 	//
-	/*@RequestMapping(value="/deleteListAccounts", method = RequestMethod.POST )
+	@RequestMapping(value="/deleteListAccounts", method = RequestMethod.POST )
 	public String deleteListAccounts(HttpServletRequest request) {
 		String[] listIdAccount = request.getParameterValues("");
 		if (listIdAccount.length > 0) {
@@ -69,16 +69,16 @@ public class NhanController {
 			System.out.println("no checked");
 		}
 		return "";
-	}*/
+	}
 	
-	/*@RequestMapping(value = "/updateSystemAccount", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateSystemAccount", method = RequestMethod.GET)
 	public String updateSystemAccount() {
 		NhanDAO dao = new NhanDAO();
 		dao.updateSystemAccount(1);
 		return "NhanRemoveAccount";
-	}*/
+	}
 
-	/*@RequestMapping(value = "/nhangetaccount", method = RequestMethod.GET)
+	@RequestMapping(value = "/nhangetaccount", method = RequestMethod.GET)
 	public String getAccountByIdCard(HttpServletRequest request) {
 		String idCardNumber = "4445";
 
@@ -86,9 +86,9 @@ public class NhanController {
 
 		request.setAttribute("idCardNumber", account);
 		return "NhanRemoveAccount";
-	}*/
+	}
 
-	/*
+	
 	 * @RequestMapping(value = "/nhanAdmin", method = RequestMethod.GET) public
 	 * String getAdmin(HttpServletRequest request){ String idCardNumber =
 	 * "4445";
@@ -98,17 +98,17 @@ public class NhanController {
 	 * request.setAttribute("idCardNumber", account);
 	 * 
 	 * return "search"; }
-	 */
+	 
 
 
 
-	/*@RequestMapping(value = "/AdminSetActive", method = RequestMethod.GET)
+	@RequestMapping(value = "/AdminSetActive", method = RequestMethod.GET)
 	public String AdminSetActive(HttpServletRequest request) {
 		System.out.println(request.getParameter("idaccount"));
 		return "NhanRemoveAccount";
-	}*/
+	}
 	
-	/*@RequestMapping(value = "/AdminSetListActive", method = RequestMethod.POST)
+	@RequestMapping(value = "/AdminSetListActive", method = RequestMethod.POST)
 	public String AdminSetListState(HttpServletRequest request) {
 		String[] lisIdAccounts = request.getParameterValues("idaccount");	
 		String action = request.getParameter("action");
@@ -134,5 +134,6 @@ public class NhanController {
 			System.out.println("No checkbox checked");
 		}				
 		return "NhanRemoveAccount";
-	}*/
+	}
 }
+*/

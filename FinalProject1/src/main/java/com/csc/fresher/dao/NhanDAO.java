@@ -1,4 +1,4 @@
-package com.csc.fresher.dao;
+/*package com.csc.fresher.dao;
 
 import java.util.List;
 
@@ -125,3 +125,4 @@ public class NhanDAO {
 	}
 
 }
+*/
