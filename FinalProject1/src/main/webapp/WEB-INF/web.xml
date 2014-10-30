@@ -37,7 +37,7 @@
 
 	<!-- set session timeout for 1 minute <url-pattern>/*.atom</url-pattern> -->
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>10</session-timeout>
 	</session-config>
 
 </web-app>
