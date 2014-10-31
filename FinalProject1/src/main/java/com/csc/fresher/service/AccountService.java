@@ -11,6 +11,7 @@ import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.SystemAccountDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
+import com.csc.fresher.domain.SystemAccount;
 
 @Service
 public class AccountService {
@@ -43,7 +44,9 @@ public class AccountService {
 	 * @author TrinhLe params username params password return system account
 	 */
 	public String checkLogin(String username, String password) {
-		if (systemAccountDAO.getSystemAccount(username, password).getId() > 0) {
+		SystemAccount sysAccount = systemAccountDAO.getSystemAccount(username,
+				password);
+		if (sysAccount != null && sysAccount.getId() > 0) {
 			return systemAccountDAO.getSystemAccount(username, password)
 					.getRole();
 		} else {
@@ -80,7 +83,10 @@ public class AccountService {
 			String[] accountType, String accountNumber, String[] state,
 			String phone, String address) {
 		if (systemAccountDAO.getAccounts(idCardNumber, fullname, accountType,
-				accountNumber, state, phone, address).size() > 0) {
+				accountNumber, state, phone, address) != null
+				&& systemAccountDAO.getAccounts(idCardNumber, fullname,
+						accountType, accountNumber, state, phone, address)
+						.size() > 0) {
 			return systemAccountDAO.getAccounts(idCardNumber, fullname,
 					accountType, accountNumber, state, phone, address);
 		} else {
@@ -222,7 +228,7 @@ public class AccountService {
 	public void updateAccountInfo(Account account) {
 		accountDAO.updateAccountInfo(account);
 	}
-	
+
 	public boolean setAccountStateById(String idaccount, String currentState,
 			String nextState) {
 		// TODO Auto-generated method stub

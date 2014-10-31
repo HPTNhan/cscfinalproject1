@@ -9,8 +9,8 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->	
 	<!-- Enable @PersistenceContext -->
-	<!-- <context:annotation-config/>	 -->
-	<!-- <context:component-scan base-package="com.csc.fresher"></context:component-scan> -->
+	<context:annotation-config/>	
+	<context:component-scan base-package="com.csc.fresher"></context:component-scan>
 	<!-- <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
