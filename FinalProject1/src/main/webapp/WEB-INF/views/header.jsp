@@ -19,7 +19,7 @@
 
 			</div>
 			<div class="navbar-header" STYLE="MARGIN-LEFT: 20px">
-				<a class="navbar-brand" href="index.html">FINAL PROJECT</a>
+				<a class="navbar-brand" href="#">FINAL PROJECT</a>
 			</div>
 			<c:if test="${!empty role }"> 
 			<div class="navbar-collapse collapse">
