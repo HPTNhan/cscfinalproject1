@@ -24,7 +24,6 @@ import com.csc.fresher.service.AccountService;
 @Controller
 public class AccountController {
 	private Account accountTemp;
-
 	// declare model Attribute
 	@ModelAttribute("account")
 	public Account contructAccount() {
@@ -48,7 +47,8 @@ public class AccountController {
 			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		String message = "";
 		String alert = "";
@@ -96,7 +96,8 @@ public class AccountController {
 	public String getAccountInfo(HttpServletRequest request, Model model) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		// get id
 		String SaccountId = request.getParameter("accountId");
@@ -118,7 +119,8 @@ public class AccountController {
 	public String getAddAccount(HttpServletRequest request, Model model) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		String accountNumber = service.getAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
@@ -136,7 +138,8 @@ public class AccountController {
 			BindingResult result, HttpServletRequest request, final RedirectAttributes attr) throws Exception {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		String message = "";
 		String alert = "";
@@ -186,7 +189,8 @@ public class AccountController {
 	public String deleteListAccount(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		String[] listIdAccountString = request.getParameterValues("idaccount");
 		if (service.deleteListAccount(listIdAccountString)) {
@@ -201,7 +205,8 @@ public class AccountController {
 	public String deleteAccount(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("admin")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";
 		
 		String idaccount = request.getParameter("idaccount");
 		if (service.deleteAccount(idaccount)) {
@@ -216,7 +221,8 @@ public class AccountController {
 	public String setAccountStateActive(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("support")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";
 		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -229,7 +235,8 @@ public class AccountController {
 	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("support")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";
 		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -242,7 +249,8 @@ public class AccountController {
 	public String setAccountStateDisable(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("support")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";
 		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -255,7 +263,8 @@ public class AccountController {
 	public String setAccountStateRemovable(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("support")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";
 		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -268,7 +277,8 @@ public class AccountController {
 	public String setListAccountState(HttpServletRequest request) {
 		
 		String role = (String) request.getSession().getAttribute("role");
-		if(role == null || role.equals("support")) return "home";
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";
 		
 		String[] idaccount = request.getParameterValues("idaccount");
 		String action = request.getParameter("action");
