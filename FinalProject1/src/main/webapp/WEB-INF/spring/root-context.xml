@@ -25,7 +25,7 @@
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
 		<property name="persistenceUnitName" value="myjpa"/>
 		<!-- <property name="dataSource" ref="dataSource" /> -->
-		<property name="packagesToScan" value="com.csc.fresher.domain" />
+		<!-- <property name="packagesToScan" value="com.csc.fresher.domain" /> -->
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
