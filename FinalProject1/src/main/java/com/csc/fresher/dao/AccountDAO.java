@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
+import com.csc.fresher.domain.SystemAccount;
 
 /**
  * DAO class for Account entity. This class contains all methods that
@@ -160,6 +161,33 @@ public class AccountDAO {
 		return bcheck;
 	}
 
+	/**
+	 * check Account Id
+	 * 
+	 * @param accountNumber
+	 * 
+	 * 
+	 * @return bcheck
+	 */
+	@Transactional
+	public boolean checkAccountId(int accountId) {
+		boolean bcheck = false;
+		try {
+			TypedQuery<Account> query = tempEntityManager
+					.createQuery(
+							"SELECT a FROM "
+									+ Account.class.getName()
+									+ " a Where a.idaccount= :accountId " ,
+							Account.class);
+			query.setParameter("accountId", accountId);
+
+			bcheck = query.getResultList().size() > 0;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return bcheck;
+	}
+	
 	/**
 	 * get current Account state name
 	 * 
