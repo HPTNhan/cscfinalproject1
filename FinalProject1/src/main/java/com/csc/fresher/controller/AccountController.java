@@ -51,12 +51,7 @@ public class AccountController {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
-		if(!role.equals("support")) return "redirect:searchPage";*/
-		
-		if (role == null)
-			return "home";
-		if (!role.equals("support"))
-			return "redirect:searchPage";
+		if(!role.equals("support")) return "redirect:searchPage";*/				
 
 		String message = "";
 		String alert = "";
@@ -104,14 +99,12 @@ public class AccountController {
 	@RequestMapping(value = "/getAccountInfo")
 	public String getAccountInfo(HttpServletRequest request, Model model,final RedirectAttributes attr) {
 
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("support")) return "redirect:searchPage";*/
+		/*String role = (String) request.getSession().getAttribute("role");		
 		
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
-			return "redirect:searchPage";
+			return "redirect:searchPage";*/
 		// get id
 		String SaccountId = request.getParameter("accountId");
 		int accountId = Integer.parseInt(SaccountId);
@@ -174,10 +167,6 @@ public class AccountController {
 		if(role == null) return "home";
 		if(!role.equals("support")) return "redirect:searchPage";*/
 		
-		if (role == null)
-			return "home";
-		if (!role.equals("support"))
-			return "redirect:searchPage";
 
 		String message = "";
 		String alert = "";
@@ -230,11 +219,6 @@ public class AccountController {
 		if(role == null) return "home";
 		if(!role.equals("support")) return "redirect:searchPage";*/
 		
-		if (role == null)
-			return "home";
-		if (!role.equals("support"))
-			return "redirect:searchPage";
-
 		String[] listIdAccountString = request.getParameterValues("idaccount");
 		if (service.deleteListAccount(listIdAccountString)) {
 			System.out.println("delete completed");
@@ -267,13 +251,7 @@ public class AccountController {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-		if (role == null)
-			return "home";
-		if (!role.equals("admin"))
-			return "redirect:searchPage";
-
+		if(!role.equals("admin")) return "redirect:searchPage";*/		
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
 			service.setAccountStateById(idaccount, "New", "Active");
@@ -286,12 +264,7 @@ public class AccountController {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-		if (role == null)
-			return "home";
-		if (!role.equals("admin"))
-			return "redirect:searchPage";
+		if(!role.equals("admin")) return "redirect:searchPage";*/		
 
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -307,10 +280,7 @@ public class AccountController {
 		if(role == null) return "home";
 		if(!role.equals("admin")) return "redirect:searchPage";*/
 		
-		if (role == null)
-			return "home";
-		if (!role.equals("admin"))
-			return "redirect:searchPage";
+		
 
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -326,10 +296,6 @@ public class AccountController {
 		if(role == null) return "home";
 		if(!role.equals("admin")) return "redirect:searchPage";*/
 		
-		if (role == null)
-			return "home";
-		if (!role.equals("admin"))
-			return "redirect:searchPage";
 
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -345,11 +311,6 @@ public class AccountController {
 		if(role == null) return "home";
 		if(!role.equals("admin")) return "redirect:searchPage";*/
 		
-		if (role == null)
-			return "home";
-		if (!role.equals("admin"))
-			return "redirect:searchPage";
-
 		String[] idaccount = request.getParameterValues("idaccount");
 		String action = request.getParameter("action");
 		if (idaccount != null) {
