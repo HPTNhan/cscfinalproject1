@@ -13,14 +13,24 @@
 		</param-value>
 	</context-param>
 
+	<!-- Error page -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error-404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error-500.jsp</location>
+	</error-page>
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- <listener>
-		<listener-class>com.csc.fresher.controller.EntityManagerFactoryUtil</listener-class>
-	</listener> -->
+	<!-- <listener> <listener-class>com.csc.fresher.controller.EntityManagerFactoryUtil</listener-class> 
+		</listener> -->
 
 	<!-- Processes application requests -->
 	<servlet>
@@ -38,9 +48,11 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- set session timeout for 1 minute <url-pattern>/*.atom</url-pattern> -->
+	<!-- set session timeout for 10 minute <url-pattern>/*.atom</url-pattern> -->
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
+
+
 
 </web-app>
