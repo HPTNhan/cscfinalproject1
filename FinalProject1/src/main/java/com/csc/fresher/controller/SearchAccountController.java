@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.service.AccountService;
@@ -34,8 +35,8 @@ public class SearchAccountController {
 	public String searchAccountsBaseOnDate(HttpServletRequest request,
 			Model model) {
 		
-		String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "redirect:home.jsp";
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "redirect:home.jsp";*/
 		
 		// get list of accounts base on date (10 newest accounts)
 		List<Account> accounts = service.searchAccountsBaseOnDate();
@@ -45,7 +46,7 @@ public class SearchAccountController {
 		} else {
 			model.addAttribute("message", "No records found.");
 		}
-		if (role.equals("admin")) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
 			model.addAttribute("flat", service
 					.getStateForAccountListAdmin(service.getState(accounts)));
 			return "adminSearch";
@@ -66,8 +67,8 @@ public class SearchAccountController {
 	@RequestMapping(value = "/search")
 	public String searchAccounts(HttpServletRequest request, Model model) {
 		
-		String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";*/
 				
 		// Read conditions from request
 		String idCardNumber = request.getParameter("idCardNumber");
@@ -86,7 +87,7 @@ public class SearchAccountController {
 		} else {
 			model.addAttribute("message", "No matching records found.");
 		}
-		if (role.equals("admin")) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
 			model.addAttribute("flat", service
 					.getStateForAccountListAdmin(service.getState(accounts)));
 			return "adminSearch";
@@ -108,8 +109,8 @@ public class SearchAccountController {
 	public String searchAccountsBaseOnState(HttpServletRequest request,
 			Model model) {
 		
-		String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";*/
 		
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
@@ -122,7 +123,7 @@ public class SearchAccountController {
 		} else {
 			model.addAttribute("message", "No matching records found.");
 		}
-		if (role.equals("admin")) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
 			return "adminSearch";
 		} else {
 			return "supportSearch";
