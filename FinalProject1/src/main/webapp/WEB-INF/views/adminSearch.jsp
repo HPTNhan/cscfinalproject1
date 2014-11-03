@@ -10,54 +10,54 @@
 <title>Final Project</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/bootstrap.css"/>" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="/css/main.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="<c:url value="/css/plugins/metisMenu/metisMenu.min.css"/>"
+<link href="<c:url value="resources/css/plugins/metisMenu/metisMenu.min.css"/>"
 	rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/css/plugins/timeline.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/plugins/timeline.css"/>" rel="stylesheet">
 
 <!-- DataTables CSS -->
-<link href="<c:url value="/css/plugins/dataTables.bootstrap.css"/>"
+<link href="<c:url value="resources/css/plugins/dataTables.bootstrap.css"/>"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/sb-admin-2.css"/>" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="/css/plugins/morris.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/plugins/morris.css"/>" rel="stylesheet">
 
-<link href="<c:url value="/css/all_check.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/all_check.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="<c:url value="/font-awesome-4.1.0/css/font-awesome.min.css"/>"
+	href="<c:url value="resources/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<c:url value="/js/hover.zoom.js"/>"></script>
-<script src="<c:url value="/js/hover.zoom.conf.js"/>"></script>
+<script src="<c:url value="resources/js/hover.zoom.js"/>"></script>
+<script src="<c:url value="resources/js/hover.zoom.conf.js"/>"></script>
 
 <!-- Multi-select -->
 <link rel="stylesheet"
-	href="<c:url value="/css/bootstrap-3.1.1.min.css"/>" type="text/css">
+	href="<c:url value="resources/css/bootstrap-3.1.1.min.css"/>" type="text/css">
 <link rel="stylesheet"
-	href="<c:url value="/css/bootstrap-multiselect.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/css/prettify.css"/>"
+	href="<c:url value="resources/css/bootstrap-multiselect.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="resources/css/prettify.css"/>"
 	type="text/css">
 
 <script type="text/javascript"
-	src="<c:url value="/js/jquery-2.1.0.min.js"/>"></script>
+	src="<c:url value="resources/js/jquery-2.1.0.min.js"/>"></script>
 <script type="text/javascript"
-	src="<c:url value="/js/bootstrap-3.1.1.min.js"/>"></script>
+	src="<c:url value="resources/js/bootstrap-3.1.1.min.js"/>"></script>
 <script type="text/javascript"
-	src="<c:url value="/js/bootstrap-multiselect.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/prettify.js"/>"></script>
+	src="<c:url value="resources/js/bootstrap-multiselect.js"/>"></script>
+<script type="text/javascript" src="<c:url value="resources/js/prettify.js"/>"></script>
 
 <style type="text/css">
 table pre.prettyprint {
@@ -173,19 +173,19 @@ table pre.prettyprint {
 	<!-- End Body Section-->
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="<c:url value="/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+	<script src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- Numeric JavaScript -->
-	<script src="<c:url value="/js/jquery.numeric.js"/>"></script>
+	<script src="<c:url value="resources/js/jquery.numeric.js"/>"></script>
 
 	<!-- DataTables JavaScript -->
 	<script
-		src="<c:url value="/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
+		src="<c:url value="resources/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
 	<script
-		src="<c:url value="/js/plugins/dataTables/dataTables.bootstrap.js"/>"></script>
+		src="<c:url value="resources/js/plugins/dataTables/dataTables.bootstrap.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="<c:url value="/js/sb-admin-2.js"/>"></script>
+	<script src="<c:url value="resources/js/sb-admin-2.js"/>"></script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script type="text/javascript">
