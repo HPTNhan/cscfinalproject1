@@ -49,7 +49,10 @@ public class AccountController {
 			BindingResult result, HttpServletRequest request,
 			final RedirectAttributes attr) throws Exception {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
@@ -101,7 +104,10 @@ public class AccountController {
 	@RequestMapping(value = "/getAccountInfo")
 	public String getAccountInfo(HttpServletRequest request, Model model,final RedirectAttributes attr) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
@@ -135,6 +141,12 @@ public class AccountController {
 	@RequestMapping(value = "/getAddAccount")
 	public String getAddAccount(HttpServletRequest request, Model model) {
 
+		/*
+		 * String role = (String) request.getSession().getAttribute("role");
+		 * if(role == null) return "home"; if(!role.equals("support")) return
+		 * "redirect:searchPage";
+		 */
+		
 		String role = (String) request.getSession().getAttribute("role");
 		if (role == null)
 			return "home";
@@ -158,7 +170,10 @@ public class AccountController {
 			BindingResult result, HttpServletRequest request,
 			final RedirectAttributes attr) throws Exception {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
@@ -211,7 +226,10 @@ public class AccountController {
 	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
 	public String deleteListAccount(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("support")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
@@ -247,7 +265,10 @@ public class AccountController {
 	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
 	public String setAccountStateActive(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("admin"))
@@ -263,7 +284,10 @@ public class AccountController {
 	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
 	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("admin"))
@@ -279,7 +303,10 @@ public class AccountController {
 	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
 	public String setAccountStateDisable(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("admin"))
@@ -295,7 +322,10 @@ public class AccountController {
 	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
 	public String setAccountStateRemovable(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("admin"))
@@ -311,7 +341,10 @@ public class AccountController {
 	@RequestMapping(value = "/setListAccountState", method = RequestMethod.POST)
 	public String setListAccountState(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
+		if(role == null) return "home";
+		if(!role.equals("admin")) return "redirect:searchPage";*/
+		
 		if (role == null)
 			return "home";
 		if (!role.equals("admin"))
