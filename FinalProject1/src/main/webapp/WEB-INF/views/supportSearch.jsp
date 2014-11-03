@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -36,7 +37,7 @@
 
 <!-- Custom Fonts -->
 <link
-	href="<c:url value="/font-awesome-4.1.0/css/font-awesome.min.css"/>"
+	href="<c:url value="resources/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -96,12 +97,12 @@ table pre.prettyprint {
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Search
-					<c:if test="${role =='support'}">
+					
 						<a href="getAddAccount.html">
 							<button type="submit" class="btn btn-success centered"
 								style="float: right">Add Account</button>
 						</a>
-					</c:if>
+					
 				</h1>
 			</div>
 			<!-- /.col-lg-12 -->
@@ -166,7 +167,6 @@ table pre.prettyprint {
 									<label style="width: 30%">Account State</label> <select
 										id="state" multiple="multiple" class="form-control"
 										name="state">
-
 										<option value="1">New</option>
 										<option value="2">Active</option>
 										<option value="3">Disable</option>
