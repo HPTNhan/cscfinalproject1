@@ -66,7 +66,7 @@
 			</div>
 			<form:form class="form-horizontal" role="form"
 				action="${pageContext.request.contextPath}/doUpdateAccountInfo"
-				method="post" modelAttribute="account">
+				method="POST" modelAttribute="account">
 				<div class="row">
 					<form:hidden path="idaccount" name="idaccount"
 						value="${ accountInfo.idaccount}" />
