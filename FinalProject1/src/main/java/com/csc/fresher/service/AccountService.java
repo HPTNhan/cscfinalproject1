@@ -214,6 +214,13 @@ public class AccountService {
 		return accountState;
 	}
 
+	public boolean checkAccountId(int accountId) {
+		if (accountDAO.checkAccountId(accountId)) {
+			return true;
+		} else
+			return false;
+	}
+	
 	public boolean checkExistAccountNumber(Account account) {
 		if (accountDAO.existAccountNumber(account.getAccountNumber())) {
 			return true;
