@@ -119,7 +119,7 @@ table pre.prettyprint {
 								</div>
 							</c:if>
 							<c:if test="${alert eq 'error'}">
-								<div class="alert alert-error">
+								<div class="alert alert-danger">
 									<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${message }!</strong>
 								</div>
 							</c:if>
