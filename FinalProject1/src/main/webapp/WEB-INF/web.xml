@@ -5,6 +5,19 @@
 
 	<!-- The definition of the Root Spring Container shared by all Servlets 
 		and Filters -->
+	<filter>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <filter-class>
+	    org.springframework.web.filter.DelegatingFilterProxy
+	  </filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <url-pattern>/*</url-pattern>
+	  <dispatcher>ERROR</dispatcher>
+	  <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>	
+		
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -51,8 +64,7 @@
 	<!-- set session timeout for 10 minute <url-pattern>/*.atom</url-pattern> -->
 	<session-config>
 		<session-timeout>10</session-timeout>
-	</session-config>
-
+	</session-config>	
 
 
 </web-app>
