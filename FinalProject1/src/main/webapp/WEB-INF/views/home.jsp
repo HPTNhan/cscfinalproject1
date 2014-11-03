@@ -55,18 +55,18 @@
 							<div class="col-lg-6 col-lg-offset-3 centered">
 								<h3>Login</h3>
 								<hr>
-								<c:if test="${message == 'loginfail'}">
-									<p class="alert alert-danger"  data-dismiss="alert">Wrong ID or Password!</p>
+								<c:if test="${not empty error}">
+									<p class="alert alert-danger"  data-dismiss="alert">${error}</p>
 								</c:if>
-								<c:if test="${message == 'logout'}">
-									<p class="alert alert-success" data-dismiss="alert">Successfully logged you out!</p>
+								<c:if test="${not empty message}">
+									<p class="alert alert-success" data-dismiss="alert">${message}</p>
 								</c:if>
 							</div>
 						</div>
 						<div class="row mt">
 							<div class="col-lg-6 col-lg-offset-3" centered>
-
-								<form:form action="checkLogin" method="post">
+								<c:url value="/j_spring_security_check" var="loginUrl" />
+								<form action="${loginUrl}" method="post">
 									<div class="form-group">
 										<input type="text" class="form-control" name="username" title="Please enter your username.">
 										<br>
@@ -76,7 +76,7 @@
 										<br>
 									</div>
 									<button type="submit" class="btn btn-success centered">Submit</button>
-								</form:form>
+								</form>
 							</div>
 						</div>
 						<!-- /row -->
