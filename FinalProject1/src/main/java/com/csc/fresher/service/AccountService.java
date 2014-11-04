@@ -43,7 +43,7 @@ public class AccountService {
 	/**
 	 * @author TrinhLe params username params password return system account
 	 */
-	public String checkLogin(String username, String password) {
+	/*public String checkLogin(String username, String password) {
 		SystemAccount sysAccount = systemAccountDAO.getSystemAccount(username,
 				password);
 		if (sysAccount != null && sysAccount.getId() > 0) {
@@ -52,7 +52,7 @@ public class AccountService {
 		} else {
 			return "false";
 		}
-	}
+	}*/
 
 	/**
 	 * @author TrinhLe params return 10 newest accounts

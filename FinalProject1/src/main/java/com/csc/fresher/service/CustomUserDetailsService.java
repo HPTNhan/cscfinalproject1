@@ -27,14 +27,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		com.csc.fresher.domain.User user = userDao.findByUserName(username);
+		com.csc.fresher.domain.SystemAccount user = userDao.findByUserName(username);
 		List<GrantedAuthority> authorities = 
                                       buildUserAuthority(user.getUserRoles());
  
 		return buildUserForAuthentication(user, authorities);		
 	}
 	
-	private User buildUserForAuthentication(com.csc.fresher.domain.User user, 
+	private User buildUserForAuthentication(com.csc.fresher.domain.SystemAccount user, 
 			List<GrantedAuthority> authorities) {
 			return new User(user.getUsername(), user.getPassword(), 
 				user.isEnabled(), true, true, true, authorities);
