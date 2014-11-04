@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -10,7 +11,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>500</title>
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="resources/css/bootstrap.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/bootstrap.css"/>"
+	rel="stylesheet">
 
 <style>
 .error-template {
@@ -44,9 +46,10 @@
 				</div>
 			</div>
 		</div>
+		<div align="center">
+			<img src="http://cdn.css-tricks.com/images/404.jpg"
+				alt="Page Not Found (404).">
+		</div>
 	</div>
-	<img src="http://cdn.css-tricks.com/images/404.jpg"
-		alt="Page Not Found (404)."
-		style="position: absolute; left: 50%; top: 50%; margin-left: -285px; margin-top: -190px;">
 </body>
 </html>
