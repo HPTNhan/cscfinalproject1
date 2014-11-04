@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -9,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>500</title>
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/bootstrap.css"/>" rel="stylesheet">
 
 <style>
 .error-template {
@@ -29,18 +30,6 @@
 </head>
 <body>
 	<%@ page isErrorPage="true"%>
-	<!-- 	<button onclick="history.back()">Back to Previous Page</button> -->
-	<!-- 	<h1>404 Page Not Found.</h1> -->
-	<!-- 	<br /> -->
-	<!-- 	<p> -->
-	<%-- 		<b>Error code:</b> ${pageContext.errorData.statusCode} --%>
-	<!-- 	</p> -->
-	<!-- 	<p> -->
-	<!-- 		<b>Request URI:</b> -->
-	<%-- 		${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI} --%>
-	<!-- 	</p> -->
-	<!-- 	<br /> -->
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
