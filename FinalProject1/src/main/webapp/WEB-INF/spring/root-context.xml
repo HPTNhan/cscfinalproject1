@@ -6,36 +6,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->	
-	<!-- Enable @PersistenceContext -->
-	<context:annotation-config/>	
-	<context:component-scan base-package="com.csc.fresher"></context:component-scan>
-	<!-- <bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/group1" />
-		<property name="username" value="root" />
-		<property name="password" value="admin" />
-	</bean> -->
-	
+			
 	<!-- EntityManagerFactory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-		<property name="persistenceUnitName" value="myjpa"/>
-		<!-- <property name="dataSource" ref="dataSource" /> -->
-		<!-- <property name="packagesToScan" value="com.csc.fresher.domain" /> -->
+		<property name="persistenceUnitName" value="myjpa"/>		
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-		</property>
-		<!-- <property name="jpaProperties">
-			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-			</props>
-		</property> -->
+		</property>		
 	</bean>
 	
 	<!-- Enable @Transactional annotation -->
