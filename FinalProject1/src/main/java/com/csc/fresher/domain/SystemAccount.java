@@ -1,42 +1,66 @@
 package com.csc.fresher.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
- * The persistent class for the systemaccount database table.
+ * The persistent class for the users database table.
  * 
  */
 @Entity
 @Table(name="systemaccount")
-@NamedQuery(name="SystemAccount.findAll", query="SELECT s FROM SystemAccount s")
 public class SystemAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
-	private int id;
+	private String username;
 
-	@Column(length=45)
+	private boolean enabled;
+
 	private String password;
 
-	@Column(length=45)
-	private String role;
-
-	@Column(length=45)
-	private String username;
+	//bi-directional many-to-one association to UserRole
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	private Set<UserRole> userRoles;
 
 	public SystemAccount() {
 	}
+	
+	public SystemAccount(String username, String password, boolean enabled) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+	}
+ 
+	public SystemAccount(String username, String password, 
+		boolean enabled, Set<UserRole> userRole) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.userRoles = userRole;
+	}	
 
-	public int getId() {
-		return this.id;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean getEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getPassword() {
@@ -47,20 +71,31 @@ public class SystemAccount implements Serializable {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return this.role;
+	public Set<UserRole> getUserRoles() {
+		return this.userRoles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
-	public String getUsername() {
-		return this.username;
+	public UserRole addUserRole(UserRole userRole) {
+		getUserRoles().add(userRole);
+		userRole.setUser(this);
+
+		return userRole;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public UserRole removeUserRole(UserRole userRole) {
+		getUserRoles().remove(userRole);
+		userRole.setUser(null);
+
+		return userRole;
+	}
+
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return this.enabled;
 	}
 
 }

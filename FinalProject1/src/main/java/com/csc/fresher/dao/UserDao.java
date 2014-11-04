@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.csc.fresher.domain.User;
+import com.csc.fresher.domain.SystemAccount;
 
 @Repository
 public class UserDao {
@@ -19,13 +19,13 @@ public class UserDao {
 	private EntityManager entityManager;
 	
 	@Transactional
-	public User findByUserName(String username) {
+	public SystemAccount findByUserName(String username) {
 
-		List<User> users = new ArrayList<User>();
+		List<SystemAccount> users = new ArrayList<SystemAccount>();
 		
 
-		TypedQuery<User> query = entityManager.createQuery("SELECT a FROM "
-				+ User.class.getName() + " a WHERE a.username= :username", User.class);
+		TypedQuery<SystemAccount> query = entityManager.createQuery("SELECT a FROM "
+				+ SystemAccount.class.getName() + " a WHERE a.username= :username", SystemAccount.class);
 		query.setParameter("username", username);
 
 		users = query.getResultList();
