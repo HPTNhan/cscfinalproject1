@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	<form action="deleteListAccount" method="post" name="submitAction">
+	<form action="support/deleteListAccount" method="post" name="submitAction">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
@@ -78,7 +78,7 @@
 									title="Edit Account"> <span
 										class="glyphicon glyphicon-edit"></span>
 								</a> <c:if test="${(account.accountstate.stateName =='Removable')}">
-										<a href="deleteAccount?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
+										<a href="support/deleteAccount?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
 											title="Remove"> <span class="glyphicon glyphicon-trash"></span>
 										</a>
 									</c:if></td>

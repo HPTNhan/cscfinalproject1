@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>404</title>
+<title>403</title>
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="resources/css/bootstrap.css"/>"
 	rel="stylesheet">
@@ -30,41 +30,31 @@
 }
 </style>
 </head>
-<body>
-	<%@ page isErrorPage="true"%>
-	<!-- 	<button onclick="history.back()">Back to Previous Page</button> -->
-	<!-- 	<h1>404 Page Not Found.</h1> -->
-	<!-- 	<br /> -->
-	<!-- 	<p> -->
-	<%-- 		<b>Error code:</b> ${pageContext.errorData.statusCode} --%>
-	<!-- 	</p> -->
-	<!-- 	<p> -->
-	<!-- 		<b>Request URI:</b> -->
-	<%-- 		${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI} --%>
-	<!-- 	</p> -->
-	<!-- 	<br /> -->
-
+<body>	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="error-template">
 					<h1>Oops!</h1>
-					<h2>404 Page Not Found</h2>
-					<div class="error-details">Sorry, an error has occured,
-						Requested page not found!</div>
+					<h2>403 Access is denied</h2>
+					<c:choose>
+						<c:when test="${empty username}">
+							<div class="error-details">You do not have permission to access this page!</div>
+						</c:when>
+						<c:otherwise>
+							<div class="error-details">
+								Username : ${username} <br />You do not have permission to
+								access this page!
+							</div>
+						</c:otherwise>
+					</c:choose>					
 					<div class="error-actions">
 						<button class="btn btn-success centered" onclick="history.back()">Back
 							to Previous Page</button>
 					</div>
 				</div>
 			</div>
-			<div align="center">
-				<img src="http://cdn.css-tricks.com/images/404.jpg"
-					alt="Page Not Found (404).">
-			</div>
 		</div>
-
-	</div>
-
+	</div>	
 </body>
 </html>

@@ -55,7 +55,7 @@ public class HomeController {
 		} else if (exception instanceof LockedException) {
 			error = exception.getMessage();
 		} else {
-			error = "Invalid username and password!";
+			error = "error !";
 		}
 
 		return error;
@@ -67,7 +67,8 @@ public class HomeController {
 		ModelAndView model = new ModelAndView();
 
 		// check if user is login
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			System.out.println(userDetail);
@@ -76,7 +77,7 @@ public class HomeController {
 
 		}
 
-		model.setViewName("403");
+		model.setViewName("error-403");
 		return model;
 
 	}
