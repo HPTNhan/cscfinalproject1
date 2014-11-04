@@ -11,7 +11,6 @@ import com.csc.fresher.dao.AccountStateDAO;
 import com.csc.fresher.dao.SystemAccountDAO;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
-import com.csc.fresher.domain.SystemAccount;
 
 @Service
 public class AccountService {
