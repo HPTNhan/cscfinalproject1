@@ -140,11 +140,11 @@ public class AccountController {
 		 * "redirect:searchPage";
 		 */
 		
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
-			return "redirect:searchPage";
+			return "redirect:searchPage";*/
 
 		String accountNumber = service.getAccountNumber();
 		model.addAttribute("accountNumber", accountNumber);
@@ -231,11 +231,11 @@ public class AccountController {
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpServletRequest request) {
 
-		String role = (String) request.getSession().getAttribute("role");
+		/*String role = (String) request.getSession().getAttribute("role");
 		if (role == null)
 			return "home";
 		if (!role.equals("support"))
-			return "redirect:searchPage";
+			return "redirect:searchPage";*/
 
 		String idaccount = request.getParameter("idaccount");
 		if (service.deleteAccount(idaccount)) {
