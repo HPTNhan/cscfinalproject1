@@ -14,7 +14,7 @@
 			   
 			  // Get the nodes from the table
 			  var nNodes = oTable.fnGetNodes();
-			  alert(nNodes.length);
+			  /* alert(nNodes.length); */
 			} );
 		
 		var x = document.forms["submitAction"].idaccount;
@@ -32,7 +32,7 @@
 </head>
 
 <body>
-	<form action="setListAccountState" method="post" name="submitAction"
+	<form action="admin/setListAccountState" method="post" name="submitAction"
 		onsubmit="return isChecked()">
 		<div class="col-lg-12">
 			<h1 class="page-header"></h1>
@@ -116,24 +116,24 @@
 											data-target="#myModal${i }"></span>
 									</a> <c:if test="${(account.accountstate.stateName =='New')}">
 											<a
-												href="setAccountStateActive?idaccount=${account.idaccount}"
+												href="admin/setAccountStateActive?idaccount=${account.idaccount}"
 												data-toggle="tooltip" data-placement="right" title="Active">
 												<span class="glyphicon glyphicon-check"></span>
 											</a>
 										</c:if> <c:if test="${(account.accountstate.stateName =='Active')}">
 											<a
-												href="setAccountStateDisable?idaccount=${account.idaccount}"
+												href="admin/setAccountStateDisable?idaccount=${account.idaccount}"
 												data-toggle="tooltip" data-placement="right" title="Disable">
 												<span class="glyphicon glyphicon-ban-circle"></span>
 											</a>
 										</c:if> <c:if test="${(account.accountstate.stateName =='Disable')}">
 											<a
-												href="setAccountStateActiveFromDisable?idaccount=${account.idaccount}"
+												href="admin/setAccountStateActiveFromDisable?idaccount=${account.idaccount}"
 												data-toggle="tooltip" data-placement="right" title="Active">
 												<span class="glyphicon glyphicon-check"></span>
 											</a>
 											<a
-												href="setAccountStateRemovable?idaccount=${account.idaccount}"
+												href="admin/setAccountStateRemovable?idaccount=${account.idaccount}"
 												data-toggle="tooltip" data-placement="right"
 												title="Removable"> <span
 												class="glyphicon glyphicon-remove"></span>

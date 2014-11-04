@@ -8,10 +8,10 @@
 	<security:http security="none" pattern="/resources/**"  />
 	<security:http auto-config="true" use-expressions="true" disable-url-rewriting="true" >
 		<security:intercept-url pattern="/login" access="permitAll"/>				
-		<!-- <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_SUPPORT')" /> -->
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
  		<security:intercept-url pattern="/**" access="isAuthenticated()"/>
 		<!-- access denied page -->
-		<security:access-denied-handler error-page="/403" />
+		<security:access-denied-handler error-page="/403" />		
 		<security:form-login 
 		    login-page="/login"
 		    default-target-url="/searchPage"
