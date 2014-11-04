@@ -4,17 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.csc.fresher.controller.EntityManagerFactoryUtil;
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.domain.AccountState;
-import com.csc.fresher.domain.SystemAccount;
 
 /**
  * DAO class for Account entity. This class contains all methods that
@@ -31,7 +28,7 @@ public class AccountDAO {
 
 	/**
 	 * Add account to Account table
-	 *
+	 * 
 	 * @param account
 	 * 
 	 * 
@@ -173,12 +170,10 @@ public class AccountDAO {
 	public boolean checkAccountId(int accountId) {
 		boolean bcheck = false;
 		try {
-			TypedQuery<Account> query = tempEntityManager
-					.createQuery(
-							"SELECT a FROM "
-									+ Account.class.getName()
-									+ " a Where a.idaccount= :accountId " ,
-							Account.class);
+			TypedQuery<Account> query = tempEntityManager.createQuery(
+					"SELECT a FROM " + Account.class.getName()
+							+ " a Where a.idaccount= :accountId ",
+					Account.class);
 			query.setParameter("accountId", accountId);
 
 			bcheck = query.getResultList().size() > 0;
@@ -187,7 +182,7 @@ public class AccountDAO {
 		}
 		return bcheck;
 	}
-	
+
 	/**
 	 * get current Account state name
 	 * 
@@ -197,15 +192,11 @@ public class AccountDAO {
 	 * @return currentState ( StateName: String)
 	 */
 	public String getCurrentStateName(String idAccount) {
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
+
 		String currentState = "";
-		entityManager.getTransaction().begin();
 
-		Account account = entityManager.find(Account.class, idAccount);
+		Account account = tempEntityManager.find(Account.class, idAccount);
 		currentState = account.getAccountstate().getStateName();
-
-		entityManager.getTransaction().commit();
 
 		return currentState;
 	}
@@ -261,34 +252,23 @@ public class AccountDAO {
 	 * @author NhanHo
 	 */
 	public boolean deleteListAccount(String[] listIdAccount) {
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
 
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-
-		try {
-			entityTransaction.begin();
+		try {			
 			for (String idAccount : listIdAccount) {
-				Account account = entityManager.find(Account.class,
+				Account account = tempEntityManager.find(Account.class,
 						Integer.parseInt(idAccount));
 				if (("Removable").equals(account.getAccountstate()
 						.getStateName())) {
 					Date timeStamp = new Date();
 					account.setTimeStamp(timeStamp);
 					account.setIsDeleted("true");
-					entityManager.merge(account);
+					tempEntityManager.merge(account);
 				}
-			}
-			entityTransaction.commit();
+			}			
 		} catch (Exception e) {
-			// TODO: handle exception
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
+			// TODO: handle exception			
 			return false;
-		} finally {
-			entityManager.close();
-		}
+		} 
 		return true;
 	}
 
@@ -299,34 +279,26 @@ public class AccountDAO {
 	 */
 	public boolean setAccountStateById(String idaccount, String currentState,
 			String nextState) {
-		// TODO Auto-generated method stub
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-
-		EntityTransaction entityTransaction = entityManager.getTransaction();
+		// TODO Auto-generated method stub		
 
 		try {
-			Account account = entityManager.find(Account.class,
+			Account account = tempEntityManager.find(Account.class,
 					Integer.parseInt(idaccount));
 			if (account != null
 					&& currentState.equals(account.getAccountstate()
 							.getStateName())
 					&& findStateByName(nextState) != null) {
-				entityTransaction.begin();
+				
 				Date timeStamp = new Date();
 				account.setTimeStamp(timeStamp);
 				account.setAccountstate(findStateByName(nextState));
-				entityManager.merge(account);
-				entityTransaction.commit();
+				tempEntityManager.merge(account);				
 				System.out.println(idaccount + currentState + nextState);
 			} else {
 				return false;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
+			// TODO: handle exception			
 			return false;
 		}
 		return true;
@@ -337,28 +309,19 @@ public class AccountDAO {
 	 * @return
 	 * @author NhanHo
 	 */
-	public AccountState findStateByName(String AccountState) {
-		EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
+	public AccountState findStateByName(String AccountState) {		
 		AccountState accountState = null;
-		try {
-			entityTransaction.begin();
-			TypedQuery<AccountState> query = entityManager.createQuery(
+		try {			
+			TypedQuery<AccountState> query = tempEntityManager.createQuery(
 					"SELECT a FROM " + AccountState.class.getName()
 							+ " a WHERE a.stateName= :stateName ",
 					AccountState.class);
 			query.setParameter("stateName", AccountState);
-			accountState = query.getSingleResult();
-			entityTransaction.commit();
+			accountState = query.getSingleResult();			
 		} catch (Exception e) {
 			// TODO: handle exception
-			if (entityTransaction.isActive()) {
-				entityTransaction.rollback();
-			}
-		} finally {
-			entityManager.close();
-		}
+			return null;
+		} 
 
 		return accountState;
 	}
@@ -372,12 +335,14 @@ public class AccountDAO {
 	@Transactional
 	public boolean setListAccountStateById(String[] idaccounts, String action) {
 		// TODO Auto-generated method stub
-		/*EntityManager entityManager = EntityManagerFactoryUtil
-				.createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();*/
+		/*
+		 * EntityManager entityManager = EntityManagerFactoryUtil
+		 * .createEntityManager(); EntityTransaction entityTransaction =
+		 * entityManager.getTransaction();
+		 */
 
 		/* try { */
-		//entityTransaction.begin();
+		// entityTransaction.begin();
 		// set New or Disable to Active
 		if (action.equals("Active")) {
 			for (String idaccount : idaccounts) {

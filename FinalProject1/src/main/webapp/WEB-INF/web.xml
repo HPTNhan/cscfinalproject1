@@ -42,8 +42,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- <listener> <listener-class>com.csc.fresher.controller.EntityManagerFactoryUtil</listener-class> 
-		</listener> -->
 
 	<!-- Processes application requests -->
 	<servlet>

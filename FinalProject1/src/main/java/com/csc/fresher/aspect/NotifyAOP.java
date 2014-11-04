@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
-import com.csc.fresher.controller.SearchAccountController;
 import com.csc.fresher.service.AccountService;
 /**
  * @author TrinhLe
