@@ -191,6 +191,7 @@ public class AccountDAO {
 	 * 
 	 * @return currentState ( StateName: String)
 	 */
+	@Transactional
 	public String getCurrentStateName(String idAccount) {
 
 		String currentState = "";
@@ -251,6 +252,7 @@ public class AccountDAO {
 	 * @return boolean ( boolean: true/false)
 	 * @author NhanHo
 	 */
+	@Transactional
 	public boolean deleteListAccount(String[] listIdAccount) {
 
 		try {			
@@ -277,6 +279,7 @@ public class AccountDAO {
 	 * @return
 	 * @author NhanHo
 	 */
+	@Transactional
 	public boolean setAccountStateById(String idaccount, String currentState,
 			String nextState) {
 		// TODO Auto-generated method stub		
@@ -309,6 +312,7 @@ public class AccountDAO {
 	 * @return
 	 * @author NhanHo
 	 */
+	@Transactional
 	public AccountState findStateByName(String AccountState) {		
 		AccountState accountState = null;
 		try {			
