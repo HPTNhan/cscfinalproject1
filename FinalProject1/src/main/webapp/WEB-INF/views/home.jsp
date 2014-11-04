@@ -68,11 +68,11 @@
 								<c:url value="/j_spring_security_check" var="loginUrl" />
 								<form action="${loginUrl}" method="post">
 									<div class="form-group">
-										<input type="text" class="form-control" name="username" title="Please enter your username.">
+										<input type="text" class="form-control" name="username" title="Please enter your username." placeholder="Username">
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" name="password" title="Please enter your password.">
+										<input type="password" class="form-control" name="password" title="Please enter your password." placeholder="Password">
 										<br>
 									</div>
 									<button type="submit" class="btn btn-success centered">Submit</button>
