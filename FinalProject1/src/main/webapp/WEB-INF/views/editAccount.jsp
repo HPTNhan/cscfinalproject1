@@ -171,8 +171,8 @@
 								1:</label>
 							<div class="col-md-8">
 								<form:input cssClass="form-control" path="phoneNumber1"
-									type="tel" pattern='[\+]\d{2}\d[0-9]{1,20}'
-									title='Phone Number (Format: +84909999999)' name="phoneNumber1"
+									type="tel" pattern='^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$'
+									title='Phone number( format: (457) 123-9054 )' name="phoneNumber1"
 									placeholder="Phone Number 1" required="true"
 									value="${accountInfo.phoneNumber1}" />
 								<form:errors path="phoneNumber1" cssClass="error" />
@@ -185,8 +185,8 @@
 								2:</label>
 							<div class="col-md-8">
 								<form:input cssClass="form-control" type="tel"
-									pattern='[\+]\d{2}\d[0-9]{1,20}'
-									title='Phone Number (Format: +84909999999)' path="phoneNumber2"
+									pattern='^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$'
+									title='Phone number( format: (457) 123-9054 )' path="phoneNumber2"
 									name="phoneNumber2" placeholder="Phone Number 2"
 									value="${accountInfo.phoneNumber2}" />
 								<form:errors path="phoneNumber2" cssClass="error" />
