@@ -116,7 +116,7 @@ public class SupportController {
 			String alert = "error";
 			attr.addFlashAttribute("message", message);
 			attr.addFlashAttribute("alert", alert);
-			return "redirect:searchPage";
+			return "redirect:/searchPage";
 		}
 	}
 
