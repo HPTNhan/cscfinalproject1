@@ -20,7 +20,7 @@ public class NotifyAOP {
 	@Autowired
 	private AccountService service;
 		
-	@Before("execution(* com.csc.fresher.controller.*AccountController.*(..))  && args(*, model)")
+	@Before("execution(* com.csc.fresher.controller.*tController.*(..))  && args(.., model)")
 	public void getMethodName(JoinPoint joinPoint, Model model){
 		
 		System.out.println("Method name: " + joinPoint.getSignature().getName());
