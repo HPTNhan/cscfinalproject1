@@ -20,7 +20,7 @@
 			username-parameter="username"
 			password-parameter="password"		
 			always-use-default-target = "true" />				 
-		<security:logout logout-success-url="/login?logout" delete-cookies="true"/>		
+		<security:logout logout-success-url="/login?logout" />		
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="CustomUserDetailsService">
