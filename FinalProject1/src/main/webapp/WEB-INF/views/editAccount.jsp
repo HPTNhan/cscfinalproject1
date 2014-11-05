@@ -10,35 +10,35 @@
 <title>Edit Acccount</title>
 
 <!-- Loading Bootstrap -->
-<link href="<c:url value="resources/css/vendor/bootstrap.min.css"/>"
+<link href="<c:url value="/resources/css/vendor/bootstrap.min.css"/>"
 	rel="stylesheet">
 
 <!-- Loading Flat UI -->
-<link href="<c:url value="resources/css/flat-ui.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/flat-ui.css"/>" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 <!-- MetisMenu CSS -->
-<link href="<c:url value="resources/css/plugins/metisMenu/metisMenu.min.css"/>"
+<link href="<c:url value="/resources/css/plugins/metisMenu/metisMenu.min.css"/>"
 	rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="resources/css/plugins/timeline.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/plugins/timeline.css"/>" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="resources/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/sb-admin-2.css"/>" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="resources/css/plugins/morris.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/plugins/morris.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="<c:url value="resources/font-awesome-4.1.0/css/font-awesome.min.css"/>"
+	href="<c:url value="/resources/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<c:url value="resources/js/hover.zoom.js"/>"></script>
-<script src="<c:url value="resources/js/hover.zoom.conf.js"/>"></script>
+<script src="<c:url value="/resources/js/hover.zoom.js"/>"></script>
+<script src="<c:url value="/resources/js/hover.zoom.conf.js"/>"></script>
 
 
 
@@ -259,22 +259,22 @@
 
 	<!-- JavaScript
     ================================================== -->
-	<script src="<c:url value="resources/js/bootstrap.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<!-- jQuery Version 1.11.0 -->
-	<script src="<c:url value="resources/js/jquery-1.11.0.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery-1.11.0.js"/>"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- Morris Charts JavaScript -->
-	<script src="<c:url value="resources/js/plugins/morris/raphael.min.js"/>"></script>
-	<script src="<c:url value="resources/js/plugins/morris/morris.min.js"/>"></script>
-	<script src="<c:url value="resources/js/plugins/morris/morris-data.js"/>"></script>
+	<script src="<c:url value="/resources/js/plugins/morris/raphael.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/plugins/morris/morris.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/plugins/morris/morris-data.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="<c:url value="resources/js/sb-admin-2.js"/>"></script>
+	<script src="<c:url value="/resources/js/sb-admin-2.js"/>"></script>
 
 	<!-- JS for Select -->
-	<script src="resources/js/application.js"></script>
+	<script src="/resources/js/application.js"></script>
 </body>
 </html>
