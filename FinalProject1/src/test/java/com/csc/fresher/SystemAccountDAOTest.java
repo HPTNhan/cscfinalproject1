@@ -24,16 +24,15 @@ public class SystemAccountDAOTest {
 	@Autowired 
 	AccountService accountService;
 	
-	@Test
+	/*@Test
 	public void testLogin(){
-		/*assertEquals("admin", accountService.checkLogin("admin", "123456"));
+		assertEquals("admin", accountService.checkLogin("admin", "123456"));
 		assertEquals("support", accountService.checkLogin("support1", "sup123"));
-		assertEquals("false", accountService.checkLogin("admin", "123"));*/
-	}
+		assertEquals("false", accountService.checkLogin("admin", "123"));
+	}*/
 	
 	@Test
-	public void testSearch(){
-		
+	public void testSearch(){		
 		String[] state = {"1","2"};
 		String[] type = {"3","2"};
 		assertEquals(54, accountService.searchAccounts("", "", null, "", null, "", "").size());

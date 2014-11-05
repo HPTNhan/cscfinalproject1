@@ -19,10 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="accounttype")
-@NamedQuery(name="AccountType.findAll", query="SELECT a FROM AccountType a")
 public class AccountType implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

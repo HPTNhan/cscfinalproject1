@@ -1,9 +1,7 @@
 package com.csc.fresher.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,17 +38,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 				user.isEnabled(), true, true, true, authorities);
 		}
 	
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildUserAuthority(List<UserRole> userRoles) {
 		 
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		List<GrantedAuthority> setAuths = new ArrayList<GrantedAuthority>();
  
 		// Build user's authorities
 		for (UserRole userRole : userRoles) {
 			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
-		}
+		} 		
  
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
- 
-		return Result;
+		return setAuths;
 	}
 }

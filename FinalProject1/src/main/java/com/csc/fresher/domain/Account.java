@@ -26,7 +26,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name="account")
-@NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
