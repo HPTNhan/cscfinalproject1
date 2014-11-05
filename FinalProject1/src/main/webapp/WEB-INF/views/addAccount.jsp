@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<form:form cssClass="form-horizontal" role="form"
-				action="${pageContext.request.contextPath}/doAddAccount"
+				action="${pageContext.request.contextPath}/support/doAddAccount"
 				method="post" modelAttribute="account">
 				<div class="row">
 					<div class="col-sm-6 col-lg-4">
