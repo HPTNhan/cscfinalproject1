@@ -126,7 +126,7 @@ public class SupportController {
 	 * @param request
 	 * @return page
 	 */
-	@RequestMapping(value = "/getAddAccount")
+	@RequestMapping(value = "/getAddAccount", method = RequestMethod.GET)
 	public String getAddAccount(HttpServletRequest request, Model model) {
 
 		/*
