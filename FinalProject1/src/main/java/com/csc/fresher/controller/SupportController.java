@@ -82,7 +82,7 @@ public class SupportController {
 		}
 		attr.addFlashAttribute("message", message);
 		attr.addFlashAttribute("alert", alert);
-		return "redirect:searchPage";
+		return "redirect:/searchPage";
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class SupportController {
 		}
 		attr.addFlashAttribute("message", message);
 		attr.addFlashAttribute("alert", alert);
-		return "redirect:searchPage";
+		return "redirect:/searchPage";
 	}
 	
 	/**
