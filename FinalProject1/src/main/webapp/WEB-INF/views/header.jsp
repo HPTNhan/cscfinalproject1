@@ -38,28 +38,28 @@
 								style="color: #2a6496"></i>
 						</a>
 							<ul class="dropdown-menu dropdown-alerts" style="width: 254px;">
-								<li><a href="searchState?state=1">
+								<li><a href="${pageContext.request.contextPath}/searchState?state=1">
 										<div>
 											<i class="fa fa-user fa-fw"></i> New Account <span
 												class="pull-right text-muted small">${newAccount }</span>
 										</div>
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="searchState?state=2">
+								<li><a href="${pageContext.request.contextPath}/searchState?state=2">
 										<div>
 											<i class="fa fa-user fa-fw"></i> Active Account <span
 												class="pull-right text-muted small">${activeAccount }</span>
 										</div>
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="searchState?state=3">
+								<li><a href="${pageContext.request.contextPath}/searchState?state=3">
 										<div>
 											<i class="fa fa-user fa-fw"></i> Disable Account <span
 												class="pull-right text-muted small">${disableAccount }</span>
 										</div>
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="searchState?state=4">
+								<li><a href="${pageContext.request.contextPath}/searchState?state=4">
 										<div>
 											<i class="fa fa-user fa-fw"></i> Removable Account <span
 												class="pull-right text-muted small">${removableAccount }</span>
