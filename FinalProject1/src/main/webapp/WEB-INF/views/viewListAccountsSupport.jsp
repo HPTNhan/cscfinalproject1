@@ -73,7 +73,7 @@
 									data-placement="right" title="View detail"> <span
 										class="glyphicon glyphicon-list-alt" data-toggle="modal"
 										data-target="#myModal${i }"></span>
-								</a> <a href="getAccountInfo?accountId=${account.idaccount}"
+								</a> <a href="support/getAccountInfo?accountId=${account.idaccount}"
 									data-toggle="tooltip" data-placement="right"
 									title="Edit Account"> <span
 										class="glyphicon glyphicon-edit"></span>
