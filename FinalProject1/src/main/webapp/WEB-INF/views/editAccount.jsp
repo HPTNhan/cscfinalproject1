@@ -245,7 +245,7 @@
 						<div class="form-group form-group-sm">
 							<button style="margin-left: 50%" type="submit"
 								class="btn btn-primary btn-sm">Submit</button>
-							<a href="searchPage"><button type="button"
+							<a href="${pageContext.request.contextPath}/searchPage"><button type="button"
 									class="btn btn-default btn-sm">Cancel</button></a>
 						</div>
 					</div>
