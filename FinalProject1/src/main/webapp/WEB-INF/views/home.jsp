@@ -10,23 +10,28 @@
 <title>Final Project</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value="resources/css/bootstrap.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/bootstrap.css"/>"
+	rel="stylesheet">
 
 
 <!-- Custom styles for this template -->
 <link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
 <!-- MetisMenu CSS -->
-<link href="<c:url value="resources/css/plugins/metisMenu/metisMenu.min.css"/>"
+<link
+	href="<c:url value="resources/css/plugins/metisMenu/metisMenu.min.css"/>"
 	rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="resources/css/plugins/timeline.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/plugins/timeline.css"/>"
+	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="resources/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/sb-admin-2.css"/>"
+	rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="resources/css/plugins/morris.css"/>" rel="stylesheet">
+<link href="<c:url value="resources/css/plugins/morris.css"/>"
+	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
@@ -37,7 +42,12 @@
 <script src="<c:url value="resources/js/hover.zoom.js"/>"></script>
 <script src="<c:url value="resources/js/hover.zoom.conf.js"/>"></script>
 
-
+<script type="text/javascript">
+	history.pushState(null, null, 'login');
+	window.addEventListener('popstate', function(event) {
+		history.pushState(null, null, 'login');
+	});
+</script>
 </head>
 
 <body>
@@ -56,7 +66,7 @@
 								<h3>Login</h3>
 								<hr>
 								<c:if test="${not empty error}">
-									<p class="alert alert-danger"  data-dismiss="alert">${error}</p>
+									<p class="alert alert-danger" data-dismiss="alert">${error}</p>
 								</c:if>
 								<c:if test="${not empty message}">
 									<p class="alert alert-success" data-dismiss="alert">${message}</p>
@@ -68,11 +78,13 @@
 								<c:url value="/j_spring_security_check" var="loginUrl" />
 								<form action="${loginUrl}" method="post">
 									<div class="form-group">
-										<input type="text" class="form-control" name="username" title="Please enter your username." placeholder="Username">
+										<input type="text" class="form-control" name="username"
+											title="Please enter your username." placeholder="Username">
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" name="password" title="Please enter your password." placeholder="Password">
+										<input type="password" class="form-control" name="password"
+											title="Please enter your password." placeholder="Password">
 										<br>
 									</div>
 									<button type="submit" class="btn btn-success centered">Submit</button>
@@ -104,12 +116,16 @@
 	<script src="<c:url value="resources/js/jquery-1.11.0.js"/>"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
+	<script
+		src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
 	<!-- Morris Charts JavaScript -->
-	<script src="<c:url value="resources/js/plugins/morris/raphael.min.js"/>"></script>
-	<script src="<c:url value="resources/js/plugins/morris/morris.min.js"/>"></script>
-	<script src="<c:url value="resources/js/plugins/morris/morris-data.js"/>"></script>
+	<script
+		src="<c:url value="resources/js/plugins/morris/raphael.min.js"/>"></script>
+	<script
+		src="<c:url value="resources/js/plugins/morris/morris.min.js"/>"></script>
+	<script
+		src="<c:url value="resources/js/plugins/morris/morris-data.js"/>"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value="resources/js/sb-admin-2.js"/>"></script>
