@@ -7,31 +7,49 @@
 <html>
 <head>
 <script type="text/javascript">
-	function isChecked()
-	{
-		$(document).ready(function() {
-			  var oTable = $('#dataTables-example').dataTable();			   
-			  // Get the nodes from the table
-			  var nNodes = oTable.fnGetNodes();
-			  /* alert(nNodes.length); */
-			} );		
-		var x = document.forms["submitAction"].idaccount;
-		for (i = 0; i < x.length; i++) {
-			if (x[i].checked) {
-				return true;
+	function confirmAction() {						
+		var action = $("#actionState").val();
+		var isChecked = false;
+		var idAccount = document.forms["submitAction"].idaccount;
+		var accountNumber = document.forms["submitAction"].accountNumber;
+		var message = "These account have accountnumber below will be set to ";
+		message += action;
+		message += " state: \n";
+		for (i = 0; i < idAccount.length; i++) {
+			if (idAccount[i].checked) {
+				//return true;
+				message += accountNumber[i].value;
+				message += "\n";
+				isChecked = true;
 			}
 		}
-		alert("Please select one !");
-		return false;
+		message += "Are you sure to do this action ?";
+		if (isChecked == true) {
+			if (confirm(message) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			alert("Please select one !");
+		}
+		return isChecked;
 	}
-   
-
 </script>
 </head>
 
 <body>
-	<form action="admin/setListAccountState" method="post" name="submitAction"
-		onsubmit="return isChecked()">
+	<form action="admin/setListAccountState" method="post"
+		name="submitAction" onsubmit="return confirmAction()">
+		<input type="hidden" name="actionState" id="actionState" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+				//when a submit button is clicked, put its name into the action hidden field
+				$(":submit").click(function() {
+					$("#actionState").val(this.value);
+				});
+			});
+		</script>
 		<div class="col-lg-12">
 			<h1 class="page-header"></h1>
 			<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
@@ -101,9 +119,11 @@
 							<c:forEach var="account" items="${accounts}">
 								<tr>
 									<td><input class="second" id="selectall" name="idaccount"
-										type="checkbox" value="${account.idaccount}" /></td>
+										type="checkbox" value="${account.idaccount}" /> <input
+										style="display: none;" name="accountNumber"
+										value="${account.accountNumber}" /></td>
 									<td>${account.accountNumber}</td>
-									<td>${account.firstName} ${account.lastName}
+									<td>${account.firstName}${account.lastName}
 										${account.midName}</td>
 									<td>${account.idCardNumber}</td>
 									<td>${account.accountstate.stateName}</td>
@@ -168,7 +188,7 @@
 					<div class="modal-body">
 						<dl class="dl-horizontal">
 							<dt>Full Name</dt>
-							<dd>${account.firstName} ${account.lastName}
+							<dd>${account.firstName}${account.lastName}
 								${account.midName}</dd>
 							<dt>Account Number</dt>
 							<dd>${account.accountNumber}</dd>
