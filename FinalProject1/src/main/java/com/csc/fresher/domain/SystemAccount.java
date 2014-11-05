@@ -1,6 +1,7 @@
 package com.csc.fresher.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class SystemAccount implements Serializable {
 
 	//bi-directional many-to-one association to UserRole
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
-	private Set<UserRole> userRoles;
+	private List<UserRole> userRoles;
 
 	public SystemAccount() {
 	}
@@ -40,7 +41,7 @@ public class SystemAccount implements Serializable {
 	}
  
 	public SystemAccount(String username, String password, 
-		boolean enabled, Set<UserRole> userRole) {
+		boolean enabled, List<UserRole> userRole) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -71,11 +72,11 @@ public class SystemAccount implements Serializable {
 		this.password = password;
 	}
 
-	public Set<UserRole> getUserRoles() {
+	public List<UserRole> getUserRoles() {
 		return this.userRoles;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
+	public void setUserRoles(List<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
 

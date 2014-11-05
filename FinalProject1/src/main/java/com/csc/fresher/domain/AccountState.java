@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Entity
 @Table(name="accountstate")
-@NamedQuery(name="AccountState.findAll", query="SELECT a FROM AccountState a")
 public class AccountState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
