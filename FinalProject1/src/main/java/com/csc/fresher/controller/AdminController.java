@@ -139,6 +139,7 @@ public class AdminController {
 			}
 		}
 		model.addAttribute("message", message);
+		model.asMap().clear();
 		return "redirect:/searchPage";
 	}
 }
