@@ -120,7 +120,7 @@
 								<tr>
 									<td><input class="second" id="selectall" name="idaccount"
 										type="checkbox" value="${account.idaccount}" /> <input
-										style="display: none;" name="accountNumber"
+										type="hidden" name="accountNumber"
 										value="${account.accountNumber}" /></td>
 									<td>${account.accountNumber}</td>
 									<td>${account.firstName}${account.lastName}
