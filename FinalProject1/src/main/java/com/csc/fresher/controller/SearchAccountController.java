@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csc.fresher.domain.Account;
 import com.csc.fresher.service.AccountService;
@@ -44,6 +45,10 @@ public class SearchAccountController {
 			model.addAttribute("accounts", accounts);
 		} else {
 			model.addAttribute("message", "No records found.");
+		}
+		if(request.getParameter("alert") != null){
+			model.addAttribute("alert", request.getParameter("alert"))
+;			model.addAttribute("message", "This Account doesn't exist");
 		}
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			model.addAttribute("flat", service
@@ -113,7 +118,6 @@ public class SearchAccountController {
 		
 		// Read conditions from request
 		int state = Integer.parseInt(request.getParameter("state"));
-		
 		// add attribute to show list of account for admin / support
 		if (service.searchAccountsBaseOnState(state) != null) {
 			model.addAttribute("accounts",

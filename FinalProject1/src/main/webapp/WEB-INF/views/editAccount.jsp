@@ -54,7 +54,7 @@
 			<!-- Breadcrumb -->
 			<div class="row">
 				<ol class="breadcrumb">
-					<li><a href="searchPage">Search</a></li>
+					<li><a href="${pageContext.request.contextPath}/searchPage">Search</a></li>
 					<li class="active">Edit Account</li>
 				</ol>
 			</div>
