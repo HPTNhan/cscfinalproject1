@@ -206,18 +206,20 @@ public class SupportController {
 	 * @author NhanHo
 	 */
 	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
-	public String deleteListAccount(HttpServletRequest request) {
+	public String deleteListAccount(HttpServletRequest request, Model model) {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
 		if(!role.equals("support")) return "redirect:searchPage";*/
 		
 		String[] listIdAccountString = request.getParameterValues("idaccount");
+		String message = "";
 		if (service.deleteListAccount(listIdAccountString)) {
-			System.out.println("delete completed");
+			message = "Action successfully !";
 		} else {
-			System.out.println("delete failed");
+			message = "Accounts had problem and could not be delete !";
 		}
+		model.addAttribute("message", message);
 		return "redirect:/searchPage";
 	}
 	
@@ -227,7 +229,7 @@ public class SupportController {
 	 * @author NhanHo
 	 */
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
-	public String deleteAccount(HttpServletRequest request) {
+	public String deleteAccount(HttpServletRequest request, Model model) {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if (role == null)
@@ -236,11 +238,13 @@ public class SupportController {
 			return "redirect:searchPage";*/
 
 		String idaccount = request.getParameter("idaccount");
+		String message = "";
 		if (service.deleteAccount(idaccount)) {
-			System.out.println("delete completed");
+			message = "Action successfully !";
 		} else {
-			System.out.println("delete failed");
+			message = "Accounts had problem and could not be delete !";
 		}
+		model.addAttribute("message", message);
 		return "redirect:/searchPage";
 	}
 }
