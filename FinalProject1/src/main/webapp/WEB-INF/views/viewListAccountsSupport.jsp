@@ -14,7 +14,7 @@
 			   
 			  // Get the nodes from the table
 			  var nNodes = oTable.fnGetNodes();
-			  alert(nNodes.length);
+			  //alert(nNodes.length);
 			} );
 		
 		var x = document.forms["submitAction"].idaccount;
@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	<form action="support/deleteListAccount" method="post" name="submitAction">
+	<form action="support/deleteListAccount" method="post" name="submitAction" onsubmit="return isChecked()">
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
