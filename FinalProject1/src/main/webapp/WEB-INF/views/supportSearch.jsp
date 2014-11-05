@@ -98,7 +98,7 @@ table pre.prettyprint {
 				<h1 class="page-header">
 					Search
 					
-						<a href="getAddAccount.html">
+						<a href="support/getAddAccount">
 							<button type="submit" class="btn btn-success centered"
 								style="float: right">Add Account</button>
 						</a>
