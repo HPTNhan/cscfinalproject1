@@ -59,9 +59,9 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- set session timeout for 10 minute <url-pattern>/*.atom</url-pattern> -->
+	<!-- set session timeout for 30 minute <url-pattern>/*.atom</url-pattern> -->
 	<session-config>
-		<session-timeout>10</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>	
 
 
