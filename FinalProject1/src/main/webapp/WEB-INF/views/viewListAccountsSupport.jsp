@@ -6,95 +6,108 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">
-	function isChecked()
-	{
-		$(document).ready(function() {
-			  var oTable = $('#dataTables-example').dataTable();
-			   
-			  // Get the nodes from the table
-			  var nNodes = oTable.fnGetNodes();
-			  //alert(nNodes.length);
-			} );
-		
-		var x = document.forms["submitAction"].idaccount;
-		for (i = 0; i < x.length; i++) {
-			if (x[i].checked) {
-				return true;
+<script type="text/javascript">
+	function confirmAction() {
+		var isChecked = false;
+		var idAccount = document.forms["submitAction"].idaccount;
+		var accountNumber = document.forms["submitAction"].accountNumber;
+		var message = "These account have accountnumber below will be DELETE: ";
+		message += " state: \n";
+		for (i = 0; i < idAccount.length; i++) {
+			if (idAccount[i].checked) {
+				//return true;
+				message += accountNumber[i].value;
+				message += "\n";
+				isChecked = true;
 			}
 		}
-		alert("Please select one !");
-		return false;
+		message += "Are you sure to do this action ?";
+		if (isChecked == true) {
+			if (confirm(message) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			alert("Please select one !");
+		}
+		return isChecked;
 	}
-	</script>
+</script>
 </head>
 
 <body>
-	<form action="support/deleteListAccount" method="post" name="submitAction" onsubmit="return isChecked()">
-	<div class="col-lg-12">
-		<h1 class="page-header"></h1>
-		<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
-		<c:if test="${(flat =='4')}">
-			<button type="submit" class="btn btn-success centered"
-				action="delete" style="float: right; margin-left: 1%">Delete</button>
-		</c:if>
-		</div>
-	</div>
-	<div class="col-lg-12">
-		<div class="panel-body"
-			style="border-style: solid; border-width: 1px; margin-top: 1%; border-color: #eee">
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
-					<thead>
-						<tr>
-							<th width="35px"><input class="second" id="selectall" name="check"
-								type="checkbox" /></th>
-							<th>Account Number</th>
-							<th width="200px">Full Name</th>
-							<th>ID Card Number</th>
-							<th>State</th>
-							<th>Account Type</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:set var="i" value="${0 }" />
-						<c:forEach var="account" items="${accounts}">
-							<tr>
-								<td><input class="second" name="idaccount"
-									type="checkbox" value="${account.idaccount}" /></td>
-								<td>${account.accountNumber}</td>
-								<td>${account.firstName} ${account.lastName} ${account.midName}</td>
-								<td>${account.idCardNumber}</td>
-								<td>${account.accountstate.stateName}</td>
-								<td>${account.accounttype.typeName}</td>
-								<td class="tooltip-demo"><a href="#" data-toggle="tooltip"
-									data-placement="right" title="View detail"> <span
-										class="glyphicon glyphicon-list-alt" data-toggle="modal"
-										data-target="#myModal${i }"></span>
-								</a> <a href="support/getAccountInfo?accountId=${account.idaccount}"
-									data-toggle="tooltip" data-placement="right"
-									title="Edit Account"> <span
-										class="glyphicon glyphicon-edit"></span>
-								</a> <c:if test="${(account.accountstate.stateName =='Removable')}">
-										<a href="support/deleteAccount?idaccount=${account.idaccount}" data-toggle="tooltip" data-placement="right"
-											title="Remove"> <span class="glyphicon glyphicon-trash"></span>
-										</a>
-									</c:if></td>
-							</tr>
-							<c:set var="i" value="${i+1 }" />
-						</c:forEach>
-
-
-					</tbody>
-				</table>
+	<form action="support/deleteListAccount" method="post"
+		name="submitAction" onsubmit="return confirmAction()">
+		<div class="col-lg-12">
+			<h1 class="page-header"></h1>
+			<div class="col-md-6 col-md-offset-6" style="padding: 0px;">
+				<c:if test="${(flat =='4')}">
+					<button type="submit" class="btn btn-success centered"
+						action="delete" style="float: right; margin-left: 1%">Delete</button>
+				</c:if>
 			</div>
-			<!-- /.table-responsive -->
-
 		</div>
-		<!-- /.panel-body -->
-	</div>
+		<div class="col-lg-12">
+			<div class="panel-body"
+				style="border-style: solid; border-width: 1px; margin-top: 1%; border-color: #eee">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
+						<thead>
+							<tr>
+								<th width="35px"><input class="second" id="selectall"
+									name="check" type="checkbox" /></th>
+								<th>Account Number</th>
+								<th width="200px">Full Name</th>
+								<th>ID Card Number</th>
+								<th>State</th>
+								<th>Account Type</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:set var="i" value="${0 }" />
+							<c:forEach var="account" items="${accounts}">
+								<tr>
+									<td><input class="second" name="idaccount" type="checkbox"
+										value="${account.idaccount}" /> <input type="hidden"
+										name="accountNumber" value="${account.accountNumber}" /></td>
+									<td>${account.accountNumber}</td>
+									<td>${account.firstName}${account.lastName}
+										${account.midName}</td>
+									<td>${account.idCardNumber}</td>
+									<td>${account.accountstate.stateName}</td>
+									<td>${account.accounttype.typeName}</td>
+									<td class="tooltip-demo"><a href="#" data-toggle="tooltip"
+										data-placement="right" title="View detail"> <span
+											class="glyphicon glyphicon-list-alt" data-toggle="modal"
+											data-target="#myModal${i }"></span>
+									</a> <a
+										href="support/getAccountInfo?accountId=${account.idaccount}"
+										data-toggle="tooltip" data-placement="right"
+										title="Edit Account"> <span
+											class="glyphicon glyphicon-edit"></span>
+									</a> <c:if test="${(account.accountstate.stateName =='Removable')}">
+											<a
+												href="support/deleteAccount?idaccount=${account.idaccount}"
+												data-toggle="tooltip" data-placement="right" title="Remove">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</c:if></td>
+								</tr>
+								<c:set var="i" value="${i+1 }" />
+							</c:forEach>
+
+
+						</tbody>
+					</table>
+				</div>
+				<!-- /.table-responsive -->
+
+			</div>
+			<!-- /.panel-body -->
+		</div>
 	</form>
 	<!-- /.panel -->
 	<!-- /#wrapper -->
@@ -113,7 +126,8 @@
 					<div class="modal-body">
 						<dl class="dl-horizontal">
 							<dt>Full Name</dt>
-							<dd>${account.firstName} ${account.lastName} ${account.midName}</dd>
+							<dd>${account.firstName}${account.lastName}
+								${account.midName}</dd>
 							<dt>Account Number</dt>
 							<dd>${account.accountNumber}</dd>
 							<dt>ID Card Number</dt>
