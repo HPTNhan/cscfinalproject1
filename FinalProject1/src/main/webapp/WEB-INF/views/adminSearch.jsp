@@ -15,23 +15,14 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
 
-<!-- MetisMenu CSS -->
-<link href="<c:url value="resources/css/plugins/metisMenu/metisMenu.min.css"/>"
-	rel="stylesheet">
-
-<!-- Timeline CSS -->
-<link href="<c:url value="resources/css/plugins/timeline.css"/>" rel="stylesheet">
-
 <!-- DataTables CSS -->
 <link href="<c:url value="resources/css/plugins/dataTables.bootstrap.css"/>"
 	rel="stylesheet">
 
-<!-- Custom CSS -->
+<!-- Notification bar CSS -->
 <link href="<c:url value="resources/css/sb-admin-2.css"/>" rel="stylesheet">
 
-<!-- Morris Charts CSS -->
-<link href="<c:url value="resources/css/plugins/morris.css"/>" rel="stylesheet">
-
+<!-- Check all checkbox CSS -->
 <link href="<c:url value="resources/css/all_check.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
@@ -39,18 +30,15 @@
 	href="<c:url value="resources/font-awesome-4.1.0/css/font-awesome.min.css"/>"
 	rel="stylesheet" type="text/css">
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<c:url value="resources/js/hover.zoom.js"/>"></script>
-<script src="<c:url value="resources/js/hover.zoom.conf.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="resources/css/bootstrap-3.1.1.min.css"/>" type="text/css">
 
 <!-- Multi-select -->
 <link rel="stylesheet"
-	href="<c:url value="resources/css/bootstrap-3.1.1.min.css"/>" type="text/css">
-<link rel="stylesheet"
 	href="<c:url value="resources/css/bootstrap-multiselect.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="resources/css/prettify.css"/>"
-	type="text/css">
 
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript"
 	src="<c:url value="resources/js/jquery-2.1.0.min.js"/>"></script>
 <script type="text/javascript"
@@ -172,9 +160,6 @@ table pre.prettyprint {
 	<!-- /container -->
 	<!-- End Body Section-->
 
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
-
 	<!-- Numeric JavaScript -->
 	<script src="<c:url value="resources/js/jquery.numeric.js"/>"></script>
 
@@ -183,24 +168,16 @@ table pre.prettyprint {
 		src="<c:url value="resources/js/plugins/dataTables/jquery.dataTables.js"/>"></script>
 	<script
 		src="<c:url value="resources/js/plugins/dataTables/dataTables.bootstrap.js"/>"></script>
+	<script src="<c:url value="resources/js/plugins/metisMenu/metisMenu.min.js"/>"></script>
 
-	<!-- Custom Theme JavaScript -->
+	<!-- Notification bar JavaScript -->
 	<script src="<c:url value="resources/js/sb-admin-2.js"/>"></script>
 
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			window.prettyPrint() && prettyPrint();
-
-			$('#example54').multiselect();
-
-		});
-	</script>
+	<!-- Data table -->
 	<script>
 		$(document).ready(function() {
 			$('#dataTables-example').dataTable();
 		});
-		
 		
 	</script>
 	<script>
@@ -210,6 +187,7 @@ table pre.prettyprint {
 			container : "body"
 		})
 	</script>
+	<!-- Numberic -->
 	<script type="text/javascript">
 		$ = jQuery;
 		$(document).ready(function() {
@@ -223,19 +201,17 @@ table pre.prettyprint {
 	<!-- Multi Select -->
 	<script>
 		$(document).ready(function() {
-			// Below code is used to remove all check property if,
-			// User select/unselect options with class first options.
+			/* Below code is used to remove all check property if,
+			User select/unselect options with class first options. */
 			$(".first").click(function() {
 				$("#checkAll").attr("data-type", "uncheck");
 			});
-			// Below code is used to remove all check property if,
-			// User select/unselect options with name=option2 options.
+			/* Below code is used to remove all check property if,
+			User select/unselect options with name=option2 options. */
 			$("input[name=idaccount]").click(function() {
 				$("#selectall").prop("checked", false);
 			});
-			/////////////////////////////////////////////////////////////
-			// JS for Check/Uncheck all CheckBoxes by Button //
-			/////////////////////////////////////////////////////////////
+			/* JS for Check/Uncheck all CheckBoxes by Button */
 			$("#checkAll").attr("data-type", "check");
 			$("#checkAll").click(function() {
 				if ($("#checkAll").attr("data-type") === "check") {
@@ -246,9 +222,7 @@ table pre.prettyprint {
 					$("#checkAll").attr("data-type", "check");
 				}
 			})
-			/////////////////////////////////////////////////////////////
-			// JS for Check/Uncheck all CheckBoxes by Checkbox //
-			/////////////////////////////////////////////////////////////
+			/* JS for Check/Uncheck all CheckBoxes by Checkbox */
 			$("#selectall").click(function() {
 				$(".second").prop("checked", $("#selectall").prop("checked"))
 			})
