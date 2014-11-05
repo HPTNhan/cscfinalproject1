@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.csc.fresher.domain.Account;
@@ -204,119 +203,6 @@ public class AccountController {
 		attr.addFlashAttribute("message", message);
 		attr.addFlashAttribute("alert", alert);
 		return "redirect:searchPage";
-	}
-
-	/**
-	 * Delete list account by idAccount
-	 * 
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = "/deleteListAccount", method = RequestMethod.POST)
-	public String deleteListAccount(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("support")) return "redirect:searchPage";*/
-		
-		String[] listIdAccountString = request.getParameterValues("idaccount");
-		if (service.deleteListAccount(listIdAccountString)) {
-			System.out.println("delete completed");
-		} else {
-			System.out.println("delete failed");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
-	public String deleteAccount(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if (role == null)
-			return "home";
-		if (!role.equals("support"))
-			return "redirect:searchPage";*/
-
-		String idaccount = request.getParameter("idaccount");
-		if (service.deleteAccount(idaccount)) {
-			System.out.println("delete completed");
-		} else {
-			System.out.println("delete failed");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
-	public String setAccountStateActive(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/		
-		String idaccount = request.getParameter("idaccount");
-		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "New", "Active");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
-	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/		
-
-		String idaccount = request.getParameter("idaccount");
-		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Disable", "Active");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
-	public String setAccountStateDisable(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-		
-
-		String idaccount = request.getParameter("idaccount");
-		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Active", "Disable");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
-	public String setAccountStateRemovable(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-
-		String idaccount = request.getParameter("idaccount");
-		if (idaccount != null) {
-			service.setAccountStateById(idaccount, "Disable", "Removable");
-		}
-		return "redirect:/searchPage";
-	}
-
-	@RequestMapping(value = "/setListAccountState", method = RequestMethod.POST)
-	public String setListAccountState(HttpServletRequest request) {
-
-		/*String role = (String) request.getSession().getAttribute("role");
-		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-		String[] idaccount = request.getParameterValues("idaccount");
-		String action = request.getParameter("action");
-		if (idaccount != null) {
-			service.setListAccountStateById(idaccount, action);
-		}
-		return "redirect:/searchPage";
 	}
 
 }

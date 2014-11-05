@@ -16,6 +16,11 @@ public class AdminController {
 	@Autowired
 	private AccountService service; 
 	
+	/**
+	 * @param request
+	 * @return
+	 * @author NhanHo
+	 */
 	@RequestMapping(value = "/setAccountStateActive", method = RequestMethod.GET)
 	public String setAccountStateActive(HttpServletRequest request) {
 		
@@ -29,6 +34,11 @@ public class AdminController {
 		return "redirect:/searchPage";
 	}
 	
+	/**
+	 * @param request
+	 * @return
+	 * @author NhanHo
+	 */
 	@RequestMapping(value = "/setAccountStateActiveFromDisable", method = RequestMethod.GET)
 	public String setAccountStateActiveFromDisable(HttpServletRequest request) {
 
@@ -43,14 +53,17 @@ public class AdminController {
 		return "redirect:/searchPage";
 	}
 	
+	/**
+	 * @param request
+	 * @return
+	 * @author NhanHo
+	 */
 	@RequestMapping(value = "/setAccountStateDisable", method = RequestMethod.GET)
 	public String setAccountStateDisable(HttpServletRequest request) {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
-		
+		if(!role.equals("admin")) return "redirect:searchPage";*/				
 
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -59,13 +72,17 @@ public class AdminController {
 		return "redirect:/searchPage";
 	}
 	
+	/**
+	 * @param request
+	 * @return
+	 * @author NhanHo
+	 */
 	@RequestMapping(value = "/setAccountStateRemovable", method = RequestMethod.GET)
 	public String setAccountStateRemovable(HttpServletRequest request) {
 
 		/*String role = (String) request.getSession().getAttribute("role");
 		if(role == null) return "home";
-		if(!role.equals("admin")) return "redirect:searchPage";*/
-		
+		if(!role.equals("admin")) return "redirect:searchPage";*/		
 
 		String idaccount = request.getParameter("idaccount");
 		if (idaccount != null) {
@@ -74,6 +91,11 @@ public class AdminController {
 		return "redirect:/searchPage";
 	}
 	
+	/**
+	 * @param request
+	 * @return
+	 * @author NhanHo
+	 */
 	@RequestMapping(value = "/setListAccountState", method = RequestMethod.POST)
 	public String setListAccountState(HttpServletRequest request) {
 
