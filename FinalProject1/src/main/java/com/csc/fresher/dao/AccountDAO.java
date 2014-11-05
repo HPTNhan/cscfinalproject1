@@ -222,28 +222,25 @@ public class AccountDAO {
 		 * .createEntityManager();
 		 * 
 		 * EntityTransaction entityTransaction = entityManager.getTransaction();
-		 * 
-		 * try {
 		 */
 		Account account = tempEntityManager.find(Account.class,
 				Integer.parseInt(idaccount));
 		if (account == null) {
 			return false;
 		}
-		if (("Removable").equals(account.getAccountstate().getStateName())) {
-			// entityTransaction.begin();
-			Date timeStamp = new Date();
-			account.setTimeStamp(timeStamp);
-			account.setIsDeleted("true");
-			tempEntityManager.merge(account);
-			// entityManager.merge(account);
-			// entityTransaction.commit();
+		try {		
+			if (("Removable").equals(account.getAccountstate().getStateName())) {
+				// entityTransaction.begin();
+				Date timeStamp = new Date();
+				account.setTimeStamp(timeStamp);
+				account.setIsDeleted("true");
+				tempEntityManager.merge(account);
+				// entityManager.merge(account);
+				// entityTransaction.commit();
+			}
+		} catch (Exception e) {
+			return false;
 		}
-		/*
-		 * } catch (Exception e) { // TODO: handle exception if
-		 * (entityTransaction.isActive()) { entityTransaction.rollback(); }
-		 * return false; } finally { entityManager.close(); }
-		 */
 		return true;
 	}
 
@@ -259,7 +256,7 @@ public class AccountDAO {
 	@Transactional
 	public boolean deleteListAccount(String[] listIdAccount) {
 
-		try {			
+		try {
 			for (String idAccount : listIdAccount) {
 				Account account = tempEntityManager.find(Account.class,
 						Integer.parseInt(idAccount));
@@ -270,11 +267,11 @@ public class AccountDAO {
 					account.setIsDeleted("true");
 					tempEntityManager.merge(account);
 				}
-			}			
+			}
 		} catch (Exception e) {
-			// TODO: handle exception			
+			// TODO: handle exception
 			return false;
-		} 
+		}
 		return true;
 	}
 
@@ -286,7 +283,7 @@ public class AccountDAO {
 	@Transactional
 	public boolean setAccountStateById(String idaccount, String currentState,
 			String nextState) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 
 		try {
 			Account account = tempEntityManager.find(Account.class,
@@ -295,17 +292,17 @@ public class AccountDAO {
 					&& currentState.equals(account.getAccountstate()
 							.getStateName())
 					&& findStateByName(nextState) != null) {
-				
+
 				Date timeStamp = new Date();
 				account.setTimeStamp(timeStamp);
 				account.setAccountstate(findStateByName(nextState));
-				tempEntityManager.merge(account);				
+				tempEntityManager.merge(account);
 				System.out.println(idaccount + currentState + nextState);
 			} else {
 				return false;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception			
+			// TODO: handle exception
 			return false;
 		}
 		return true;
@@ -317,20 +314,19 @@ public class AccountDAO {
 	 * @author NhanHo
 	 */
 	@Transactional
-	public AccountState findStateByName(String AccountState) {		
+	public AccountState findStateByName(String AccountState) {
 		AccountState accountState = null;
-		try {			
+		try {
 			TypedQuery<AccountState> query = tempEntityManager.createQuery(
 					"SELECT a FROM " + AccountState.class.getName()
 							+ " a WHERE a.stateName= :stateName ",
 					AccountState.class);
 			query.setParameter("stateName", AccountState);
-			accountState = query.getSingleResult();			
+			accountState = query.getSingleResult();
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
-		} 
-
+		}
 		return accountState;
 	}
 
@@ -348,7 +344,7 @@ public class AccountDAO {
 		 * .createEntityManager(); EntityTransaction entityTransaction =
 		 * entityManager.getTransaction();
 		 */
-		
+
 		Boolean result = true;
 		if (action.equals("Active")) {
 			for (String idaccount : idaccounts) {
@@ -359,9 +355,10 @@ public class AccountDAO {
 							.getStateName();
 					if (currentState.equals("New")
 							|| currentState.equals("Disable")) {
-						if (!setAccountStateById(idaccount, currentState, action)) {
+						if (!setAccountStateById(idaccount, currentState,
+								action)) {
 							result = false;
-						}						
+						}
 					}
 				}
 			}
@@ -373,7 +370,8 @@ public class AccountDAO {
 					String currentState = account.getAccountstate()
 							.getStateName();
 					if (currentState.equals("Active")) {
-						if (!setAccountStateById(idaccount, currentState, action)) {
+						if (!setAccountStateById(idaccount, currentState,
+								action)) {
 							result = false;
 						}
 					}
@@ -387,13 +385,14 @@ public class AccountDAO {
 					String currentState = account.getAccountstate()
 							.getStateName();
 					if (currentState.equals("Disable")) {
-						if (!setAccountStateById(idaccount, currentState, action)) {
+						if (!setAccountStateById(idaccount, currentState,
+								action)) {
 							result = false;
 						}
 					}
 				}
 			}
-		}		
+		}
 		return result;
 	}
 
