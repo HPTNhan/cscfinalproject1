@@ -196,9 +196,13 @@ public class AccountDAO {
 
 		String currentState = "";
 
-		Account account = tempEntityManager.find(Account.class, idAccount);
-		currentState = account.getAccountstate().getStateName();
-
+		try {
+			Account account = tempEntityManager.find(Account.class, idAccount);
+			currentState = account.getAccountstate().getStateName();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 		return currentState;
 	}
 
@@ -344,10 +348,8 @@ public class AccountDAO {
 		 * .createEntityManager(); EntityTransaction entityTransaction =
 		 * entityManager.getTransaction();
 		 */
-
-		/* try { */
-		// entityTransaction.begin();
-		// set New or Disable to Active
+		
+		Boolean result = true;
 		if (action.equals("Active")) {
 			for (String idaccount : idaccounts) {
 				Account account = tempEntityManager.find(Account.class,
@@ -357,7 +359,9 @@ public class AccountDAO {
 							.getStateName();
 					if (currentState.equals("New")
 							|| currentState.equals("Disable")) {
-						setAccountStateById(idaccount, currentState, action);
+						if (!setAccountStateById(idaccount, currentState, action)) {
+							result = false;
+						}						
 					}
 				}
 			}
@@ -369,7 +373,9 @@ public class AccountDAO {
 					String currentState = account.getAccountstate()
 							.getStateName();
 					if (currentState.equals("Active")) {
-						setAccountStateById(idaccount, currentState, action);
+						if (!setAccountStateById(idaccount, currentState, action)) {
+							result = false;
+						}
 					}
 				}
 			}
@@ -381,16 +387,14 @@ public class AccountDAO {
 					String currentState = account.getAccountstate()
 							.getStateName();
 					if (currentState.equals("Disable")) {
-						setAccountStateById(idaccount, currentState, action);
+						if (!setAccountStateById(idaccount, currentState, action)) {
+							result = false;
+						}
 					}
 				}
 			}
-		}
-		/*
-		 * } catch (Exception e) { // TODO: handle exception }
-		 */
-
-		return false;
+		}		
+		return result;
 	}
 
 }
