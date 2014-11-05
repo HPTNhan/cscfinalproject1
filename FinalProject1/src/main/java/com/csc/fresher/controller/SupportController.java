@@ -92,7 +92,7 @@ public class SupportController {
 	 * @return page
 	 */
 	@RequestMapping(value = "/getAccountInfo")
-	public String getAccountInfo(HttpServletRequest request, Model model,final RedirectAttributes attr) {
+	public String getAccountInfo(HttpServletRequest request, Model model) {
 
 		/*String role = (String) request.getSession().getAttribute("role");		
 		
@@ -110,12 +110,9 @@ public class SupportController {
 			// set Account Info Temp to do Update Account in case account info
 			// is not valid
 			accountTemp = service.getAccountInfoByAccountId(accountId);
-			return ("editAccount");
+			return "editAccount";
 		} else {
-			String message = "This Account doesn't exist";
-			String alert = "error";
-			attr.addFlashAttribute("message", message);
-			attr.addFlashAttribute("alert", alert);
+			model.addAttribute("alert", "error");
 			return "redirect:/searchPage";
 		}
 	}
