@@ -29,5 +29,5 @@
 
 	<!-- aop -->
 	<aop:aspectj-autoproxy />
-	<context:component-scan base-package="com.csc.fresher" />	
+	<context:component-scan base-package="com.csc.fresher.controller" />	
 </beans:beans>
